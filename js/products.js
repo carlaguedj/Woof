@@ -12,21 +12,27 @@
      Quand il est connu, écrivez par ex. "€45".
    ========================================================================== */
 
-/* ---------- LES COLLECTIONS (modèles) ---------- */
+/* ---------- LES COLLECTIONS ----------
+   L'ordre ici = l'ordre d'affichage sur le site.
+   status : "coming-soon"   → affiche « Coming soon »
+            "released-soon" → affiche « Released soon »
+            "available"     → en vente (affiche le prix des produits) */
 window.WOOF_COLLECTIONS = [
   {
-    id: "rodeo-kid",                 // identifiant (minuscules, tirets, pas d'espace)
-    name: "Rodeo Kid",
-    fabric: "Red bandana",
-    tagline: "A little wild, always charming.",
-    image: "images/rodeo-kid-collier-1.jpg",
-    alt: "Red paisley bandana dog collar with a gold Woof medallion"
+    id: "the-diva",                  // identifiant (minuscules, tirets, pas d'espace)
+    name: "Diva",
+    fabric: "Velvet",
+    tagline: "Burgundy velvet for main characters.",
+    status: "coming-soon",
+    image: "images/collection-the-diva.jpg",
+    alt: "Woman hugging her spaniel wearing a burgundy velvet collar"
   },
   {
     id: "park-avenue-girl",
     name: "Park Avenue Girl",
     fabric: "Tweed",
     tagline: "Tweed, gold and very good manners.",
+    status: "coming-soon",
     image: "images/collection-park-avenue-girl.jpg",
     alt: "Woman kissing her spaniel wearing a burgundy tweed collar"
   },
@@ -35,24 +41,80 @@ window.WOOF_COLLECTIONS = [
     name: "Denim Club",
     fabric: "Denim",
     tagline: "Your favourite jeans, for both of you.",
+    status: "coming-soon",
     image: "images/collection-denim-club.jpg",
     alt: "Woman with her curly dog, both wearing matching denim accessories"
   },
   {
-    id: "the-diva",
-    name: "The Diva",
-    fabric: "Velvet",
-    tagline: "Burgundy velvet for main characters.",
-    image: "images/collection-the-diva.jpg",
-    alt: "Woman hugging her spaniel wearing a burgundy velvet collar"
+    id: "rodeo-kid",
+    name: "Rodeo Kid",
+    fabric: "Red bandana",
+    tagline: "A little wild, always charming.",
+    status: "coming-soon",
+    image: "images/rodeo-kid-collier-1.jpg",
+    alt: "Red paisley bandana dog collar with a gold Woof medallion"
+  },
+  {
+    id: "the-spoiled-one",
+    name: "The Spoiled One",
+    fabric: "Gold chain",
+    tagline: "Gold chains, black leather, zero compromise.",
+    status: "released-soon",
+    image: "images/collection-the-spoiled-one.jpg",
+    alt: "Woman kissing her spaniel, both wearing gold chain and black leather pieces"
   }
 ];
 
 /* ---------- LES PRODUITS ----------
-   type : "collar" (collier) ou "scrunchie"
+   type : "collar" (collier), "scrunchie" ou "bracelet"
    collection : l'identifiant d'une collection ci-dessus
    images : la 1re photo est celle des vignettes ; ajoutez-en autant que vous voulez */
 window.WOOF_PRODUCTS = [
+
+  /* ===== DIVA — velours ===== */
+  {
+    id: "the-diva-collar",
+    name: "Diva Collar",
+    collection: "the-diva",
+    type: "collar",
+    price: "",
+    short: "Ruched burgundy velvet and gold-tone hardware.",
+    description: "For the main character of every walk. Diva is a softly ruched collar in deep burgundy velvet, finished with our gold-tone engraved buckle and signature medallion. Elegant, plush and impossible to ignore.",
+    details: [
+      "Premium velvet, soft and elegant",
+      "Signature buckle with WOOF engraving",
+      "Engraved Woof medallion",
+      "Adjustable fit for perfect comfort",
+      "Designed in Paris"
+    ],
+    sizes: ["S", "M", "L"],
+    images: [
+      { src: "images/the-diva-collier-1.jpg", alt: "Ruched burgundy velvet dog collar with Woof medallion" },
+      { src: "images/the-diva-detail-boucle.jpg", alt: "Gold-tone buckle engraved WOOF on velvet" },
+      { src: "images/the-diva-detail-velours.jpg", alt: "Close-up of the burgundy velvet" },
+      { src: "images/the-diva-detail-medaille.jpg", alt: "Gold-tone Woof medallion" },
+      { src: "images/the-diva-detail-attache.jpg", alt: "Gold-tone adjuster on the velvet collar" }
+    ]
+  },
+  {
+    id: "the-diva-scrunchie",
+    name: "Diva Scrunchie",
+    collection: "the-diva",
+    type: "scrunchie",
+    price: "",
+    short: "Burgundy velvet, for a perfect match.",
+    description: "A plush burgundy velvet scrunchie, the twin of the Diva collar. Soft on hair and beautifully elegant — the easiest way to match your dog.",
+    details: [
+      "Soft velvet",
+      "Gentle elastic, holds without pulling",
+      "One size"
+    ],
+    sizes: [],
+    images: [
+      { src: "images/the-diva-scrunchie-1.jpg", alt: "Burgundy velvet scrunchie" },
+      { src: "images/the-diva-scrunchie-2.jpg", alt: "Velvet scrunchie worn in a bun" }
+    ]
+  },
 
   /* ===== RODEO KID — bandana rouge ===== */
   {
@@ -190,48 +252,45 @@ window.WOOF_PRODUCTS = [
     ]
   },
 
-  /* ===== THE DIVA — velours ===== */
+  /* ===== THE SPOILED ONE — chaîne dorée (Released soon) ===== */
   {
-    id: "the-diva-collar",
-    name: "The Diva Collar",
-    collection: "the-diva",
+    id: "the-spoiled-one-collar",
+    name: "The Spoiled One Collar",
+    collection: "the-spoiled-one",
     type: "collar",
     price: "",
-    short: "Ruched burgundy velvet and gold-tone hardware.",
-    description: "For the main character of every walk. The Diva is a softly ruched collar in deep burgundy velvet, finished with our gold-tone engraved buckle and signature medallion. Elegant, plush and impossible to ignore.",
+    short: "A gold-tone chain woven with black leather.",
+    description: "For dogs who know exactly what they deserve. The Spoiled One is a chunky gold-tone chain woven with soft black leather, finished with a gold O-ring and our engraved Woof medallion. Adjustable, durable, unmistakably elegant.",
     details: [
-      "Premium velvet, soft and elegant",
-      "Signature buckle with WOOF engraving",
+      "Gold-tone chain woven with black leather",
+      "Adjustable buckle",
+      "Gold-tone O-ring for a leash",
       "Engraved Woof medallion",
-      "Adjustable fit for perfect comfort",
       "Designed in Paris"
     ],
     sizes: ["S", "M", "L"],
     images: [
-      { src: "images/the-diva-collier-1.jpg", alt: "Ruched burgundy velvet dog collar with Woof medallion" },
-      { src: "images/the-diva-detail-boucle.jpg", alt: "Gold-tone buckle engraved WOOF on velvet" },
-      { src: "images/the-diva-detail-velours.jpg", alt: "Close-up of the burgundy velvet" },
-      { src: "images/the-diva-detail-medaille.jpg", alt: "Gold-tone Woof medallion" },
-      { src: "images/the-diva-detail-attache.jpg", alt: "Gold-tone adjuster on the velvet collar" }
+      { src: "images/the-spoiled-one-collier-1.jpg", alt: "Gold chain and black leather dog collar with Woof medallion" }
     ]
   },
   {
-    id: "the-diva-scrunchie",
-    name: "The Diva Scrunchie",
-    collection: "the-diva",
-    type: "scrunchie",
+    id: "the-spoiled-one-bracelet",
+    name: "The Spoiled One Bracelet",
+    collection: "the-spoiled-one",
+    type: "bracelet",
     price: "",
-    short: "Burgundy velvet, for a perfect match.",
-    description: "A plush burgundy velvet scrunchie, the twin of The Diva collar. Soft on hair and beautifully elegant — the easiest way to match your dog.",
+    short: "The same chain, for your wrist.",
+    description: "The women's bracelet that matches The Spoiled One collar: the same gold-tone chain woven with black leather, an adjustable extension chain and a little Woof medallion. Comfortable, timeless, made to be worn every day.",
     details: [
-      "Soft velvet",
-      "Gentle elastic, holds without pulling",
+      "Gold-tone chain woven with black leather",
+      "Adjustable extension chain",
+      "Engraved Woof medallion",
       "One size"
     ],
     sizes: [],
     images: [
-      { src: "images/the-diva-scrunchie-1.jpg", alt: "Burgundy velvet scrunchie" },
-      { src: "images/the-diva-scrunchie-2.jpg", alt: "Velvet scrunchie worn in a bun" }
+      { src: "images/the-spoiled-one-bracelet-1.jpg", alt: "Gold chain and black leather bracelet with Woof medallion" },
+      { src: "images/the-spoiled-one-bracelet-2.jpg", alt: "The Spoiled One bracelet worn on the wrist" }
     ]
   }
 
