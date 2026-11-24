@@ -33,7 +33,31 @@
         <button class="burger" type="button" data-menu-open aria-controls="mobile-menu" aria-expanded="false" aria-label="Open menu">
           <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg>
         </button>
-        <a class="nav__link" href="index.html#shop">Shop</a>
+        <div class="nav-drop">
+          <a class="nav__link" href="shop.html">Shop</a>
+          <div class="nav-drop__panel">
+            <div>
+              <p class="nav-drop__title">By category</p>
+              <ul>
+                <li><a href="shop.html?filter=collar">Dog collars</a></li>
+                <li><a href="shop.html?filter=scrunchie">Scrunchies</a></li>
+                <li><a href="shop.html">All pieces</a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="nav-drop__title">For who?</p>
+              <ul>
+                <li><a href="shop.html?filter=for-you">For you</a></li>
+                <li><a href="shop.html?filter=for-dog">For your dog</a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="nav-drop__title">By collection</p>
+              <!-- Liste remplie automatiquement depuis js/products.js -->
+              <ul data-collection-links="shop"></ul>
+            </div>
+          </div>
+        </div>
         <a class="nav__link" href="index.html#collections">Collections</a>
         <a class="nav__link" href="about.html">About us</a>
       </nav>
@@ -59,8 +83,26 @@
       </button>
     </div>
     <ul class="mobile-menu__links">
-      <li><a href="index.html#shop">Shop <svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></a></li>
-      <li><a href="index.html#collections">Collections <svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></a></li>
+      <li>
+        <details class="mm-sub">
+          <summary>Shop <svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+          <div class="mm-sub__body">
+            <p>By category</p>
+            <a href="shop.html?filter=collar">Dog collars</a>
+            <a href="shop.html?filter=scrunchie">Scrunchies</a>
+            <p>For who?</p>
+            <a href="shop.html?filter=for-you">For you</a>
+            <a href="shop.html?filter=for-dog">For your dog</a>
+            <a href="shop.html">All pieces</a>
+          </div>
+        </details>
+      </li>
+      <li>
+        <details class="mm-sub">
+          <summary>Collections <svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+          <div class="mm-sub__body" data-collection-links="shop-mobile"></div>
+        </details>
+      </li>
       <li><a href="about.html">About us</a></li>
       <li><a href="contact.html">Contact</a></li>
       <li><a href="coming-soon.html?p=journal">Journal</a></li>
@@ -118,7 +160,7 @@
           <div class="footer-col">
             <h3>Collections</h3>
             <!-- Liste remplie automatiquement depuis js/products.js -->
-            <ul data-collection-links>
+            <ul data-collection-links="shop">
               <li><a href="index.html#collections">Collections</a></li>
             </ul>
           </div>
@@ -128,15 +170,16 @@
               <li><a href="about.html">About us</a></li>
               <li><a href="coming-soon.html?p=journal">Journal</a></li>
               <li><a href="contact.html">Contact</a></li>
+              <li><a href="coming-soon.html?p=delivery">Delivery &amp; returns</a></li>
             </ul>
           </div>
           <div class="footer-col">
-            <h3>Help</h3>
+            <h3>Shop</h3>
             <ul>
-              <li><a href="coming-soon.html?p=delivery">Delivery &amp; returns</a></li>
-              <li><a href="coming-soon.html?p=sizes">Size guide</a></li>
-              <li><a href="coming-soon.html?p=care">Care guide</a></li>
-              <li><a href="contact.html">Contact us</a></li>
+              <li><a href="shop.html?filter=collar">Dog collars</a></li>
+              <li><a href="shop.html?filter=scrunchie">Scrunchies</a></li>
+              <li><a href="shop.html?filter=for-you">For you</a></li>
+              <li><a href="shop.html?filter=for-dog">For your dog</a></li>
             </ul>
           </div>
           <div class="footer-col">

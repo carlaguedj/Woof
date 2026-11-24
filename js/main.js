@@ -230,6 +230,9 @@
   }
   function priceOf(p) { var s = statusOf(p); return s ? s : esc(p.price); }
   function productUrl(p) { return "product.html?id=" + encodeURIComponent(p.id); }
+  function readFilter() {
+    try { return new URLSearchParams(window.location.search).get("filter") || "all"; } catch (e) { return "all"; }
+  }
   function collectionUrl(c) { return "index.html#" + encodeURIComponent(c.id); }
 
   function cardHTML(p) {
@@ -284,10 +287,69 @@
     }).join("");
   }
 
-  // Liens vers les collections (pied de page)
-  $$("[data-collection-links]").forEach(function (ul) {
-    ul.innerHTML = COLLECTIONS.map(function (c) { return '<li><a href="' + collectionUrl(c) + '">' + esc(c.name) + "</a></li>"; }).join("");
+  // Liens vers les collections (menu Shop, menu mobile, pied de page)
+  $$("[data-collection-links]").forEach(function (el) {
+    var mode = el.getAttribute("data-collection-links");
+    el.innerHTML = COLLECTIONS.map(function (c) {
+      var href = mode === "home" ? collectionUrl(c) : "shop.html?filter=" + encodeURIComponent(c.id);
+      var link = '<a href="' + href + '">' + esc(c.name) + "</a>";
+      return mode === "shop-mobile" ? link : "<li>" + link + "</li>";
+    }).join("");
   });
+
+  // Page Boutique : filtres par catégorie, « for you / for your dog » et par collection
+  var shopPage = $("[data-shop]");
+  if (shopPage) {
+    var FILTERS = {
+      all: { eyebrow: "Shop", title: "All pieces", intro: "Dog collars and their matching pieces, for you." },
+      collar: { eyebrow: "By category", title: "Dog collars", intro: "Every collar has its match." },
+      scrunchie: { eyebrow: "By category", title: "Scrunchies", intro: "Cut from the same fabrics as our dog collars." },
+      "for-you": { eyebrow: "For who?", title: "For you", intro: "Scrunchies and bracelets, made to match your dog." },
+      "for-dog": { eyebrow: "For who?", title: "For your dog", intro: "Collars for good dogs — tweed, denim, velvet, bandana and gold chain." }
+    };
+    COLLECTIONS.forEach(function (c) {
+      FILTERS[c.id] = { eyebrow: c.fabric + " collection", title: c.name, intro: c.tagline };
+    });
+    var matches = function (p, f) {
+      if (f === "all") return true;
+      if (f === "for-dog") return p.type === "collar";
+      if (f === "for-you") return p.type !== "collar";
+      if (f === "collar" || f === "scrunchie" || f === "bracelet") return p.type === f;
+      return p.collection === f;
+    };
+    var ordered = [];
+    COLLECTIONS.forEach(function (c) { ordered = ordered.concat(productsOf(c)); });
+    var colBox = $("[data-shop-collections]", shopPage);
+    if (colBox) {
+      colBox.innerHTML = COLLECTIONS.map(function (c) {
+        return '<a class="filter" href="shop.html?filter=' + encodeURIComponent(c.id) + '" data-shop-filter="' + esc(c.id) + '">' + esc(c.name) + "</a>";
+      }).join("");
+    }
+    var showShop = function (f) {
+      if (!FILTERS[f]) f = "all";
+      var info = FILTERS[f];
+      var list = ordered.filter(function (p) { return matches(p, f); });
+      $("[data-shop-eyebrow]", shopPage).textContent = info.eyebrow;
+      $("[data-shop-title]", shopPage).textContent = info.title;
+      $("[data-shop-intro]", shopPage).textContent = info.intro;
+      $("[data-shop-count]", shopPage).textContent = list.length + (list.length > 1 ? " pieces" : " piece");
+      $("[data-shop-grid]", shopPage).innerHTML = list.map(cardHTML).join("");
+      $$("[data-shop-filter]", shopPage).forEach(function (a) {
+        if (a.getAttribute("data-shop-filter") === f) a.setAttribute("aria-current", "true");
+        else a.removeAttribute("aria-current");
+      });
+      document.title = (f === "all" ? "Shop" : info.title) + " — WOOF";
+    };
+    showShop(readFilter());
+    shopPage.addEventListener("click", function (e) {
+      var a = e.target.closest("[data-shop-filter]");
+      if (!a) return;
+      e.preventDefault();
+      var f = a.getAttribute("data-shop-filter");
+      showShop(f);
+      try { history.replaceState(null, "", f === "all" ? "shop.html" : "shop.html?filter=" + encodeURIComponent(f)); } catch (err) { /* ignore */ }
+    });
+  }
 
   // Carrousel « The Matching Edit » : un set par collection
   var editTrack = $("[data-edit-track]");
@@ -314,7 +376,7 @@
     document.title = p.name + " — WOOF";
     var md = $('meta[name="description"]'); if (md) md.setAttribute("content", p.short);
     set("[data-p-crumb]", esc(p.name));
-    set("[data-p-crumb-type]", '<a href="' + collectionUrl(c) + '">' + esc(c.name) + "</a>");
+    set("[data-p-crumb-type]", '<a href="shop.html?filter=' + encodeURIComponent(c.id) + '">' + esc(c.name) + "</a>");
     set("[data-p-collection]", esc(c.name) + " collection · " + esc(c.fabric));
     set("[data-p-name]", esc(p.name));
     set("[data-p-price]", st ? '<span class="badge-soon">' + st + "</span>" : esc(p.price));

@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>WOOF — Dog collars & matching pieces</title>
-  <meta name="description" content="WOOF designs dog collars and their matching pieces for you: Diva, Park Avenue Girl, Denim Club, Rodeo Kid and The Spoiled One. For them. For you. For us.">
+  <title>WOOF — French accessories for dogs and their humans</title>
+  <meta name="description" content="WOOF is a French brand of dog collars and matching scrunchies: The Diva, Park Avenue Girl, Denim Club, Rodeo Kid and The Spoiled One. For them. For you. For us.">
   <meta name="theme-color" content="#F4E9D8">
   <!-- Aperçu lors d'un partage sur les réseaux sociaux -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="WOOF">
-  <meta property="og:title" content="WOOF — Dog collars & matching pieces">
-  <meta property="og:description" content="WOOF designs dog collars and their matching pieces for you: Diva, Park Avenue Girl, Denim Club, Rodeo Kid and The Spoiled One. For them. For you. For us.">
+  <meta property="og:title" content="WOOF — French accessories for dogs and their humans">
+  <meta property="og:description" content="WOOF is a French brand of dog collars and matching scrunchies: The Diva, Park Avenue Girl, Denim Club, Rodeo Kid and The Spoiled One. For them. For you. For us.">
   <meta property="og:image" content="images/og-partage.jpg">
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <!-- Polices Google : Cormorant Garamond (titres), Libre Baskerville (texte), Mrs Saint Delafield (manuscrit), Libre Bodoni (logo) -->
@@ -33,7 +33,31 @@
         <button class="burger" type="button" data-menu-open aria-controls="mobile-menu" aria-expanded="false" aria-label="Open menu">
           <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg>
         </button>
-        <a class="nav__link" href="index.html#shop">Shop</a>
+        <div class="nav-drop">
+          <a class="nav__link" href="shop.html">Shop</a>
+          <div class="nav-drop__panel">
+            <div>
+              <p class="nav-drop__title">By category</p>
+              <ul>
+                <li><a href="shop.html?filter=collar">Dog collars</a></li>
+                <li><a href="shop.html?filter=scrunchie">Scrunchies</a></li>
+                <li><a href="shop.html">All pieces</a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="nav-drop__title">For who?</p>
+              <ul>
+                <li><a href="shop.html?filter=for-you">For you</a></li>
+                <li><a href="shop.html?filter=for-dog">For your dog</a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="nav-drop__title">By collection</p>
+              <!-- Liste remplie automatiquement depuis js/products.js -->
+              <ul data-collection-links="shop"></ul>
+            </div>
+          </div>
+        </div>
         <a class="nav__link" href="index.html#collections">Collections</a>
         <a class="nav__link" href="about.html">About us</a>
       </nav>
@@ -59,8 +83,26 @@
       </button>
     </div>
     <ul class="mobile-menu__links">
-      <li><a href="index.html#shop">Shop <svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></a></li>
-      <li><a href="index.html#collections">Collections <svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></a></li>
+      <li>
+        <details class="mm-sub">
+          <summary>Shop <svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+          <div class="mm-sub__body">
+            <p>By category</p>
+            <a href="shop.html?filter=collar">Dog collars</a>
+            <a href="shop.html?filter=scrunchie">Scrunchies</a>
+            <p>For who?</p>
+            <a href="shop.html?filter=for-you">For you</a>
+            <a href="shop.html?filter=for-dog">For your dog</a>
+            <a href="shop.html">All pieces</a>
+          </div>
+        </details>
+      </li>
+      <li>
+        <details class="mm-sub">
+          <summary>Collections <svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+          <div class="mm-sub__body" data-collection-links="shop-mobile"></div>
+        </details>
+      </li>
       <li><a href="about.html">About us</a></li>
       <li><a href="contact.html">Contact</a></li>
       <li><a href="coming-soon.html?p=journal">Journal</a></li>
@@ -78,16 +120,19 @@
 
   <main id="main">
 
-    <!-- ================= 1. HERO ================= -->
-    <section class="hero" aria-labelledby="hero-title">
-      <!-- PHOTO : remplacez images/accueil-hero-cafe-dalmatien.jpg (format paysage, environ 1800 × 1200, bonne qualité) -->
-      <img class="hero__img" src="images/accueil-hero-cafe-dalmatien.jpg" alt="A woman at a Parisian café terrace with her dog wearing a WOOF collar" fetchpriority="high">
-      <div class="hero__content">
-        <h1 class="hero__title" id="hero-title">For good<br>dogs.</h1>
-        <p class="eyebrow hero__sub">For them. For you.<br>For us.</p>
-        <a class="btn btn--light" href="#shop">Discover</a>
+    <!-- ================= 1. HERO : l'illustration WOOF à Paris =================
+         Image : images/accueil-illustration-paris.jpg (format paysage 3:2) -->
+    <section class="hero hero--art" aria-labelledby="hero-title">
+      <img class="hero__img" src="images/accueil-illustration-paris.jpg" alt="Illustration of a woman on a Parisian park bench surrounded by dogs wearing WOOF accessories — a velvet bow, a red bandana, a gold chain, tweed and denim collars — near the Eiffel Tower and a café terrace" fetchpriority="high" width="1536" height="1024">
+      <div class="hero__card">
+        <p class="eyebrow">For them. For you. For us.</p>
+        <h1 class="hero__title" id="hero-title">For good dogs.</h1>
+        <p class="hero__text">French accessories for dogs and their humans.</p>
+        <div class="hero__actions">
+          <a class="btn" href="shop.html">Shop now</a>
+          <a class="link-arrow" href="#collections">The collections <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
       </div>
-      <span class="hero__badge" aria-hidden="true"><svg class="icon"><use href="#i-paw"/></svg></span>
     </section>
 
     <!-- ================= 2. SHOP BY COLLECTION (affiché depuis js/products.js) ================= -->
@@ -99,6 +144,34 @@
           <svg class="section-head__deco" aria-hidden="true"><use href="#i-bow"/></svg>
         </div>
         <ul class="cat-grid cat-grid--5" data-collection-grid></ul>
+      </div>
+    </section>
+
+    <!-- ================= 2b. SHOP : POUR VOUS / POUR VOTRE CHIEN ================= -->
+    <section class="section section--tight" aria-labelledby="who-title">
+      <div class="container">
+        <div class="section-head">
+          <svg class="icon icon--paw" aria-hidden="true"><use href="#i-paw"/></svg>
+          <h2 class="section-title" id="who-title" style="font-size:clamp(1.9rem,5vw,2.6rem)">Shop for who?</h2>
+        </div>
+        <div class="duo">
+          <a class="tile duo__tile reveal" href="shop.html?filter=for-dog">
+            <img src="images/park-avenue-girl-collier-3.jpg" alt="Spaniel wearing the Park Avenue Girl tweed collar" loading="lazy">
+            <div class="tile__content">
+              <p class="eyebrow">Dog collars</p>
+              <h3 class="tile__title">For your dog</h3>
+              <span class="link-arrow">Shop dog collars <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+            </div>
+          </a>
+          <a class="tile duo__tile reveal" href="shop.html?filter=for-you">
+            <img src="images/park-avenue-girl-scrunchie-2.jpg" alt="Tweed scrunchie worn in a bun" loading="lazy">
+            <div class="tile__content">
+              <p class="eyebrow">Scrunchies &amp; bracelets</p>
+              <h3 class="tile__title">For you</h3>
+              <span class="link-arrow">Shop for you <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+            </div>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -133,7 +206,7 @@
           <p class="eyebrow" style="color:var(--camel)">Dog &amp; human</p>
           <h2 class="section-title" id="edit-title">The<br>Matching<br>Edit</h2>
           <p class="lede">One fabric, two pieces. Every collar has its match — same tweed, same denim, same velvet, same love.</p>
-          <a class="btn btn--outline" href="#shop">Shop the edit</a>
+          <a class="btn btn--outline" href="shop.html">Shop the edit</a>
         </div>
         <div class="edit__slider reveal" data-slider>
           <div class="edit__arrows">
@@ -264,7 +337,7 @@
           <div class="footer-col">
             <h3>Collections</h3>
             <!-- Liste remplie automatiquement depuis js/products.js -->
-            <ul data-collection-links>
+            <ul data-collection-links="shop">
               <li><a href="index.html#collections">Collections</a></li>
             </ul>
           </div>
@@ -274,15 +347,16 @@
               <li><a href="about.html">About us</a></li>
               <li><a href="coming-soon.html?p=journal">Journal</a></li>
               <li><a href="contact.html">Contact</a></li>
+              <li><a href="coming-soon.html?p=delivery">Delivery &amp; returns</a></li>
             </ul>
           </div>
           <div class="footer-col">
-            <h3>Help</h3>
+            <h3>Shop</h3>
             <ul>
-              <li><a href="coming-soon.html?p=delivery">Delivery &amp; returns</a></li>
-              <li><a href="coming-soon.html?p=sizes">Size guide</a></li>
-              <li><a href="coming-soon.html?p=care">Care guide</a></li>
-              <li><a href="contact.html">Contact us</a></li>
+              <li><a href="shop.html?filter=collar">Dog collars</a></li>
+              <li><a href="shop.html?filter=scrunchie">Scrunchies</a></li>
+              <li><a href="shop.html?filter=for-you">For you</a></li>
+              <li><a href="shop.html?filter=for-dog">For your dog</a></li>
             </ul>
           </div>
           <div class="footer-col">
