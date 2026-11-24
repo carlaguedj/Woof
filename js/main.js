@@ -228,7 +228,10 @@
     if (st === "available") return p.price ? "" : "Coming soon";
     return STATUS_LABEL[st] || "Coming soon";
   }
-  function priceOf(p) { var s = statusOf(p); return s ? s : esc(p.price); }
+  // Prix affiché (même pendant « Coming soon ») ; sinon le statut
+  function priceOf(p) { return p.price ? esc(p.price) : (statusOf(p) || ""); }
+  // **gras** dans les descriptions
+  function rich(text) { return esc(text).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>"); }
   function productUrl(p) { return "product.html?id=" + encodeURIComponent(p.id); }
   function readFilter() {
     try { return new URLSearchParams(window.location.search).get("filter") || "all"; } catch (e) { return "all"; }
@@ -261,7 +264,9 @@
         '<div class="coll__side"><div class="coll__head">' +
         '<p class="eyebrow">' + esc(c.fabric) + " collection</p>" +
         '<h3 class="coll__name">' + esc(c.name) + "</h3>" +
-        '<p class="coll__tagline">' + esc(c.tagline) + "</p></div>" +
+        '<p class="coll__tagline">' + esc(c.tagline) + "</p>" +
+        (c.setPrice ? '<p class="coll__set">The set <span>collar + scrunchie</span> <strong>' + esc(c.setPrice) + "</strong></p>" : "") +
+        "</div>" +
         '<div class="coll__products">' + productsOf(c).map(cardHTML).join("") + "</div></div>" +
         "</article>"
       );
@@ -301,10 +306,10 @@
   var shopPage = $("[data-shop]");
   if (shopPage) {
     var FILTERS = {
-      all: { eyebrow: "Shop", title: "All pieces", intro: "Dog collars and their matching pieces, for you." },
+      all: { eyebrow: "WOOF collection", title: "All pieces", intro: window.WOOF_TAGLINE || "Little details. Big personality." },
       collar: { eyebrow: "By category", title: "Dog collars", intro: "Every collar has its match." },
       scrunchie: { eyebrow: "By category", title: "Scrunchies", intro: "Cut from the same fabrics as our dog collars." },
-      "for-you": { eyebrow: "For who?", title: "For you", intro: "Scrunchies and bracelets, made to match your dog." },
+      "for-you": { eyebrow: "For who?", title: "For you", intro: "Scrunchies made to match your dog." },
       "for-dog": { eyebrow: "For who?", title: "For your dog", intro: "Collars for good dogs — tweed, denim, velvet, bandana and gold chain." }
     };
     COLLECTIONS.forEach(function (c) {
@@ -379,9 +384,10 @@
     set("[data-p-crumb-type]", '<a href="shop.html?filter=' + encodeURIComponent(c.id) + '">' + esc(c.name) + "</a>");
     set("[data-p-collection]", esc(c.name) + " collection · " + esc(c.fabric));
     set("[data-p-name]", esc(p.name));
-    set("[data-p-price]", st ? '<span class="badge-soon">' + st + "</span>" : esc(p.price));
+    set("[data-p-price]", (p.price ? '<span class="pdp__amount">' + esc(p.price) + "</span>" : "") + (st ? '<span class="badge-soon">' + st + "</span>" : ""));
+    set("[data-p-set]", c.setPrice ? "Complete the set — collar + scrunchie for <strong>" + esc(c.setPrice) + "</strong>" : "");
     set("[data-p-short]", esc(p.short));
-    set("[data-p-description]", "<p>" + esc(p.description) + "</p>");
+    set("[data-p-description]", "<p>" + rich(p.description) + "</p>");
     set("[data-p-details]", '<ul class="dash-list">' + (p.details || []).map(function (d) { return "<li>" + esc(d) + "</li>"; }).join("") + "</ul>");
     set("[data-p-notify-name]", esc(p.name));
     set("[data-p-status]", st || "Coming soon");
