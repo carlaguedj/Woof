@@ -65,6 +65,7 @@
       <a class="logo" href="index.html" aria-label="WOOF — home">WO<svg class="logo__paw" aria-hidden="true"><use href="#i-paw"/></svg>F</a>
 
       <nav class="nav nav--right" aria-label="Account and bag">
+        <a class="nav__link" href="faq.html">FAQ</a>
         <a class="nav__link" href="contact.html">Contact</a>
         <a class="nav__icon" href="https://www.instagram.com/woof_clubb/" target="_blank" rel="noopener" aria-label="WOOF on Instagram (@woof_clubb)">
           <svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg>
@@ -103,6 +104,7 @@
         </details>
       </li>
       <li><a href="about.html">About us</a></li>
+      <li><a href="faq.html">FAQ</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
     <!-- Illustration du menu : images/menu-dalmatien.png -->
@@ -147,6 +149,22 @@
       </div>
     </section>
 
+    <!-- ================= 3. THEY'RE TALKING ABOUT US =================
+         Avis et note : à modifier dans js/reviews.js (pas ici). -->
+    <section class="section talk" aria-labelledby="talk-title" data-reviews>
+      <div class="container">
+        <header class="talk__head">
+          <p class="eyebrow">They’re talking about us</p>
+          <h2 class="talk__title" id="talk-title">Made for them. <em>Loved by you.</em></h2>
+          <div class="talk__rating" data-reviews-rating>
+            <p class="talk__motto">For them. For you. For us.</p>
+          </div>
+        </header>
+        <ul class="talk__list" data-reviews-list></ul>
+        <p class="talk__note" data-reviews-note hidden>Sample reviews — our first customer reviews will appear here after launch.</p>
+      </div>
+    </section>
+
   </main>
 
   <!-- ================= PIED DE PAGE ================= -->
@@ -171,7 +189,8 @@
             <ul>
               <li><a href="about.html">About us</a></li>
               <li><a href="contact.html">Contact</a></li>
-              <li><a href="coming-soon.html?p=delivery">Delivery &amp; returns</a></li>
+              <li><a href="faq.html">FAQ</a></li>
+              <li><a href="faq.html#shipping">Delivery &amp; returns</a></li>
             </ul>
           </div>
           <div class="footer-col">
@@ -207,6 +226,7 @@
   </div>
 
   <script src="js/products.js"></script>
+  <script src="js/reviews.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

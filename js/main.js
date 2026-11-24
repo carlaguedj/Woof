@@ -501,6 +501,107 @@
     });
   });
 
+  /* ---------- 7b. Avis clients (accueil) — données dans js/reviews.js ---------- */
+  var REV = window.WOOF_REVIEWS;
+  var revBox = $("[data-reviews]");
+  if (revBox && REV) {
+    var starsHTML = function (n) {
+      var out = "";
+      for (var i = 0; i < 5; i++) out += '<span class="' + (i < n ? "is-on" : "") + '">★</span>';
+      return '<span class="stars" aria-hidden="true">' + out + "</span>";
+    };
+    if (REV.rating) {
+      var rb = $("[data-reviews-rating]", revBox);
+      rb.innerHTML = starsHTML(Math.round(parseFloat(REV.rating))) +
+        '<p class="talk__score"><strong>' + esc(REV.rating) + "</strong>/" + esc(REV.ratingOutOf || "5") + "</p>" +
+        '<p class="talk__caption">' + esc(REV.ratingCaption || "") + "</p>" +
+        '<p class="talk__motto">For them. For you. For us.</p>';
+    }
+    $("[data-reviews-list]", revBox).innerHTML = (REV.items || []).map(function (r) {
+      return (
+        '<li class="talk-card"><figure>' +
+        (r.stars ? starsHTML(r.stars) + '<span class="visually-hidden">' + r.stars + " out of 5</span>" : "") +
+        "<blockquote><p>" + esc(r.text) + "</p></blockquote>" +
+        "<figcaption>— " + esc(r.name) + "</figcaption></figure></li>"
+      );
+    }).join("");
+    var revNote = $("[data-reviews-note]", revBox);
+    if (revNote) revNote.hidden = !REV.isPlaceholder;
+  }
+
+  /* ---------- 7c. FAQ : accordéon accessible + contenus tirés du catalogue ---------- */
+  var faq = $("[data-faq]");
+  if (faq) {
+    $$(".faq-item", faq).forEach(function (item, i) {
+      var btn = $(".faq-q", item), panel = $(".faq-a", item);
+      var qid = "faq-q-" + i, pid = "faq-a-" + i;
+      btn.id = qid;
+      panel.id = pid;
+      btn.setAttribute("aria-expanded", "false");
+      btn.setAttribute("aria-controls", pid);
+      panel.setAttribute("role", "region");
+      panel.setAttribute("aria-labelledby", qid);
+      btn.insertAdjacentHTML("beforeend", '<span class="faq-q__sign" aria-hidden="true"></span>');
+    });
+    var setOpen = function (item, open) {
+      item.classList.toggle("is-open", open);
+      $(".faq-q", item).setAttribute("aria-expanded", String(open));
+    };
+    faq.addEventListener("click", function (e) {
+      var btn = e.target.closest(".faq-q");
+      if (!btn) return;
+      var item = btn.closest(".faq-item");
+      setOpen(item, !item.classList.contains("is-open"));
+    });
+    var openById = function (id) {
+      var item = document.getElementById(id);
+      if (item && item.classList.contains("faq-item")) {
+        setOpen(item, true);
+        setTimeout(function () { item.scrollIntoView({ behavior: "smooth", block: "start" }); }, 50);
+      }
+    };
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest("[data-faq-open]");
+      if (!a) return;
+      e.preventDefault();
+      openById(a.getAttribute("data-faq-open"));
+    });
+    if (window.location.hash) openById(decodeURIComponent(window.location.hash.slice(1)));
+
+    // Tailles (WOOF_SIZES dans js/products.js)
+    var SZ2 = window.WOOF_SIZES || {};
+    var sizeTable = $("[data-faq-sizes]", faq);
+    if (sizeTable) {
+      sizeTable.innerHTML = "<tr><th>Collar size</th><th>Width</th><th>Length (adjustable)</th></tr>" +
+        Object.keys(SZ2).map(function (k) { return "<tr><td>" + esc(k) + "</td><td>" + esc(SZ2[k].width) + "</td><td>" + esc(SZ2[k].length) + "</td></tr>"; }).join("");
+    }
+    var adj = $("[data-faq-adjust]", faq);
+    if (adj) {
+      adj.innerHTML = Object.keys(SZ2).map(function (k) {
+        return "<li>Size " + esc(k) + ": " + esc(SZ2[k].width) + " wide, " + esc(SZ2[k].length) + " adjustable length</li>";
+      }).join("");
+    }
+    // Collections et leurs pièces
+    var fc = $("[data-faq-collections]", faq);
+    if (fc) {
+      fc.innerHTML = COLLECTIONS.map(function (c) {
+        var st = STATUS_LABEL[c.status];
+        return '<li><a href="shop.html?filter=' + encodeURIComponent(c.id) + '"><strong>' + esc(c.name) + "</strong></a> (" + esc(c.fabric.toLowerCase()) + ") — " +
+          productsOf(c).map(function (p) { return esc((TYPE_LABEL[p.type] || "").toLowerCase()); }).join(" + ") +
+          (st ? " · <em>" + st + "</em>" : "") + "</li>";
+      }).join("");
+    }
+    // Matières (1re ligne « details » de chaque produit)
+    var fm = $("[data-faq-materials]", faq);
+    if (fm) {
+      var allP = [];
+      COLLECTIONS.forEach(function (c) { allP = allP.concat(productsOf(c)); });
+      fm.innerHTML = allP.map(function (p) {
+        return '<li><a href="' + productUrl(p) + '">' + esc(p.name) + "</a>: " + esc((p.details || [""])[0]) + "</li>";
+      }).join("");
+    }
+  }
+
   /* ---------- 8. Page « Coming soon » : titre selon le lien cliqué ---------- */
   var soonTitle = $("[data-soon-title]");
   if (soonTitle) {
