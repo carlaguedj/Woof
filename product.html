@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>WOOF — Dog collars & matching pieces</title>
-  <meta name="description" content="Discover WOOF dog collars and their matching pieces. Coming soon.">
+  <title>WOOF — Dog collars & matching scrunchies</title>
+  <meta name="description" content="Discover WOOF dog collars and their matching scrunchies.">
   <meta name="theme-color" content="#F4E9D8">
   <!-- Aperçu lors d'un partage sur les réseaux sociaux -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="WOOF">
-  <meta property="og:title" content="WOOF — Dog collars & matching pieces">
-  <meta property="og:description" content="Discover WOOF dog collars and their matching pieces. Coming soon.">
+  <meta property="og:title" content="WOOF — Dog collars & matching scrunchies">
+  <meta property="og:description" content="Discover WOOF dog collars and their matching scrunchies.">
   <meta property="og:image" content="images/og-partage.jpg">
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <!-- Polices Google : Cormorant Garamond (titres), Libre Baskerville (texte), Mrs Saint Delafield (manuscrit), Libre Bodoni (logo) -->
@@ -65,7 +65,6 @@
       <a class="logo" href="index.html" aria-label="WOOF — home">WO<svg class="logo__paw" aria-hidden="true"><use href="#i-paw"/></svg>F</a>
 
       <nav class="nav nav--right" aria-label="Account and bag">
-        <a class="nav__link" href="coming-soon.html?p=journal">Journal</a>
         <a class="nav__link" href="contact.html">Contact</a>
         <a class="nav__icon" href="https://www.instagram.com/woof_clubb/" target="_blank" rel="noopener" aria-label="WOOF on Instagram (@woof_clubb)">
           <svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg>
@@ -105,7 +104,6 @@
       </li>
       <li><a href="about.html">About us</a></li>
       <li><a href="contact.html">Contact</a></li>
-      <li><a href="coming-soon.html?p=journal">Journal</a></li>
     </ul>
     <!-- Illustration du menu : images/menu-dalmatien.png -->
     <div class="mobile-menu__art">
@@ -140,7 +138,9 @@
           <p class="eyebrow" style="color:var(--camel);margin-bottom:10px" data-p-collection></p>
           <h1 data-p-name>WOOF</h1>
           <p class="pdp__price" data-p-price><span class="badge-soon">Coming soon</span></p>
-          <p class="pdp__intro" data-p-short></p>
+          <p class="pdp__set" data-p-set></p>
+          <!-- Description du produit (texte dans js/products.js) -->
+          <div class="pdp__intro" data-p-description></div>
 
           <fieldset class="option" data-p-sizes></fieldset>
 
@@ -160,16 +160,12 @@
           </div>
 
           <ul class="pdp__reassure">
-            <li><svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg>Designed in Paris</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-truck"/></svg>Free delivery from €60</li>
             <li><svg class="icon" aria-hidden="true"><use href="#i-gift"/></svg>Made to be matched</li>
           </ul>
 
           <div class="accordion">
             <details open>
-              <summary>Description <svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary>
-              <div data-p-description></div>
-            </details>
-            <details>
               <summary>Details <svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary>
               <div data-p-details></div>
             </details>
@@ -184,6 +180,10 @@
                   <tr><td>L</td><td>40 – 52 cm</td><td>Large dogs</td></tr>
                 </table>
               </div>
+            </details>
+            <details>
+              <summary>Delivery <svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary>
+              <div><p>Delivery: €4.90 for orders below €60. Free delivery from €60 — that's two sets.</p></div>
             </details>
             <details>
               <summary>Care <svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary>
@@ -229,7 +229,6 @@
             <h3>WOOF</h3>
             <ul>
               <li><a href="about.html">About us</a></li>
-              <li><a href="coming-soon.html?p=journal">Journal</a></li>
               <li><a href="contact.html">Contact</a></li>
               <li><a href="coming-soon.html?p=delivery">Delivery &amp; returns</a></li>
             </ul>

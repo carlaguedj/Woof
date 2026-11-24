@@ -12,7 +12,7 @@ Site en ligne : https://carlaguedj.github.io/Woof/
 | `product.html` | Fiche produit (une seule page qui affiche le produit choisi) |
 | `about.html` | About us |
 | `contact.html` | Contact (adresses e-mail à compléter) |
-| `coming-soon.html` | Page « bientôt disponible » (Journal, pages légales…) |
+| `coming-soon.html` | Page « bientôt disponible » (pages légales…) |
 | `css/style.css` | Apparence : couleurs, polices, mise en page |
 | `js/main.js` | Fonctionnement du site (rien à modifier) |
 | `images/` | Toutes les photos (`couverture-….jpg` = couvertures des collections, `menu-dalmatien.png` = illustration du menu mobile) |
@@ -31,7 +31,9 @@ Le site est organisé **par collection** : chaque collection contient un collier
 - **Nouvelle collection** : copiez un bloc de `WOOF_COLLECTIONS` (du `{` au `},`), changez son `id`, son nom…
 - **Nouveau produit** : copiez un bloc de `WOOF_PRODUCTS`, changez son `id`, et indiquez dans `collection`
   l'`id` de sa collection. `type` vaut `"collar"`, `"scrunchie"` ou `"bracelet"`.
-- **Prix** : `price: "€45"` (il s'affiche quand la collection passe en `"available"`).
+- **Prix** : `price: "€29"` sur chaque produit, et `setPrice: "€39"` (prix du set) sur chaque collection.
+  Les prix restent visibles pendant « Coming soon ». Laissez `""` si un prix n'est pas encore connu.
+- **Gras** dans une description : entourez le mot de `**` (ex. `**The Diva**`).
 
 La page d'accueil, la boutique, le menu Shop, le pied de page et les fiches produits se mettent à jour tout seuls.
 

@@ -2,28 +2,29 @@
    WOOF — CATALOGUE DES PRODUITS
    --------------------------------------------------------------------------
    C'est le SEUL fichier à modifier pour ajouter, retirer ou changer un produit.
-   La page d'accueil et les fiches produits se mettent à jour toutes seules.
+   La page d'accueil, la boutique et les fiches produits se mettent à jour toutes seules.
 
    RÈGLES SIMPLES :
    - Le texte se met toujours entre guillemets "comme ceci".
    - Chaque bloc { ... } se termine par une virgule.
-   - Pour une apostrophe dans un texte, écrivez-la normalement : "dog's".
-   - Prix : laissez "" (vide) tant qu'il n'est pas connu → le site affiche « Coming soon ».
-     Quand il est connu, écrivez par ex. "€45".
+   - Pour mettre un mot en gras dans une description : **comme ceci**.
+   - Prix : écrivez par ex. "€29". Laissez "" (vide) si le prix n'est pas encore connu.
    ========================================================================== */
 
 /* ---------- LES COLLECTIONS ----------
    L'ordre ici = l'ordre d'affichage sur le site.
-   status : "coming-soon"   → affiche « Coming soon »
-            "released-soon" → affiche « Released soon »
-            "available"     → en vente (affiche le prix des produits) */
+   status   : "coming-soon"   → affiche « Coming soon » (le prix reste visible)
+              "released-soon" → affiche « Released soon »
+              "available"     → en vente
+   setPrice : prix du set collier + scrunchie */
 window.WOOF_COLLECTIONS = [
   {
     id: "the-diva",                  // identifiant (minuscules, tirets, pas d'espace)
     name: "The Diva",
     fabric: "Velvet",
-    tagline: "Burgundy velvet for main characters.",
+    tagline: "Made for dogs who love a little drama.",
     status: "coming-soon",
+    setPrice: "€42",
     image: "images/couverture-the-diva.jpg",   // couverture de la collection (format portrait 3:4)
     alt: "WOOF magazine cover: The Diva, velvet collection — a spaniel wearing a burgundy velvet collar"
   },
@@ -31,8 +32,9 @@ window.WOOF_COLLECTIONS = [
     id: "park-avenue-girl",
     name: "Park Avenue Girl",
     fabric: "Tweed",
-    tagline: "Tweed, gold and very good manners.",
+    tagline: "Classic charm, with a playful twist.",
     status: "coming-soon",
+    setPrice: "€45",
     image: "images/couverture-park-avenue-girl.jpg",
     alt: "WOOF magazine cover: Park Avenue Girl, tweed collection — a cocker spaniel wearing a tweed collar"
   },
@@ -40,8 +42,9 @@ window.WOOF_COLLECTIONS = [
     id: "denim-club",
     name: "Denim Club",
     fabric: "Denim",
-    tagline: "Your favourite jeans, for both of you.",
+    tagline: "Everyday cool, made to match.",
     status: "coming-soon",
+    setPrice: "€39",
     image: "images/couverture-denim-club.jpg",
     alt: "WOOF magazine cover: Denim Club — a curly dog wearing a denim collar"
   },
@@ -49,43 +52,48 @@ window.WOOF_COLLECTIONS = [
     id: "rodeo-kid",
     name: "Rodeo Kid",
     fabric: "Red bandana",
-    tagline: "A little wild, always charming.",
+    tagline: "For little rebels with a Parisian heart.",
     status: "coming-soon",
+    setPrice: "€39",
     image: "images/couverture-rodeo-kid.jpg",
     alt: "WOOF magazine cover: Rodeo Kid, the bandana collar — an Australian shepherd wearing a red paisley bandana collar"
   },
   {
     id: "the-spoiled-one",
     name: "The Spoiled One",
-    fabric: "Gold chain",
-    tagline: "Gold chains, black leather, zero compromise.",
-    status: "released-soon",
+    fabric: "Chain",
+    tagline: "Because being spoiled looks good on you.",
+    status: "released-soon",          // pas au lancement : prix après devis
+    setPrice: "",
     image: "images/couverture-the-spoiled-one.jpg",
     alt: "WOOF magazine cover: The Spoiled One, the chain collection — a greyhound wearing a gold chain collar"
   }
 ];
 
+/* Phrase de la marque (page Boutique « All pieces ») */
+window.WOOF_TAGLINE = "Little details. Big personality.";
+
 /* ---------- LES PRODUITS ----------
-   type : "collar" (collier), "scrunchie" ou "bracelet"
+   type : "collar" (collier) ou "scrunchie"
    collection : l'identifiant d'une collection ci-dessus
    images : la 1re photo est celle des vignettes ; ajoutez-en autant que vous voulez */
 window.WOOF_PRODUCTS = [
 
-  /* ===== DIVA — velours ===== */
+  /* ===== VELVET — THE DIVA ===== */
   {
     id: "the-diva-collar",
-    name: "The Diva Collar",
+    name: "The Diva Velvet Collar",
     collection: "the-diva",
     type: "collar",
-    price: "",
-    short: "Ruched burgundy velvet and gold-tone hardware.",
-    description: "For the main character of every walk. The Diva is a softly ruched collar in deep burgundy velvet, finished with our gold-tone engraved buckle and signature medallion. Elegant, plush and impossible to ignore.",
+    price: "€32",
+    short: "For dogs who were born to be noticed.",
+    description: "For dogs who were born to be noticed. **The Diva** is made from rich burgundy velvet, soft to the touch and beautifully deep in colour, finished with refined golden hardware. Luxurious without taking itself too seriously, it is the kind of collar that turns an ordinary walk into a little occasion.",
     details: [
-      "Premium velvet, soft and elegant",
-      "Signature buckle with WOOF engraving",
+      "Rich burgundy velvet",
+      "Golden hardware, buckle engraved WOOF",
       "Engraved Woof medallion",
-      "Adjustable fit for perfect comfort",
-      "Designed in Paris"
+      "Adjustable fit",
+      "Designed in France"
     ],
     sizes: ["S", "M", "L"],
     images: [
@@ -101,11 +109,11 @@ window.WOOF_PRODUCTS = [
     name: "The Diva Scrunchie",
     collection: "the-diva",
     type: "scrunchie",
-    price: "",
-    short: "Burgundy velvet, for a perfect match.",
-    description: "A plush burgundy velvet scrunchie, the twin of The Diva collar. Soft on hair and beautifully elegant — the easiest way to match your dog.",
+    price: "€15",
+    short: "A little bit of velvet, just for you.",
+    description: "A little bit of velvet, just for you. **The Diva** scrunchie is made in the same sumptuous burgundy velvet as the collar, bringing the collection's rich texture into your own look. Soft, elegant and slightly dramatic — exactly as it should be.",
     details: [
-      "Soft velvet",
+      "Sumptuous burgundy velvet",
       "Gentle elastic, holds without pulling",
       "One size"
     ],
@@ -116,62 +124,21 @@ window.WOOF_PRODUCTS = [
     ]
   },
 
-  /* ===== RODEO KID — bandana rouge ===== */
-  {
-    id: "rodeo-kid-collar",
-    name: "Rodeo Kid Bandana Collar",
-    collection: "rodeo-kid",
-    type: "collar",
-    price: "",
-    short: "A red paisley bandana collar with a gold-tone Woof medallion.",
-    description: "For dogs who were born for adventure. Rodeo Kid pairs a classic red paisley bandana with a sturdy adjustable collar, so the bandana always sits just right — no slipping, no untying. Finished with our gold-tone buckle and signature Woof medallion.",
-    details: [
-      "Cotton bandana in red paisley print",
-      "Adjustable collar with gold-tone metal buckle",
-      "Signature engraved Woof medallion",
-      "D-ring to attach a leash",
-      "Designed in Paris"
-    ],
-    sizes: ["S", "M", "L"],
-    images: [
-      { src: "images/rodeo-kid-collier-1.jpg", alt: "Red paisley bandana dog collar with a gold Woof medallion" }
-    ]
-  },
-  {
-    id: "rodeo-kid-scrunchie",
-    name: "Rodeo Kid Scrunchie",
-    collection: "rodeo-kid",
-    type: "scrunchie",
-    price: "",
-    short: "The same red paisley, for your hair.",
-    description: "Cut from the same red bandana as the Rodeo Kid collar, this scrunchie is your half of the matching look. Soft on hair, easy to wear on the wrist, with a little gold-tone Woof charm.",
-    details: [
-      "Cotton in red paisley print",
-      "Gentle elastic, holds without pulling",
-      "Gold-tone Woof charm",
-      "One size"
-    ],
-    sizes: [],
-    images: [
-      { src: "images/rodeo-kid-scrunchie-1.jpg", alt: "Red paisley scrunchie with a gold Woof charm" }
-    ]
-  },
-
-  /* ===== PARK AVENUE GIRL — tweed ===== */
+  /* ===== TWEED — PARK AVENUE GIRL ===== */
   {
     id: "park-avenue-girl-collar",
-    name: "Park Avenue Girl Collar",
+    name: "Park Avenue Girl Tweed Collar",
     collection: "park-avenue-girl",
     type: "collar",
-    price: "",
-    short: "Burgundy, black and cream tweed with gold-tone hardware.",
-    description: "A little jacket for the neck. Park Avenue Girl is woven in a textured burgundy, black and cream tweed, finished with a polished gold-tone buckle engraved with WOOF and our signature medallion. Chic on a morning walk, perfect on a café terrace.",
+    price: "€34",
+    short: "A little Parisian elegance for four paws.",
+    description: "A little Parisian elegance for four paws. **Park Avenue Girl** is crafted in a refined burgundy, black and cream tweed, finished with elegant golden hardware. Inspired by classic tailoring and old-school city style, it brings a polished touch to every walk — from the park to the café.",
     details: [
-      "Premium tweed, soft and resistant",
-      "Signature buckle with WOOF engraving",
+      "Burgundy, black and cream tweed",
+      "Golden hardware, buckle engraved WOOF",
       "Engraved Woof medallion",
       "Adjustable fit, D-ring for a leash",
-      "Designed in Paris"
+      "Designed in France"
     ],
     sizes: ["S", "M", "L"],
     images: [
@@ -188,13 +155,12 @@ window.WOOF_PRODUCTS = [
     name: "Park Avenue Girl Scrunchie",
     collection: "park-avenue-girl",
     type: "scrunchie",
-    price: "",
-    short: "Same tweed, same love — for you.",
-    description: "The perfect match to the Park Avenue Girl collar: a generous scrunchie in the same burgundy, black and cream tweed. Wear it in a messy bun, a low ponytail or around the wrist.",
+    price: "€16",
+    short: "The finishing touch to the look.",
+    description: "The finishing touch to the look. **Park Avenue Girl** brings the same beautifully textured tweed into your wardrobe with a matching scrunchie. Burgundy, cream and black come together in a piece that feels timeless, chic and just a little bit playful.",
     details: [
-      "Premium tweed",
+      "Burgundy, black and cream tweed",
       "Gentle elastic, holds without pulling",
-      "Gold-tone Woof charm",
       "One size"
     ],
     sizes: [],
@@ -205,21 +171,21 @@ window.WOOF_PRODUCTS = [
     ]
   },
 
-  /* ===== DENIM CLUB — denim ===== */
+  /* ===== DENIM — DENIM CLUB ===== */
   {
     id: "denim-club-collar",
-    name: "Denim Club Collar",
+    name: "Denim Club Denim Collar",
     collection: "denim-club",
     type: "collar",
-    price: "",
-    short: "Navy denim with gold stitching and an engraved buckle.",
-    description: "Your favourite pair of jeans, reimagined for your dog. Denim Club is made from a deep navy denim with golden flecks and contrast stitching, finished with strong gold-tone hardware built to last through every walk.",
+    price: "€29",
+    short: "For everyday adventures, with a little attitude.",
+    description: "For everyday adventures, with a little attitude. **Denim Club** brings classic blue denim to your dog's wardrobe, finished with refined stitching and golden hardware. Casual, timeless and effortlessly cool, it feels like your favourite pair of jeans — only made for four paws.",
     details: [
-      "Premium denim, soft and durable",
-      "Secure buckle with WOOF engraving",
+      "Classic blue denim with refined stitching",
+      "Golden hardware, buckle engraved WOOF",
       "Engraved Woof medallion",
-      "Strong adjustable hardware, D-ring for a leash",
-      "Designed in Paris"
+      "Adjustable fit, D-ring for a leash",
+      "Designed in France"
     ],
     sizes: ["S", "M", "L"],
     images: [
@@ -235,13 +201,12 @@ window.WOOF_PRODUCTS = [
     name: "Denim Club Scrunchie",
     collection: "denim-club",
     type: "scrunchie",
-    price: "",
-    short: "Same denim, same love — for you.",
-    description: "Made from the same navy denim as the Denim Club collar, with its little golden flecks. Comfortable all day long, in your hair or on your wrist, with a gold-tone Woof charm.",
+    price: "€14",
+    short: "Your everyday denim essential.",
+    description: "Your everyday denim essential. **Denim Club** is made to match your dog's collar in the same easy-going blue denim, creating a subtle connection between you without ever feeling too coordinated. Throw it in your hair and head out together.",
     details: [
-      "Premium denim",
+      "Easy-going blue denim",
       "Comfortable for all-day wear",
-      "Gold-tone Woof charm",
       "One size"
     ],
     sizes: [],
@@ -252,21 +217,61 @@ window.WOOF_PRODUCTS = [
     ]
   },
 
-  /* ===== THE SPOILED ONE — chaîne dorée (Released soon) ===== */
+  /* ===== BANDANA ROUGE — RODEO KID ===== */
+  {
+    id: "rodeo-kid-collar",
+    name: "Rodeo Kid Bandana Collar",
+    collection: "rodeo-kid",
+    type: "collar",
+    price: "€29",
+    short: "A little Western spirit, made for city walks.",
+    description: "A little Western spirit, made for city walks. **Rodeo Kid** combines a rich burgundy paisley fabric with refined details and golden hardware for a look that feels both playful and effortlessly chic. Inspired by vintage bandanas and Parisian nonchalance, it was made for dogs with a little personality — and a lot of charm.",
+    details: [
+      "Burgundy paisley bandana fabric",
+      "Golden hardware",
+      "Engraved Woof medallion",
+      "Adjustable fit, D-ring for a leash",
+      "Designed in France"
+    ],
+    sizes: ["S", "M", "L"],
+    images: [
+      { src: "images/rodeo-kid-collier-1.jpg", alt: "Red paisley bandana dog collar with a gold Woof medallion" }
+    ]
+  },
+  {
+    id: "rodeo-kid-scrunchie",
+    name: "Rodeo Kid Scrunchie",
+    collection: "rodeo-kid",
+    type: "scrunchie",
+    price: "€14",
+    short: "The same burgundy paisley, made for you.",
+    description: "The same burgundy paisley, made for you. **Rodeo Kid** brings the signature bandana print into your everyday wardrobe with a soft, easy-to-wear scrunchie. Wear it in your hair, tie it around your wrist, and let your dog do the same in their own way.",
+    details: [
+      "Burgundy paisley bandana print",
+      "Soft and easy to wear, in your hair or on your wrist",
+      "One size"
+    ],
+    sizes: [],
+    images: [
+      { src: "images/rodeo-kid-scrunchie-1.jpg", alt: "Red paisley scrunchie with a gold Woof charm" }
+    ]
+  },
+
+  /* ===== THE SPOILED ONE — CHAIN (pas au lancement : prix après devis) ===== */
   {
     id: "the-spoiled-one-collar",
-    name: "The Spoiled One Collar",
+    name: "The Spoiled One Chain Collar",
     collection: "the-spoiled-one",
     type: "collar",
     price: "",
-    short: "A gold-tone chain woven with black leather.",
-    description: "For dogs who know exactly what they deserve. The Spoiled One is a chunky gold-tone chain woven with soft black leather, finished with a gold O-ring and our engraved Woof medallion. Adjustable, durable, unmistakably elegant.",
+    short: "For the dog who knows exactly what they deserve.",
+    description: "For the dog who knows exactly what they deserve. **The Spoiled One** combines rich black leather with bold golden chain links for a look that is confident, polished and unapologetically glamorous. Statement-making without being loud, it was designed for the little one who is, quite simply, spoiled — and proud of it.",
     details: [
-      "Gold-tone chain woven with black leather",
+      "Rich black leather woven with golden chain links",
       "Adjustable buckle",
-      "Gold-tone O-ring for a leash",
+      "Golden O-ring for a leash",
       "Engraved Woof medallion",
-      "Designed in Paris"
+      "Designed in France"
     ],
     sizes: ["S", "M", "L"],
     images: [
@@ -274,23 +279,21 @@ window.WOOF_PRODUCTS = [
     ]
   },
   {
-    id: "the-spoiled-one-bracelet",
-    name: "The Spoiled One Bracelet",
+    id: "the-spoiled-one-scrunchie",
+    name: "The Spoiled One Scrunchie",
     collection: "the-spoiled-one",
-    type: "bracelet",
+    type: "scrunchie",
     price: "",
-    short: "The same chain, for your wrist.",
-    description: "The women's bracelet that matches The Spoiled One collar: the same gold-tone chain woven with black leather, an adjustable extension chain and a little Woof medallion. Comfortable, timeless, made to be worn every day.",
+    short: "A little gold, a little attitude.",
+    description: "A little gold, a little attitude. **The Spoiled One** scrunchie brings the spirit of the collection into your own look with an elegant black finish and a bold, fashion-forward feel. The perfect accessory for the human who knows their dog is the best-dressed one in the room.",
     details: [
-      "Gold-tone chain woven with black leather",
-      "Adjustable extension chain",
-      "Engraved Woof medallion",
+      "Elegant black finish",
+      "Gentle elastic, holds without pulling",
       "One size"
     ],
     sizes: [],
     images: [
-      { src: "images/the-spoiled-one-bracelet-1.jpg", alt: "Gold chain and black leather bracelet with Woof medallion" },
-      { src: "images/the-spoiled-one-bracelet-2.jpg", alt: "The Spoiled One bracelet worn on the wrist" }
+      { src: "images/the-spoiled-one-scrunchie-1.jpg", alt: "The Spoiled One scrunchie — photo coming soon" }
     ]
   }
 
