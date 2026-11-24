@@ -24,7 +24,7 @@
   <a class="skip-link" href="#main">Skip to content</a>
 
   <!-- Bandeau d'annonce : modifiez le texte librement -->
-  <p class="announce">Coming soon <svg class="icon" aria-hidden="true"><use href="#i-paw"/></svg> <a href="index.html#join">Be the first to know</a></p>
+  <p class="announce">Coming soon <svg class="icon" aria-hidden="true"><use href="#i-paw"/></svg> <a href="shop.html">Discover the collections</a></p>
 
   <!-- ================= EN-TÊTE / NAVIGATION ================= -->
   <header class="site-header">
@@ -112,7 +112,7 @@
     <div class="mobile-menu__foot">
       <a href="https://www.instagram.com/woof_clubb/" target="_blank" rel="noopener">Instagram</a>
       <a href="contact.html">Contact</a>
-      <a href="index.html#join">Join the pack</a>
+      <a href="shop.html">Shop</a>
     </div>
   </div>
 
@@ -123,7 +123,7 @@
          js/products.js — c'est là qu'il faut les modifier, pas ici. -->
     <div class="container" data-product-page>
       <nav class="breadcrumb" aria-label="Breadcrumb">
-        <a href="index.html">Home</a><span>/</span><span data-p-crumb-type style="margin:0;color:inherit"><a href="index.html#shop">Shop</a></span><span>/</span><span data-p-crumb style="margin:0;color:inherit">WOOF</span>
+        <a href="index.html">Home</a><span>/</span><span data-p-crumb-type style="margin:0;color:inherit"><a href="shop.html">Shop</a></span><span>/</span><span data-p-crumb style="margin:0;color:inherit">WOOF</span>
       </nav>
 
       <section class="pdp">
@@ -150,7 +150,7 @@
           <div class="notify" id="notify">
             <p class="notify__title"><svg class="icon" aria-hidden="true"><use href="#i-paw"/></svg> <span data-p-status>Coming soon</span></p>
             <p class="notify__text">Be the first to know when <strong data-p-notify-name>this piece</strong> is available.</p>
-            <form class="email-form" data-newsletter data-success="Thank you! We'll email you as soon as it's available." novalidate>
+            <form class="email-form" data-newsletter data-needs-size data-success="Thank you! We'll email you as soon as it's available." novalidate>
               <input type="hidden" name="product" value="" data-p-notify-field>
               <label class="visually-hidden" for="notify-email">Your email</label>
               <input id="notify-email" type="email" name="email" placeholder="Your email" autocomplete="email" required>
@@ -172,13 +172,9 @@
             <details id="size-guide">
               <summary>Size guide <svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary>
               <div>
-                <!-- Guide des tailles des colliers : à ajuster avec vos vraies mesures -->
-                <table>
-                  <tr><th>Size</th><th>Neck</th><th>For</th></tr>
-                  <tr><td>S</td><td>25 – 33 cm</td><td>Small dogs</td></tr>
-                  <tr><td>M</td><td>32 – 42 cm</td><td>Medium dogs</td></tr>
-                  <tr><td>L</td><td>40 – 52 cm</td><td>Large dogs</td></tr>
-                </table>
+                <!-- Guide des tailles : rempli depuis WOOF_SIZES dans js/products.js -->
+                <table data-size-table></table>
+                <p style="margin-top:10px">Measure around your dog's neck and choose the size whose length range includes it.</p>
               </div>
             </details>
             <details>
@@ -201,7 +197,7 @@
             <p class="eyebrow">For them, for you</p>
             <h2 class="section-title" id="look-title">Complete the look</h2>
           </div>
-          <a class="link-arrow" href="index.html#shop">All pieces <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="link-arrow" href="shop.html">All pieces <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
         <div class="product-grid" data-p-look></div>
       </div>

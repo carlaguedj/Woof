@@ -112,7 +112,7 @@
       body.innerHTML =
         '<div class="cart-empty"><svg class="icon icon--bow" aria-hidden="true"><use href="#i-bow"/></svg>' +
         "<p>Your bag is empty — for now.</p>" +
-        '<a class="btn btn--outline" href="index.html#shop">Discover the pieces</a></div>';
+        '<a class="btn btn--outline" href="shop.html">Discover the pieces</a></div>';
       return;
     }
     body.innerHTML = cart.map(function (item, idx) {
@@ -236,7 +236,7 @@
   function readFilter() {
     try { return new URLSearchParams(window.location.search).get("filter") || "all"; } catch (e) { return "all"; }
   }
-  function collectionUrl(c) { return "index.html#" + encodeURIComponent(c.id); }
+  function collectionUrl(c) { return "shop.html?filter=" + encodeURIComponent(c.id); }
 
   function cardHTML(p) {
     var c = collectionOf(p), img = (p.images && p.images[0]) || { src: "", alt: "" }, st = statusOf(p);
@@ -287,7 +287,7 @@
         '<li class="cat-card"><a href="' + collectionUrl(c) + '">' +
         '<div class="media"><img src="' + esc(c.image) + '" alt="' + esc(c.alt) + '" loading="lazy">' +
         (c.status === "released-soon" ? '<span class="product-card__tag">' + st + "</span>" : "") + "</div>" +
-        '<span class="cat-card__label"><span>' + esc(c.name) + "<small>" + esc(c.fabric) + '</small></span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span></a></li>'
+        '<span class="cat-card__label"><span>' + esc(c.name) + "<small>" + esc(c.tagline) + "</small>" + (c.setPrice ? '<em class="cat-card__price">Set ' + esc(c.setPrice) + "</em>" : (STATUS_LABEL[c.status] ? '<em class="cat-card__price">' + STATUS_LABEL[c.status] + "</em>" : "")) + '</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span></a></li>'
       );
     }).join("");
   }
@@ -313,7 +313,7 @@
       "for-dog": { eyebrow: "For who?", title: "For your dog", intro: "Collars for good dogs — tweed, denim, velvet, bandana and gold chain." }
     };
     COLLECTIONS.forEach(function (c) {
-      FILTERS[c.id] = { eyebrow: c.fabric + " collection", title: c.name, intro: c.tagline };
+      FILTERS[c.id] = { eyebrow: c.fabric + " collection", title: c.name, intro: c.tagline + (c.setPrice ? " — The set (collar + scrunchie): " + c.setPrice : "") };
     });
     var matches = function (p, f) {
       if (f === "all") return true;
@@ -396,11 +396,24 @@
     var sizeBox = $("[data-p-sizes]", page);
     if (sizeBox) {
       if (p.sizes && p.sizes.length) {
-        sizeBox.innerHTML = '<legend>Size</legend><div class="sizes">' + p.sizes.map(function (s, i) {
-          return '<label class="size"><input type="radio" name="size" value="Size ' + esc(s) + '"' + (i === 1 || p.sizes.length === 1 ? " checked" : "") + "><span>" + esc(s) + "</span></label>";
+        var SZ = window.WOOF_SIZES || {};
+        sizeBox.innerHTML = '<legend>Size <span data-size-chosen>— please select</span></legend><div class="sizes sizes--big">' + p.sizes.map(function (s) {
+          var d = SZ[s] ? SZ[s].width + " × " + SZ[s].length : "";
+          return '<label class="size"><input type="radio" name="size" value="Size ' + esc(s) + '" required><span><strong>' + esc(s) + "</strong>" + (d ? "<small>" + esc(d) + "</small>" : "") + "</span></label>";
         }).join("") + '</div><a class="size-guide-link" href="#size-guide" data-open-size>Size guide</a>';
+        sizeBox.addEventListener("change", function () {
+          var ch = $("input[name=size]:checked", sizeBox), lab = $("[data-size-chosen]", sizeBox);
+          if (ch && lab) lab.textContent = "— " + ch.value.replace("Size ", "");
+          sizeBox.classList.remove("is-missing");
+        });
+        var guide = $("[data-size-table]", page);
+        if (guide) {
+          guide.innerHTML = "<tr><th>Size</th><th>Width</th><th>Length (adjustable)</th></tr>" + p.sizes.map(function (s) {
+            return SZ[s] ? "<tr><td>" + esc(s) + "</td><td>" + esc(SZ[s].width) + "</td><td>" + esc(SZ[s].length) + "</td></tr>" : "";
+          }).join("");
+        }
       } else {
-        sizeBox.innerHTML = '<legend>Size</legend><p class="option__note">One size.</p>';
+        sizeBox.innerHTML = '<legend>Size</legend><p class="option__note">One size — fits all.</p>';
       }
     }
     var sg = $("#size-guide", page);
@@ -472,6 +485,17 @@
         input.focus();
         return;
       }
+      var sizes = document.querySelector("[data-p-sizes] .sizes");
+      if (form.hasAttribute("data-needs-size") && sizes && !document.querySelector("[data-p-sizes] input[name=size]:checked")) {
+        if (msg) msg.textContent = "Please select a size first (S or M).";
+        var box = document.querySelector("[data-p-sizes]");
+        box.classList.add("is-missing");
+        box.scrollIntoView({ behavior: "smooth", block: "center" });
+        return;
+      }
+      var chosen = document.querySelector("[data-p-sizes] input[name=size]:checked");
+      var field = $("[data-p-notify-field]", form);
+      if (field && chosen) field.value = field.value.replace(/ — Size .*$/, "") + " — " + chosen.value;
       if (msg) msg.textContent = form.getAttribute("data-success") || "Welcome to the pack. Something lovely is on its way.";
       form.reset();
     });

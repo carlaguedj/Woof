@@ -932,3 +932,35 @@ a:hover .media img, .media--zoom:hover img { transform: scale(1.04); }
 }
 .coll__set span { letter-spacing: .06em; text-transform: none; font-size: .75rem; color: var(--espresso-soft); }
 .coll__set strong { font-family: var(--font-title); font-size: 1.6rem; letter-spacing: 0; color: var(--bordeaux); font-weight: 500; margin-left: auto; }
+
+/* Choix de taille (colliers S / M) */
+.sizes--big .size span { flex-direction: column; height: auto; min-width: 128px; padding: 10px 16px; gap: 2px; }
+.sizes--big .size strong { font-family: var(--font-title); font-size: 1.3rem; font-weight: 500; line-height: 1; }
+.sizes--big .size small { font-size: .625rem; letter-spacing: .04em; opacity: .85; }
+.option legend span[data-size-chosen] { color: var(--bordeaux); }
+.option.is-missing .size span { border-color: var(--bordeaux); box-shadow: 0 0 0 2px rgba(125, 16, 28, .15); }
+
+/* Accueil court : collections */
+.home-collections__all { margin-left: auto; }
+.home-collections .cat-card__label { align-items: flex-start; }
+.home-collections .cat-card__label > span { font-family: var(--font-title); font-size: 1.25rem; letter-spacing: 0; text-transform: none; line-height: 1.15; color: var(--bordeaux); }
+.home-collections .cat-card__label small { font-family: var(--font-title); font-style: italic; font-size: .95rem; letter-spacing: 0; text-transform: none; color: var(--espresso-soft); margin-top: 4px; }
+.cat-card__price { display: block; font-style: normal; font-family: var(--font-body); font-size: .5625rem; letter-spacing: .2em; text-transform: uppercase; color: var(--espresso); margin-top: 8px; }
+.home-collections .cat-card__label .icon { margin-top: 4px; }
+.home-collections__tagline { text-align: center; font-family: var(--font-title); font-size: 1.4rem; color: var(--bordeaux); margin: 28px 0 0; }
+@media (max-width: 767px) { .home-collections .cat-grid { grid-auto-columns: 62%; } }
+@media (min-width: 900px) {
+  /* Illustration entière à gauche, titre à droite : tout tient sur un écran */
+  .hero--art { display: grid; grid-template-columns: minmax(0, min(66%, calc((100vh - 190px) * 1.5))) 1fr; align-items: stretch; }
+  .hero--art .hero__card > * { align-self: flex-start; text-align: left; grid-column: auto; grid-row: auto; }
+  .hero--art .hero__img { width: 100%; height: auto; aspect-ratio: 3 / 2; }
+  .hero--art .hero__card {
+    display: flex; flex-direction: column; justify-content: center; gap: 0;
+    border-top: 0; border-left: 1px solid rgba(198, 164, 106, .6);
+    padding: 32px 36px;
+  }
+  .hero--art .hero__card .eyebrow { margin-bottom: 12px; }
+  .hero--art .hero__title { white-space: normal; font-size: clamp(3rem, 5.2vw, 5.4rem); margin-bottom: 16px; }
+  .hero--art .hero__card .hero__text { text-align: left; margin: 0 0 22px; }
+  .hero--art .hero__card .hero__actions { justify-content: flex-start; }
+}

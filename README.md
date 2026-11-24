@@ -33,6 +33,9 @@ Le site est organisé **par collection** : chaque collection contient un collier
   l'`id` de sa collection. `type` vaut `"collar"`, `"scrunchie"` ou `"bracelet"`.
 - **Prix** : `price: "€29"` sur chaque produit, et `setPrice: "€39"` (prix du set) sur chaque collection.
   Les prix restent visibles pendant « Coming soon ». Laissez `""` si un prix n'est pas encore connu.
+- **Tailles des colliers** : S et M, définies une seule fois dans `WOOF_SIZES` (largeur et longueur).
+  Elles s'affichent dans le choix de taille et le guide des tailles de chaque collier.
+  Sur un produit, `sizes: ["S", "M"]` = choix de taille obligatoire ; `sizes: []` = one size (scrunchies).
 - **Gras** dans une description : entourez le mot de `**` (ex. `**The Diva**`).
 
 La page d'accueil, la boutique, le menu Shop, le pied de page et les fiches produits se mettent à jour tout seuls.

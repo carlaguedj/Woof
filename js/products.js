@@ -70,6 +70,13 @@ window.WOOF_COLLECTIONS = [
   }
 ];
 
+/* ---------- TAILLES DES COLLIERS ----------
+   Affichées dans le choix de taille et dans le guide des tailles des fiches produits. */
+window.WOOF_SIZES = {
+  S: { width: "2.0 cm", length: "28–43 cm" },
+  M: { width: "2.5 cm", length: "38–56 cm" }
+};
+
 /* Phrase de la marque (page Boutique « All pieces ») */
 window.WOOF_TAGLINE = "Little details. Big personality.";
 
@@ -93,9 +100,11 @@ window.WOOF_PRODUCTS = [
       "Golden hardware, buckle engraved WOOF",
       "Engraved Woof medallion",
       "Adjustable fit",
+      "Size S: 2.0 cm wide, 28–43 cm adjustable length",
+      "Size M: 2.5 cm wide, 38–56 cm adjustable length",
       "Designed in France"
     ],
-    sizes: ["S", "M", "L"],
+    sizes: ["S", "M"],
     images: [
       { src: "images/the-diva-collier-1.jpg", alt: "Ruched burgundy velvet dog collar with Woof medallion" },
       { src: "images/the-diva-detail-boucle.jpg", alt: "Gold-tone buckle engraved WOOF on velvet" },
@@ -117,7 +126,7 @@ window.WOOF_PRODUCTS = [
       "Gentle elastic, holds without pulling",
       "One size"
     ],
-    sizes: [],
+    sizes: [],                         // [] = one size
     images: [
       { src: "images/the-diva-scrunchie-1.jpg", alt: "Burgundy velvet scrunchie" },
       { src: "images/the-diva-scrunchie-2.jpg", alt: "Velvet scrunchie worn in a bun" }
@@ -138,9 +147,11 @@ window.WOOF_PRODUCTS = [
       "Golden hardware, buckle engraved WOOF",
       "Engraved Woof medallion",
       "Adjustable fit, D-ring for a leash",
+      "Size S: 2.0 cm wide, 28–43 cm adjustable length",
+      "Size M: 2.5 cm wide, 38–56 cm adjustable length",
       "Designed in France"
     ],
-    sizes: ["S", "M", "L"],
+    sizes: ["S", "M"],
     images: [
       { src: "images/park-avenue-girl-collier-1.jpg", alt: "Burgundy tweed dog collar with gold buckle and Woof medallion" },
       { src: "images/park-avenue-girl-collier-3.jpg", alt: "Spaniel wearing the Park Avenue Girl tweed collar" },
@@ -163,7 +174,7 @@ window.WOOF_PRODUCTS = [
       "Gentle elastic, holds without pulling",
       "One size"
     ],
-    sizes: [],
+    sizes: [],                         // [] = one size
     images: [
       { src: "images/park-avenue-girl-scrunchie-1.jpg", alt: "Burgundy tweed scrunchie" },
       { src: "images/park-avenue-girl-scrunchie-2.jpg", alt: "Tweed scrunchie worn in a bun" },
@@ -185,9 +196,11 @@ window.WOOF_PRODUCTS = [
       "Golden hardware, buckle engraved WOOF",
       "Engraved Woof medallion",
       "Adjustable fit, D-ring for a leash",
+      "Size S: 2.0 cm wide, 28–43 cm adjustable length",
+      "Size M: 2.5 cm wide, 38–56 cm adjustable length",
       "Designed in France"
     ],
-    sizes: ["S", "M", "L"],
+    sizes: ["S", "M"],
     images: [
       { src: "images/denim-club-collier-1.jpg", alt: "Navy denim dog collar with gold buckle and Woof medallion" },
       { src: "images/denim-club-detail-boucle.jpg", alt: "Gold-tone buckle engraved WOOF on denim" },
@@ -209,7 +222,7 @@ window.WOOF_PRODUCTS = [
       "Comfortable for all-day wear",
       "One size"
     ],
-    sizes: [],
+    sizes: [],                         // [] = one size
     images: [
       { src: "images/denim-club-scrunchie-1.jpg", alt: "Navy denim scrunchie with a gold Woof charm" },
       { src: "images/denim-club-scrunchie-2.jpg", alt: "Gold Woof charm on the denim scrunchie" },
@@ -231,9 +244,11 @@ window.WOOF_PRODUCTS = [
       "Golden hardware",
       "Engraved Woof medallion",
       "Adjustable fit, D-ring for a leash",
+      "Size S: 2.0 cm wide, 28–43 cm adjustable length",
+      "Size M: 2.5 cm wide, 38–56 cm adjustable length",
       "Designed in France"
     ],
-    sizes: ["S", "M", "L"],
+    sizes: ["S", "M"],
     images: [
       { src: "images/rodeo-kid-collier-1.jpg", alt: "Red paisley bandana dog collar with a gold Woof medallion" }
     ]
@@ -251,7 +266,7 @@ window.WOOF_PRODUCTS = [
       "Soft and easy to wear, in your hair or on your wrist",
       "One size"
     ],
-    sizes: [],
+    sizes: [],                         // [] = one size
     images: [
       { src: "images/rodeo-kid-scrunchie-1.jpg", alt: "Red paisley scrunchie with a gold Woof charm" }
     ]
@@ -271,9 +286,11 @@ window.WOOF_PRODUCTS = [
       "Adjustable buckle",
       "Golden O-ring for a leash",
       "Engraved Woof medallion",
+      "Size S: 2.0 cm wide, 28–43 cm adjustable length",
+      "Size M: 2.5 cm wide, 38–56 cm adjustable length",
       "Designed in France"
     ],
-    sizes: ["S", "M", "L"],
+    sizes: ["S", "M"],
     images: [
       { src: "images/the-spoiled-one-collier-1.jpg", alt: "Gold chain and black leather dog collar with Woof medallion" }
     ]
@@ -291,7 +308,7 @@ window.WOOF_PRODUCTS = [
       "Gentle elastic, holds without pulling",
       "One size"
     ],
-    sizes: [],
+    sizes: [],                         // [] = one size
     images: [
       { src: "images/the-spoiled-one-scrunchie-1.jpg", alt: "The Spoiled One scrunchie — photo coming soon" }
     ]
