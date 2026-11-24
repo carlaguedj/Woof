@@ -153,12 +153,9 @@ window.WOOF_PRODUCTS = [
     ],
     sizes: ["S", "M"],
     images: [
-      { src: "images/park-avenue-girl-collier-1.jpg", alt: "Burgundy tweed dog collar with gold buckle and Woof medallion" },
-      { src: "images/park-avenue-girl-collier-3.jpg", alt: "Spaniel wearing the Park Avenue Girl tweed collar" },
-      { src: "images/park-avenue-girl-collier-2.jpg", alt: "Tweed collar resting on stone in warm light" },
-      { src: "images/park-avenue-girl-detail-boucle.jpg", alt: "Gold-tone buckle engraved WOOF" },
-      { src: "images/park-avenue-girl-detail-tweed.jpg", alt: "Close-up of the burgundy, black and cream tweed" },
-      { src: "images/park-avenue-girl-detail-medaille.jpg", alt: "Gold-tone Woof medallion" }
+      { src: "images/park-avenue-girl-collier-1.jpg", alt: "Park Avenue Girl collar in cream tweed checked in black and burgundy, golden buckle and D-ring" },
+      { src: "images/park-avenue-girl-collier-2.jpg", alt: "Close-up of the Park Avenue Girl tweed collar and its golden buckle" },
+      { src: "images/park-avenue-girl-collier-3.jpg", alt: "French bulldog wearing the Park Avenue Girl tweed collar on a café terrace" }
     ]
   },
   {
@@ -176,9 +173,8 @@ window.WOOF_PRODUCTS = [
     ],
     sizes: [],                         // [] = one size
     images: [
-      { src: "images/park-avenue-girl-scrunchie-1.jpg", alt: "Burgundy tweed scrunchie" },
-      { src: "images/park-avenue-girl-scrunchie-2.jpg", alt: "Tweed scrunchie worn in a bun" },
-      { src: "images/park-avenue-girl-detail-tweed.jpg", alt: "Close-up of the tweed" }
+      { src: "images/park-avenue-girl-scrunchie-1.jpg", alt: "Park Avenue Girl scrunchie in cream tweed checked in black and burgundy" },
+      { src: "images/park-avenue-girl-scrunchie-2.jpg", alt: "Park Avenue Girl tweed scrunchie worn on the wrist with a cream cardigan" }
     ]
   },
 
