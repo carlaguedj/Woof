@@ -14,7 +14,7 @@ Site en ligne : https://carlaguedj.github.io/Woof/
 | `coming-soon.html` | Page « bientôt disponible » (Journal, pages légales…) |
 | `css/style.css` | Apparence : couleurs, polices, mise en page |
 | `js/main.js` | Fonctionnement du site (rien à modifier) |
-| `images/` | Toutes les photos (`menu-dalmatien.png` = illustration du menu mobile) |
+| `images/` | Toutes les photos (`couverture-….jpg` = couvertures des collections, `menu-dalmatien.png` = illustration du menu mobile) |
 
 ## Ajouter ou modifier une collection ou un produit
 

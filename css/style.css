@@ -483,27 +483,39 @@ a:hover .media img, .media--zoom:hover img { transform: scale(1.04); }
 /* Grille des 4 collections */
 .cat-card__label small { display: block; font-size: .5625rem; color: var(--camel); letter-spacing: .2em; margin-top: 2px; }
 @media (min-width: 768px) { .cat-grid--4 { grid-template-columns: repeat(4, 1fr); } .cat-grid--5 { grid-template-columns: repeat(5, 1fr); } }
+.cat-grid--5 .cat-card .media { aspect-ratio: 3 / 4; }
 .cat-card .media .product-card__tag { background: var(--bordeaux); color: var(--ivory); }
 
-/* ---------- Boutique par collection ---------- */
-.coll-list { display: grid; gap: 40px; }
+/* ---------- Boutique par collection (couverture + produits) ---------- */
+.coll-list { display: grid; gap: 48px; }
 .coll { display: grid; gap: var(--gap); scroll-margin-top: calc(var(--header-h) + 16px); }
-.coll__visual { min-height: 380px; }
-.coll__visual .tile__title { font-size: clamp(2.6rem, 9vw, 4.2rem); margin-bottom: 10px; }
-.coll__visual .eyebrow { margin-bottom: 8px; }
-.coll__tagline { font-family: var(--font-title); font-style: italic; font-size: 1.25rem; margin: 0; }
+.coll__cover {
+  position: relative; margin: 0; overflow: hidden;
+  border-radius: var(--radius); background: var(--ivory-deep);
+  aspect-ratio: 3 / 4;
+  box-shadow: 0 24px 40px -30px rgba(36, 24, 16, .55);
+}
+.coll__cover img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
+.coll__cover:hover img { transform: scale(1.02); }
 .coll__status {
   display: inline-block; margin-bottom: 14px;
   background: var(--ivory); color: var(--bordeaux);
   font-size: .5625rem; letter-spacing: .22em; text-transform: uppercase;
   padding: 7px 14px; border-radius: 999px;
 }
+.coll__cover .coll__status { position: absolute; left: 14px; bottom: 14px; margin: 0; background: var(--bordeaux); color: var(--ivory); }
+.coll__side { display: flex; flex-direction: column; gap: 18px; }
+.coll__head { padding: 10px 2px 0; border-top: 1px solid rgba(198, 164, 106, .6); }
+.coll__head .eyebrow { color: var(--camel); margin: 12px 0 6px; }
+.coll__name { font-size: clamp(2.4rem, 8vw, 3.6rem); }
+.coll__tagline { font-family: var(--font-title); font-style: italic; font-size: 1.25rem; margin: 6px 0 0; color: var(--espresso-soft); }
 .coll__products { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); align-content: start; }
 @media (min-width: 900px) {
-  .coll { grid-template-columns: 5fr 7fr; align-items: stretch; }
-  .coll--reverse .coll__visual { order: 2; }
-  .coll__visual { min-height: 520px; }
-  .coll-list { gap: 56px; }
+  .coll { grid-template-columns: 5fr 7fr; gap: 40px; align-items: center; }
+  .coll--reverse { grid-template-columns: 7fr 5fr; }
+  .coll--reverse .coll__cover { order: 2; }
+  .coll-list { gap: 72px; }
+}
 }
 
 /* Paires collier + scrunchie dans le carrousel */
