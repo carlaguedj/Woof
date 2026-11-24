@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Contact — WOOF</title>
-  <meta name="description" content="Get in touch with WOOF: questions, press and collaborations.">
+  <title data-i18n="page.contact.title">Contact — WOOF</title>
+  <meta name="description" content="Get in touch with WOOF: questions, press and collaborations." data-i18n-attr="content:page.contact.desc">
   <meta name="theme-color" content="#F4E9D8">
   <!-- Aperçu lors d'un partage sur les réseaux sociaux -->
   <meta property="og:type" content="website">
@@ -19,54 +19,58 @@
   <link href="https://fonts.googleapis.com/css2?family=Libre+Bodoni:wght@700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Libre+Baskerville:wght@400;700&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <script>document.documentElement.classList.add("js");</script>
+  <!-- Réglages (liste d'attente, langues) puis traductions -->
+  <script src="js/config.js"></script>
+  <script src="js/i18n.js"></script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+  <a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to content</a>
 
-  <!-- Bandeau d'annonce : modifiez le texte librement -->
-  <p class="announce">Coming soon <svg class="icon" aria-hidden="true"><use href="#i-paw"/></svg> <a href="shop.html">Discover the collections</a></p>
+  <!-- Bandeau d'annonce (texte : clés "announce.*" dans js/i18n/) -->
+  <p class="announce"><span data-i18n="announce.soon">Coming soon</span> <svg class="icon" aria-hidden="true"><use href="#i-paw"/></svg> <a href="index.html#waitlist" data-i18n="announce.cta">Join the waitlist</a></p>
 
   <!-- ================= EN-TÊTE / NAVIGATION ================= -->
   <header class="site-header">
     <div class="header-inner">
       <nav class="nav nav--left" aria-label="Main">
-        <button class="burger" type="button" data-menu-open aria-controls="mobile-menu" aria-expanded="false" aria-label="Open menu">
+        <button class="burger" type="button" data-menu-open aria-controls="mobile-menu" aria-expanded="false" aria-label="Open menu" data-i18n-attr="aria-label:nav.menu.open">
           <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg>
         </button>
         <div class="nav-drop">
-          <a class="nav__link" href="shop.html">Shop</a>
+          <a class="nav__link" href="shop.html" data-i18n="nav.shop">Shop</a>
           <div class="nav-drop__panel">
             <div>
-              <p class="nav-drop__title">By category</p>
+              <p class="nav-drop__title" data-i18n="nav.bycat">By category</p>
               <ul>
-                <li><a href="shop.html?filter=collar">Dog collars</a></li>
-                <li><a href="shop.html?filter=scrunchie">Scrunchies</a></li>
-                <li><a href="shop.html">All pieces</a></li>
+                <li><a href="shop.html?filter=collar" data-i18n="nav.dogcollars">Dog collars</a></li>
+                <li><a href="shop.html?filter=scrunchie" data-i18n="nav.scrunchies">Scrunchies</a></li>
+                <li><a href="shop.html" data-i18n="nav.allpieces">All pieces</a></li>
               </ul>
             </div>
             <div>
-              <p class="nav-drop__title">For who?</p>
+              <p class="nav-drop__title" data-i18n="nav.forwho">For who?</p>
               <ul>
-                <li><a href="shop.html?filter=for-you">For you</a></li>
-                <li><a href="shop.html?filter=for-dog">For your dog</a></li>
+                <li><a href="shop.html?filter=for-you" data-i18n="nav.foryou">For you</a></li>
+                <li><a href="shop.html?filter=for-dog" data-i18n="nav.fordog">For your dog</a></li>
               </ul>
             </div>
             <div>
-              <p class="nav-drop__title">By collection</p>
+              <p class="nav-drop__title" data-i18n="nav.bycollection">By collection</p>
               <!-- Liste remplie automatiquement depuis js/products.js -->
               <ul data-collection-links="shop"></ul>
             </div>
           </div>
         </div>
-        <a class="nav__link" href="index.html#collections">Collections</a>
-        <a class="nav__link" href="about.html">About us</a>
+        <a class="nav__link" href="index.html#collections" data-i18n="nav.collections">Collections</a>
+        <a class="nav__link" href="about.html" data-i18n="nav.about">About us</a>
       </nav>
 
-      <a class="logo" href="index.html" aria-label="WOOF — home">WO<svg class="logo__paw" aria-hidden="true"><use href="#i-paw"/></svg>F</a>
+      <a class="logo" href="index.html" aria-label="WOOF — home">WO<svg class="logo__paw" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><g fill="currentColor"><ellipse cx="9" cy="13" rx="2.6" ry="3.3" transform="rotate(-18 9 13)"/><ellipse cx="13.6" cy="8.4" rx="2.6" ry="3.4" transform="rotate(-6 13.6 8.4)"/><ellipse cx="18.4" cy="8.4" rx="2.6" ry="3.4" transform="rotate(6 18.4 8.4)"/><ellipse cx="23" cy="13" rx="2.6" ry="3.3" transform="rotate(18 23 13)"/><path d="M16 14.5c-3.6 0-7 4.6-7 7.6 0 2.2 1.8 3.2 3.6 3.2 1.4 0 2.3-.8 3.4-.8s2 .8 3.4.8c1.8 0 3.6-1 3.6-3.2 0-3-3.4-7.6-7-7.6z"/></g></svg><span class="visually-hidden">O</span>F</a>
 
-      <nav class="nav nav--right" aria-label="Account and bag">
-        <a class="nav__link" href="faq.html">FAQ</a>
-        <a class="nav__link" href="contact.html" aria-current="page">Contact</a>
+      <nav class="nav nav--right" aria-label="Help and language">
+        <a class="nav__link" href="faq.html" data-i18n="nav.faq">FAQ</a>
+        <a class="nav__link" href="contact.html" aria-current="page" data-i18n="nav.contact">Contact</a>
+        <div class="lang-switch" data-lang-switch></div>
         <a class="nav__icon" href="https://www.instagram.com/woof_clubb/" target="_blank" rel="noopener" aria-label="WOOF on Instagram (@woof_clubb)">
           <svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg>
         </a>
@@ -74,47 +78,47 @@
     </div>
   </header>
 
-  <!-- Menu mobile plein écran (vert olive) -->
+  <!-- Menu mobile plein écran -->
   <div class="mobile-menu" id="mobile-menu" aria-hidden="true" role="dialog" aria-label="Menu">
     <div class="mobile-menu__top">
-      <a class="logo" href="index.html" aria-label="WOOF — home">WO<svg class="logo__paw" aria-hidden="true"><use href="#i-paw"/></svg>F</a>
-      <button class="mobile-menu__close" type="button" data-menu-close aria-label="Close menu">
+      <a class="logo" href="index.html" aria-label="WOOF — home">WO<svg class="logo__paw" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><g fill="currentColor"><ellipse cx="9" cy="13" rx="2.6" ry="3.3" transform="rotate(-18 9 13)"/><ellipse cx="13.6" cy="8.4" rx="2.6" ry="3.4" transform="rotate(-6 13.6 8.4)"/><ellipse cx="18.4" cy="8.4" rx="2.6" ry="3.4" transform="rotate(6 18.4 8.4)"/><ellipse cx="23" cy="13" rx="2.6" ry="3.3" transform="rotate(18 23 13)"/><path d="M16 14.5c-3.6 0-7 4.6-7 7.6 0 2.2 1.8 3.2 3.6 3.2 1.4 0 2.3-.8 3.4-.8s2 .8 3.4.8c1.8 0 3.6-1 3.6-3.2 0-3-3.4-7.6-7-7.6z"/></g></svg><span class="visually-hidden">O</span>F</a>
+      <button class="mobile-menu__close" type="button" data-menu-close aria-label="Close menu" data-i18n-attr="aria-label:nav.menu.close">
         <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>
       </button>
     </div>
     <ul class="mobile-menu__links">
       <li>
         <details class="mm-sub">
-          <summary>Shop <svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+          <summary><span data-i18n="nav.shop">Shop</span> <svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
           <div class="mm-sub__body">
-            <p>By category</p>
-            <a href="shop.html?filter=collar">Dog collars</a>
-            <a href="shop.html?filter=scrunchie">Scrunchies</a>
-            <p>For who?</p>
-            <a href="shop.html?filter=for-you">For you</a>
-            <a href="shop.html?filter=for-dog">For your dog</a>
-            <a href="shop.html">All pieces</a>
+            <p data-i18n="nav.bycat">By category</p>
+            <a href="shop.html?filter=collar" data-i18n="nav.dogcollars">Dog collars</a>
+            <a href="shop.html?filter=scrunchie" data-i18n="nav.scrunchies">Scrunchies</a>
+            <p data-i18n="nav.forwho">For who?</p>
+            <a href="shop.html?filter=for-you" data-i18n="nav.foryou">For you</a>
+            <a href="shop.html?filter=for-dog" data-i18n="nav.fordog">For your dog</a>
+            <a href="shop.html" data-i18n="nav.allpieces">All pieces</a>
           </div>
         </details>
       </li>
       <li>
         <details class="mm-sub">
-          <summary>Collections <svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+          <summary><span data-i18n="nav.collections">Collections</span> <svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
           <div class="mm-sub__body" data-collection-links="shop-mobile"></div>
         </details>
       </li>
-      <li><a href="about.html">About us</a></li>
-      <li><a href="faq.html">FAQ</a></li>
-      <li><a href="contact.html">Contact</a></li>
+      <li><a href="about.html" data-i18n="nav.about">About us</a></li>
+      <li><a href="faq.html" data-i18n="nav.faq">FAQ</a></li>
+      <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
     </ul>
     <!-- Illustration du menu : images/menu-dalmatien.png -->
     <div class="mobile-menu__art">
       <img src="images/menu-dalmatien.png" alt="" width="487" height="473">
     </div>
     <div class="mobile-menu__foot">
-      <a href="https://www.instagram.com/woof_clubb/" target="_blank" rel="noopener">Instagram</a>
-      <a href="contact.html">Contact</a>
-      <a href="shop.html">Shop</a>
+      <a href="index.html#waitlist" data-i18n="nav.waitlist">Join the waitlist</a>
+      <a href="https://www.instagram.com/woof_clubb/" target="_blank" rel="noopener">Instagram @woof_clubb</a>
+      <div class="lang-switch lang-switch--light" data-lang-switch></div>
     </div>
   </div>
 
@@ -152,58 +156,85 @@
     <div class="container">
       <div class="footer-top">
         <div class="footer-brand">
-          <a class="logo" href="index.html" aria-label="WOOF — home">WO<svg class="logo__paw" aria-hidden="true"><use href="#i-paw"/></svg>F</a>
-          <span class="script">Good dogs, good people.</span>
-          <p>Dog collars and their matching pieces — for them, for you, for us. Imagined between café terraces and long walks in the park.</p>
+          <a class="logo" href="index.html" aria-label="WOOF — home">WO<svg class="logo__paw" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><g fill="currentColor"><ellipse cx="9" cy="13" rx="2.6" ry="3.3" transform="rotate(-18 9 13)"/><ellipse cx="13.6" cy="8.4" rx="2.6" ry="3.4" transform="rotate(-6 13.6 8.4)"/><ellipse cx="18.4" cy="8.4" rx="2.6" ry="3.4" transform="rotate(6 18.4 8.4)"/><ellipse cx="23" cy="13" rx="2.6" ry="3.3" transform="rotate(18 23 13)"/><path d="M16 14.5c-3.6 0-7 4.6-7 7.6 0 2.2 1.8 3.2 3.6 3.2 1.4 0 2.3-.8 3.4-.8s2 .8 3.4.8c1.8 0 3.6-1 3.6-3.2 0-3-3.4-7.6-7-7.6z"/></g></svg><span class="visually-hidden">O</span>F</a>
+          <span class="script" data-i18n="footer.script">Good dogs, good people.</span>
+          <p data-i18n="footer.text">Dog collars and their matching pieces — for them, for you, for us. Imagined between café terraces and long walks in the park.</p>
+          <!-- Formulaire compact de liste d'attente -->
+          <div class="footer-wl">
+            <p class="footer-wl__title" data-i18n="footer.wl.title">Join the waitlist</p>
+            <p class="footer-wl__text" data-i18n="footer.wl.text">Priority access at launch.</p>
+            <!-- ===== FORMULAIRE LISTE D'ATTENTE (envoi : WAITLIST_ENDPOINT dans js/config.js) ===== -->
+            <form class="wl-form wl-form--compact" data-waitlist novalidate>
+              <div class="wl-fields">
+                <label class="wl-field">
+                  <span class="wl-label"><span data-i18n="form.firstname">First name</span> <small data-i18n="form.optional">(optional)</small></span>
+                  <input type="text" name="first_name" autocomplete="given-name" maxlength="60" placeholder="Your first name" data-i18n-attr="placeholder:form.firstname.ph">
+                </label>
+                <label class="wl-field">
+                  <span class="wl-label"><span data-i18n="form.email">Email</span> <small data-i18n="form.required">(required)</small></span>
+                  <input type="email" name="email" required autocomplete="email" maxlength="120" placeholder="your@email.com" data-i18n-attr="placeholder:form.email.ph">
+                </label>
+              </div>
+              <!-- Piège anti-spam (honeypot) : invisible pour les visiteurs, ne pas supprimer -->
+              <div class="wl-hp" aria-hidden="true">
+                <label><span data-i18n="form.hp">Leave this field empty</span><input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label>
+              </div>
+              <label class="wl-consent">
+                <input type="checkbox" name="consent" value="yes" required>
+                <span data-i18n="form.consent">I agree to receive emails from WOOF and have read the <a href="privacy-policy.html">privacy policy</a>.</span>
+              </label>
+              <button class="btn wl-submit" type="submit" data-i18n="form.submit">Join the waitlist</button>
+              <p class="wl-msg" data-wl-msg role="status" aria-live="polite"></p>
+            </form>
+          </div>
         </div>
         <div class="footer-cols">
           <div class="footer-col">
-            <h3>Collections</h3>
+            <h3 data-i18n="footer.col.collections">Collections</h3>
             <!-- Liste remplie automatiquement depuis js/products.js -->
             <ul data-collection-links="shop">
-              <li><a href="index.html#collections">Collections</a></li>
+              <li><a href="index.html#collections" data-i18n="nav.collections">Collections</a></li>
             </ul>
           </div>
           <div class="footer-col">
-            <h3>WOOF</h3>
+            <h3 data-i18n="footer.col.woof">WOOF</h3>
             <ul>
-              <li><a href="about.html">About us</a></li>
-              <li><a href="contact.html">Contact</a></li>
-              <li><a href="faq.html">FAQ</a></li>
-              <li><a href="faq.html#shipping">Delivery &amp; returns</a></li>
+              <li><a href="about.html" data-i18n="nav.about">About us</a></li>
+              <li><a href="faq.html" data-i18n="nav.faq">FAQ</a></li>
+              <li><a href="faq.html#shipping" data-i18n="footer.delivery">Delivery & returns</a></li>
+              <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
             </ul>
           </div>
           <div class="footer-col">
-            <h3>Shop</h3>
+            <h3 data-i18n="footer.col.shop">Shop</h3>
             <ul>
-              <li><a href="shop.html?filter=collar">Dog collars</a></li>
-              <li><a href="shop.html?filter=scrunchie">Scrunchies</a></li>
-              <li><a href="shop.html?filter=for-you">For you</a></li>
-              <li><a href="shop.html?filter=for-dog">For your dog</a></li>
+              <li><a href="shop.html?filter=collar" data-i18n="nav.dogcollars">Dog collars</a></li>
+              <li><a href="shop.html?filter=scrunchie" data-i18n="nav.scrunchies">Scrunchies</a></li>
+              <li><a href="shop.html?filter=for-you" data-i18n="nav.foryou">For you</a></li>
+              <li><a href="shop.html?filter=for-dog" data-i18n="nav.fordog">For your dog</a></li>
             </ul>
           </div>
           <div class="footer-col">
-            <h3>Follow</h3>
+            <h3 data-i18n="footer.col.follow">Follow</h3>
             <div class="socials">
               <a href="https://www.instagram.com/woof_clubb/" target="_blank" rel="noopener" aria-label="WOOF on Instagram (@woof_clubb)"><svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg></a>
             </div>
+            <p class="footer-lang"><span data-i18n="lang.label">Language</span></p>
+            <div class="lang-switch" data-lang-switch></div>
           </div>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© <span data-year>2026</span> WOOF — Paris</p>
+        <p>© <span data-year>2026</span> WOOF</p>
         <ul>
-          <li><a href="coming-soon.html?p=legal">Legal notice</a></li>
-          <li><a href="coming-soon.html?p=privacy">Privacy</a></li>
-          <li><a href="coming-soon.html?p=terms">Terms of sale</a></li>
+          <li><a href="legal-notice.html" data-i18n="footer.legal">Legal notice</a></li>
+          <li><a href="privacy-policy.html" data-i18n="footer.privacy">Privacy policy</a></li>
+          <li><a href="terms-of-sale.html" data-i18n="footer.terms">Terms of sale</a></li>
+          <li><a href="cookies.html" data-i18n="footer.cookies">Cookie policy</a></li>
         </ul>
       </div>
     </div>
   </footer>
-
-  <div class="toast" id="toast" role="status" aria-live="polite">
-    <svg class="icon" aria-hidden="true"><use href="#i-paw"/></svg><span data-toast-text></span>
-  </div>
 
   <script src="js/products.js"></script>
   <script src="js/reviews.js"></script>

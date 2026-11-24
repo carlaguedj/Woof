@@ -45,6 +45,25 @@
   var $ = function (sel, ctx) { return (ctx || document).querySelector(sel); };
   var $$ = function (sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); };
 
+  /* ---------- 1b. Langues (textes dans js/i18n/<langue>.js) ---------- */
+  var I18N = window.WOOF_I18N || { lang: "en", languages: { en: "EN" }, t: function (k, f) { return f; }, apply: function () {}, setLang: function () {} };
+  var t = function (key, fallback) { return I18N.t(key, fallback); };
+  I18N.apply(document);
+  $$("[data-lang-switch]").forEach(function (box) {
+    var codes = Object.keys(I18N.languages);
+    if (codes.length < 2) { box.hidden = true; return; }
+    box.setAttribute("role", "group");
+    box.setAttribute("aria-label", t("lang.label", "Language"));
+    box.innerHTML = codes.map(function (code, i) {
+      return (i ? '<span class="lang-switch__sep" aria-hidden="true">|</span>' : "") +
+        '<button type="button" lang="' + code + '" data-set-lang="' + code + '" aria-pressed="' + (code === I18N.lang) + '">' + I18N.languages[code] + "</button>";
+    }).join("");
+  });
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-set-lang]");
+    if (b) I18N.setLang(b.getAttribute("data-set-lang"));
+  });
+
   /* ---------- 2. En-tête : ombre légère au défilement ---------- */
   var header = $(".site-header");
   if (header) {
@@ -78,145 +97,17 @@
   $$("[data-menu-close]").forEach(function (b) { b.addEventListener("click", closeMenu); });
   if (menu) $$("a", menu).forEach(function (a) { a.addEventListener("click", closeMenu); });
 
-  /* ---------- 4. Panier factice ----------
-     Le panier est gardé dans le navigateur du visiteur.
-     Il sera remplacé par le panier Shopify une fois le « Buy Button » installé. */
-  var CART_KEY = "woof-cart-v1";
-  var cart = [];
-  try { cart = JSON.parse(localStorage.getItem(CART_KEY)) || []; } catch (e) { cart = []; }
-  function saveCart() { try { localStorage.setItem(CART_KEY, JSON.stringify(cart)); } catch (e) { /* navigation privée : on ignore */ } }
-
-  function money(n) { return "€" + (n % 1 ? n.toFixed(2) : String(n)); }
-  function parsePrice(text) {
-    var n = parseFloat(String(text).replace(/[^\d,.]/g, "").replace(",", "."));
-    return isNaN(n) ? 0 : n;
-  }
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
 
-  var drawer = $("#cart-drawer");
-  var overlay = $("#cart-overlay");
-
-  function renderCart() {
-    var count = cart.reduce(function (s, i) { return s + i.qty; }, 0);
-    var total = cart.reduce(function (s, i) { return s + i.qty * i.price; }, 0);
-    $$("[data-cart-count]").forEach(function (el) {
-      el.textContent = count;
-      el.classList.toggle("has-items", count > 0);
-    });
-    $$("[data-cart-count-text]").forEach(function (el) { el.textContent = count; });
-    if (!drawer) return;
-    var body = $("[data-cart-body]", drawer);
-    var totalEl = $("[data-cart-total]", drawer);
-    if (totalEl) totalEl.textContent = money(total);
-    if (!cart.length) {
-      body.innerHTML =
-        '<div class="cart-empty"><svg class="icon icon--bow" aria-hidden="true"><use href="#i-bow"/></svg>' +
-        "<p>Your bag is empty — for now.</p>" +
-        '<a class="btn btn--outline" href="shop.html">Discover the pieces</a></div>';
-      return;
-    }
-    body.innerHTML = cart.map(function (item, idx) {
-      return (
-        '<div class="cart-item">' +
-        (item.image ? '<img src="' + esc(item.image) + '" alt="" loading="lazy">' : "<span></span>") +
-        "<div><h3>" + esc(item.name) + "</h3>" +
-        (item.variant ? '<p class="cart-item__variant">' + esc(item.variant) + "</p>" : '<p class="cart-item__variant"></p>') +
-        '<div class="qty"><button type="button" data-qty="-1" data-idx="' + idx + '" aria-label="Decrease quantity"><svg class="icon"><use href="#i-minus"/></svg></button>' +
-        "<span>" + item.qty + "</span>" +
-        '<button type="button" data-qty="1" data-idx="' + idx + '" aria-label="Increase quantity"><svg class="icon"><use href="#i-plus"/></svg></button></div></div>' +
-        '<div class="cart-item__side"><span>' + money(item.price * item.qty) + "</span>" +
-        '<button type="button" class="cart-item__remove" data-remove="' + idx + '">Remove</button></div>' +
-        "</div>"
-      );
-    }).join("");
-  }
-
-  function openCart() {
-    if (!drawer) return;
-    closeMenu();
-    lastFocus = document.activeElement;
-    drawer.classList.add("is-open");
-    drawer.setAttribute("aria-hidden", "false");
-    if (overlay) overlay.classList.add("is-open");
-    document.body.classList.add("is-locked");
-    var c = $("[data-cart-close]", drawer);
-    if (c) setTimeout(function () { c.focus(); }, 50);
-  }
-  function closeCart() {
-    if (!drawer || !drawer.classList.contains("is-open")) return;
-    drawer.classList.remove("is-open");
-    drawer.setAttribute("aria-hidden", "true");
-    if (overlay) overlay.classList.remove("is-open");
-    document.body.classList.remove("is-locked");
-    if (lastFocus) lastFocus.focus();
-  }
-  $$("[data-cart-open]").forEach(function (b) { b.addEventListener("click", function (e) { e.preventDefault(); openCart(); }); });
-  $$("[data-cart-close]").forEach(function (b) { b.addEventListener("click", closeCart); });
-  if (overlay) overlay.addEventListener("click", closeCart);
-
-  if (drawer) {
-    drawer.addEventListener("click", function (e) {
-      var q = e.target.closest("[data-qty]");
-      var r = e.target.closest("[data-remove]");
-      if (q) {
-        var i = +q.getAttribute("data-idx");
-        cart[i].qty += +q.getAttribute("data-qty");
-        if (cart[i].qty < 1) cart.splice(i, 1);
-      } else if (r) {
-        cart.splice(+r.getAttribute("data-remove"), 1);
-      } else return;
-      saveCart(); renderCart();
-    });
-  }
-
-  var toast = $("#toast");
-  var toastTimer;
-  function showToast(msg) {
-    if (!toast) return;
-    $("[data-toast-text]", toast).textContent = msg;
-    toast.classList.add("is-visible");
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(function () { toast.classList.remove("is-visible"); }, 2600);
-  }
-
-  /* Bouton « Add to cart » : lit le nom, le prix et la photo directement
-     dans la fiche (vous n'avez donc qu'un seul endroit à modifier). */
-  document.addEventListener("click", function (e) {
-    var btn = e.target.closest("[data-add-to-cart]");
-    if (!btn) return;
-    e.preventDefault();
-    var box = btn.closest("[data-product]");
-    if (!box) return;
-    var nameEl = $("[data-product-name]", box);
-    var priceEl = $("[data-product-price]", box);
-    var imgEl = $("[data-product-image]", box);
-    var variant = $$("input[type=radio]:checked", box).map(function (i) { return i.value; }).join(" · ");
-    var item = {
-      name: nameEl ? nameEl.textContent.trim() : "WOOF piece",
-      price: priceEl ? parsePrice(priceEl.textContent) : 0,
-      image: imgEl ? imgEl.getAttribute("src") : "",
-      variant: variant,
-      qty: 1
-    };
-    var existing = cart.filter(function (c) { return c.name === item.name && c.variant === item.variant; })[0];
-    if (existing) existing.qty += 1; else cart.push(item);
-    saveCart(); renderCart();
-    $$("[data-cart-count]").forEach(function (el) {
-      el.classList.remove("bump"); void el.offsetWidth; el.classList.add("bump");
-    });
-    showToast(item.name + " — added to your bag");
-  });
-  renderCart();
-
   document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") { closeMenu(); closeCart(); }
+    if (e.key === "Escape") closeMenu();
   });
 
   /* ---------- 4b. Catalogue : affichage des collections et produits (données dans js/products.js) ---------- */
   var PRODUCTS = window.WOOF_PRODUCTS || [];
   var COLLECTIONS = window.WOOF_COLLECTIONS || [];
   var TYPE_LABEL = { collar: "Dog collar", scrunchie: "Scrunchie", bracelet: "Bracelet" };
-  var STATUS_LABEL = { "coming-soon": "Coming soon", "released-soon": "Released soon", available: "" };
+  var STATUS_LABEL = { "coming-soon": t("status.coming-soon", "Coming soon"), "released-soon": t("status.released-soon", "Released soon"), available: "" };
   function collectionOf(p) { return COLLECTIONS.filter(function (c) { return c.id === p.collection; })[0] || { name: "", fabric: "", status: "coming-soon" }; }
   function productsOf(c) {
     var order = { collar: 1, scrunchie: 2, bracelet: 3 };
@@ -225,8 +116,8 @@
   }
   function statusOf(p) {
     var st = collectionOf(p).status;
-    if (st === "available") return p.price ? "" : "Coming soon";
-    return STATUS_LABEL[st] || "Coming soon";
+    if (st === "available") return p.price ? "" : STATUS_LABEL["coming-soon"];
+    return STATUS_LABEL[st] || STATUS_LABEL["coming-soon"];
   }
   // Prix affiché (même pendant « Coming soon ») ; sinon le statut
   function priceOf(p) { return p.price ? esc(p.price) : (statusOf(p) || ""); }
@@ -287,7 +178,7 @@
         '<li class="cat-card"><a href="' + collectionUrl(c) + '">' +
         '<div class="media"><img src="' + esc(c.image) + '" alt="' + esc(c.alt) + '" loading="lazy">' +
         (c.status === "released-soon" ? '<span class="product-card__tag">' + st + "</span>" : "") + "</div>" +
-        '<span class="cat-card__label"><span>' + esc(c.name) + "<small>" + esc(c.tagline) + "</small>" + (c.setPrice ? '<em class="cat-card__price">Set ' + esc(c.setPrice) + "</em>" : (STATUS_LABEL[c.status] ? '<em class="cat-card__price">' + STATUS_LABEL[c.status] + "</em>" : "")) + '</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span></a></li>'
+        '<span class="cat-card__label"><span>' + esc(c.name) + "<small>" + esc(t("collection." + c.id + ".tagline", c.tagline)) + "</small>" + (c.setPrice ? '<em class="cat-card__price">' + t("home.set", "Set") + " " + esc(c.setPrice) + "</em>" : (STATUS_LABEL[c.status] ? '<em class="cat-card__price">' + STATUS_LABEL[c.status] + "</em>" : "")) + '</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span></a></li>'
       );
     }).join("");
   }
@@ -389,7 +280,7 @@
     set("[data-p-short]", esc(p.short));
     set("[data-p-description]", "<p>" + rich(p.description) + "</p>");
     set("[data-p-details]", '<ul class="dash-list">' + (p.details || []).map(function (d) { return "<li>" + esc(d) + "</li>"; }).join("") + "</ul>");
-    set("[data-p-notify-name]", esc(p.name));
+    set("[data-p-wl-text]", esc(t("product.wl.text", "Join the waitlist to be the first to know when {name} is available.")).replace("{name}", "<strong>" + esc(p.name) + "</strong>"));
     set("[data-p-status]", st || "Coming soon");
     var hidden = $("[data-p-notify-field]", page);
     if (hidden) hidden.value = p.name;
@@ -397,7 +288,7 @@
     if (sizeBox) {
       if (p.sizes && p.sizes.length) {
         var SZ = window.WOOF_SIZES || {};
-        sizeBox.innerHTML = '<legend>Size <span data-size-chosen>— please select</span></legend><div class="sizes sizes--big">' + p.sizes.map(function (s) {
+        sizeBox.innerHTML = '<legend>Size <span data-size-chosen></span></legend><div class="sizes sizes--big">' + p.sizes.map(function (s) {
           var d = SZ[s] ? SZ[s].width + " × " + SZ[s].length : "";
           return '<label class="size"><input type="radio" name="size" value="Size ' + esc(s) + '" required><span><strong>' + esc(s) + "</strong>" + (d ? "<small>" + esc(d) + "</small>" : "") + "</span></label>";
         }).join("") + '</div><a class="size-guide-link" href="#size-guide" data-open-size>Size guide</a>';
@@ -474,30 +365,57 @@
     });
   });
 
-  /* ---------- 7. Newsletter (visuel seulement pour l'instant) ---------- */
-  $$("[data-newsletter]").forEach(function (form) {
+  /* ---------- 7. Liste d'attente (adresse d'envoi : WAITLIST_ENDPOINT dans js/config.js) ---------- */
+  var WL_ENDPOINT = String((window.WOOF_CONFIG || {}).WAITLIST_ENDPOINT || "").trim();
+  var WL_READY = /^https:\/\//.test(WL_ENDPOINT) && WL_ENDPOINT.indexOf("REMPLACER") === -1;
+  var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  $$("[data-waitlist]").forEach(function (form) {
+    var msg = $("[data-wl-msg]", form);
+    var btn = $("button[type=submit]", form);
+    var say = function (text, kind) { msg.textContent = text; msg.className = "wl-msg" + (kind ? " is-" + kind : ""); };
+    var success = function () {
+      var box = document.createElement("div");
+      box.className = "wl-success";
+      box.setAttribute("role", "status");
+      box.setAttribute("tabindex", "-1");
+      box.innerHTML = '<svg class="icon icon--bow" aria-hidden="true"><use href="#i-bow"/></svg>' +
+        '<p class="wl-success__title">' + t("form.success.title", "You\u2019re on the list.") + "</p>" +
+        '<p class="wl-success__text">' + t("form.success.text", "Thank you \u2014 we\u2019ll let you know as soon as WOOF launches.") + "</p>";
+      form.parentNode.insertBefore(box, form);
+      form.hidden = true;
+      box.focus();
+    };
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-      var input = $("input[type=email]", form);
-      var msg = form.parentNode.querySelector("[data-newsletter-msg]");
-      if (!input.value || !input.checkValidity()) {
-        if (msg) msg.textContent = "Please enter a valid e-mail address.";
-        input.focus();
+      var email = form.elements.email, consent = form.elements.consent, hp = form.elements._gotcha;
+      var val = email.value.trim();
+      if (!val || !email.checkValidity() || !EMAIL_RE.test(val)) {
+        email.setAttribute("aria-invalid", "true");
+        say(t("form.error.email", "Please enter a valid email address."), "error");
+        email.focus();
         return;
       }
-      var sizes = document.querySelector("[data-p-sizes] .sizes");
-      if (form.hasAttribute("data-needs-size") && sizes && !document.querySelector("[data-p-sizes] input[name=size]:checked")) {
-        if (msg) msg.textContent = "Please select a size first (S or M).";
-        var box = document.querySelector("[data-p-sizes]");
-        box.classList.add("is-missing");
-        box.scrollIntoView({ behavior: "smooth", block: "center" });
+      email.removeAttribute("aria-invalid");
+      if (!consent.checked) {
+        say(t("form.error.consent", "Please tick the box to confirm your consent."), "error");
+        consent.focus();
         return;
       }
-      var chosen = document.querySelector("[data-p-sizes] input[name=size]:checked");
-      var field = $("[data-p-notify-field]", form);
-      if (field && chosen) field.value = field.value.replace(/ — Size .*$/, "") + " — " + chosen.value;
-      if (msg) msg.textContent = form.getAttribute("data-success") || "Welcome to the pack. Something lovely is on its way.";
-      form.reset();
+      if (hp && hp.value) { success(); return; }          // robot : on fait semblant, rien n'est envoyé
+      if (!WL_READY) { say(t("form.test", "Test mode: the form is not connected yet, nothing was sent."), "test"); return; }
+
+      var data = new FormData(form);
+      data.set("email", val);
+      data.set("language", I18N.lang);
+      data.set("page", window.location.pathname.split("/").pop() || "index.html");
+      var size = document.querySelector("[data-p-sizes] input[name=size]:checked");
+      if (form.elements.product && size) data.set("size", size.value);
+      btn.disabled = true;
+      say(t("form.sending", "Sending\u2026"), "");
+      fetch(WL_ENDPOINT, { method: "POST", body: data, headers: { Accept: "application/json" } })
+        .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); success(); })
+        .catch(function () { say(t("form.error.send", "Something went wrong and your sign-up wasn\u2019t sent. Please try again in a moment."), "error"); })
+        .then(function () { btn.disabled = false; });
     });
   });
 
@@ -514,14 +432,16 @@
       var rb = $("[data-reviews-rating]", revBox);
       rb.innerHTML = starsHTML(Math.round(parseFloat(REV.rating))) +
         '<p class="talk__score"><strong>' + esc(REV.rating) + "</strong>/" + esc(REV.ratingOutOf || "5") + "</p>" +
-        '<p class="talk__caption">' + esc(REV.ratingCaption || "") + "</p>" +
-        '<p class="talk__motto">For them. For you. For us.</p>';
+        '<p class="talk__caption">' + t("talk.caption", "Based on customer reviews") + "</p>" +
+        '<p class="talk__motto">' + t("talk.motto", "For them. For you. For us.") + "</p>";
     }
-    $("[data-reviews-list]", revBox).innerHTML = (REV.items || []).map(function (r) {
+    $("[data-reviews-list]", revBox).innerHTML = (REV.items || []).map(function (r, i) {
+      var text = t("review." + (i + 1), r.text || "");
+      if (!text || text === "review." + (i + 1)) return "";
       return (
         '<li class="talk-card"><figure>' +
         (r.stars ? starsHTML(r.stars) + '<span class="visually-hidden">' + r.stars + " out of 5</span>" : "") +
-        "<blockquote><p>" + esc(r.text) + "</p></blockquote>" +
+        "<blockquote><p>" + esc(text) + "</p></blockquote>" +
         "<figcaption>— " + esc(r.name) + "</figcaption></figure></li>"
       );
     }).join("");
@@ -572,13 +492,13 @@
     var SZ2 = window.WOOF_SIZES || {};
     var sizeTable = $("[data-faq-sizes]", faq);
     if (sizeTable) {
-      sizeTable.innerHTML = "<tr><th>Collar size</th><th>Width</th><th>Length (adjustable)</th></tr>" +
+      sizeTable.innerHTML = "<tr><th>" + t("faq.sizes.size", "Collar size") + "</th><th>" + t("faq.sizes.width", "Width") + "</th><th>" + t("faq.sizes.length", "Length (adjustable)") + "</th></tr>" +
         Object.keys(SZ2).map(function (k) { return "<tr><td>" + esc(k) + "</td><td>" + esc(SZ2[k].width) + "</td><td>" + esc(SZ2[k].length) + "</td></tr>"; }).join("");
     }
     var adj = $("[data-faq-adjust]", faq);
     if (adj) {
       adj.innerHTML = Object.keys(SZ2).map(function (k) {
-        return "<li>Size " + esc(k) + ": " + esc(SZ2[k].width) + " wide, " + esc(SZ2[k].length) + " adjustable length</li>";
+        return "<li>" + esc(t("faq.adjust.item", "Size {s}: {w} wide, {l} adjustable length").replace("{s}", k).replace("{w}", SZ2[k].width).replace("{l}", SZ2[k].length)) + "</li>";
       }).join("");
     }
     // Collections et leurs pièces
@@ -586,18 +506,9 @@
     if (fc) {
       fc.innerHTML = COLLECTIONS.map(function (c) {
         var st = STATUS_LABEL[c.status];
-        return '<li><a href="shop.html?filter=' + encodeURIComponent(c.id) + '"><strong>' + esc(c.name) + "</strong></a> (" + esc(c.fabric.toLowerCase()) + ") — " +
-          productsOf(c).map(function (p) { return esc((TYPE_LABEL[p.type] || "").toLowerCase()); }).join(" + ") +
+        return '<li><a href="shop.html?filter=' + encodeURIComponent(c.id) + '"><strong>' + esc(c.name) + "</strong></a> — " +
+          productsOf(c).map(function (p) { return esc(t("type." + p.type, (TYPE_LABEL[p.type] || "").toLowerCase())); }).join(" + ") +
           (st ? " · <em>" + st + "</em>" : "") + "</li>";
-      }).join("");
-    }
-    // Matières (1re ligne « details » de chaque produit)
-    var fm = $("[data-faq-materials]", faq);
-    if (fm) {
-      var allP = [];
-      COLLECTIONS.forEach(function (c) { allP = allP.concat(productsOf(c)); });
-      fm.innerHTML = allP.map(function (p) {
-        return '<li><a href="' + productUrl(p) + '">' + esc(p.name) + "</a>: " + esc((p.details || [""])[0]) + "</li>";
       }).join("");
     }
   }
