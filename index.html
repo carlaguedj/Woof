@@ -24,7 +24,7 @@
   <a class="skip-link" href="#main">Skip to content</a>
 
   <!-- Bandeau d'annonce : modifiez le texte librement -->
-  <p class="announce">Coming soon <svg class="icon" aria-hidden="true"><use href="#i-paw"/></svg> <a href="index.html#join">Be the first to know</a></p>
+  <p class="announce">Coming soon <svg class="icon" aria-hidden="true"><use href="#i-paw"/></svg> <a href="shop.html">Discover the collections</a></p>
 
   <!-- ================= EN-TÊTE / NAVIGATION ================= -->
   <header class="site-header">
@@ -112,7 +112,7 @@
     <div class="mobile-menu__foot">
       <a href="https://www.instagram.com/woof_clubb/" target="_blank" rel="noopener">Instagram</a>
       <a href="contact.html">Contact</a>
-      <a href="index.html#join">Join the pack</a>
+      <a href="shop.html">Shop</a>
     </div>
   </div>
 
@@ -133,190 +133,17 @@
       </div>
     </section>
 
-    <!-- ================= 2. SHOP BY COLLECTION (affiché depuis js/products.js) ================= -->
-    <section class="section section--tight" id="collections" aria-labelledby="col-title">
+    <!-- ================= 2. LES COLLECTIONS (affichées depuis js/products.js) =================
+         Un clic sur une collection ouvre la boutique filtrée sur cette collection. -->
+    <section class="section section--tight home-collections" id="collections" aria-labelledby="col-title">
       <div class="container">
         <div class="section-head">
           <svg class="icon icon--paw" aria-hidden="true"><use href="#i-paw"/></svg>
-          <h2 class="section-title" id="col-title" style="font-size:clamp(1.9rem,5vw,2.6rem)">Shop by collection</h2>
-          <svg class="section-head__deco" aria-hidden="true"><use href="#i-bow"/></svg>
+          <h2 class="section-title" id="col-title" style="font-size:clamp(1.9rem,5vw,2.6rem)">The collections</h2>
+          <a class="link-arrow home-collections__all" href="shop.html">Shop all <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
         <ul class="cat-grid cat-grid--5" data-collection-grid></ul>
-      </div>
-    </section>
-
-    <!-- ================= 2b. SHOP : POUR VOUS / POUR VOTRE CHIEN ================= -->
-    <section class="section section--tight" aria-labelledby="who-title">
-      <div class="container">
-        <div class="section-head">
-          <svg class="icon icon--paw" aria-hidden="true"><use href="#i-paw"/></svg>
-          <h2 class="section-title" id="who-title" style="font-size:clamp(1.9rem,5vw,2.6rem)">Shop for who?</h2>
-        </div>
-        <div class="duo">
-          <a class="tile duo__tile reveal" href="shop.html?filter=for-dog">
-            <img src="images/park-avenue-girl-collier-3.jpg" alt="Spaniel wearing the Park Avenue Girl tweed collar" loading="lazy">
-            <div class="tile__content">
-              <p class="eyebrow">Dog collars</p>
-              <h3 class="tile__title">For your dog</h3>
-              <span class="link-arrow">Shop dog collars <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span>
-            </div>
-          </a>
-          <a class="tile duo__tile reveal" href="shop.html?filter=for-you">
-            <img src="images/park-avenue-girl-scrunchie-2.jpg" alt="Tweed scrunchie worn in a bun" loading="lazy">
-            <div class="tile__content">
-              <p class="eyebrow">Scrunchies</p>
-              <h3 class="tile__title">For you</h3>
-              <span class="link-arrow">Shop for you <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span>
-            </div>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= 3. CAMPAGNE ================= -->
-    <section class="section section--tight" aria-label="Campaign">
-      <div class="container campaign">
-        <article class="tile reveal">
-          <img src="images/collection-denim-club.jpg" alt="Woman with her curly dog, both wearing matching denim accessories" loading="lazy">
-          <div class="tile__content">
-            <h2 class="tile__title">Matching<br>always looks<br>better.</h2>
-            <a class="btn btn--light" href="#matching-edit">See the sets</a>
-            <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
-          </div>
-        </article>
-        <a class="tile tile--short reveal" href="index.html#the-spoiled-one">
-          <img src="images/collection-the-spoiled-one.jpg" alt="Woman kissing her spaniel, both wearing gold chain and black leather pieces" loading="lazy">
-          <div class="tile__content">
-            <span class="coll__status">Released soon</span>
-            <h2 class="tile__title" style="font-size:clamp(2.4rem,8vw,3.4rem)">New Collection <em>The Spoiled One</em></h2>
-            <svg class="icon icon--bow" aria-hidden="true"><use href="#i-bow"/></svg>
-            <p class="eyebrow">Gold chains, black leather,<br>zero compromise.</p>
-            <span class="btn btn--light">Discover</span>
-          </div>
-        </a>
-      </div>
-    </section>
-
-    <!-- ================= 5. THE MATCHING EDIT (affiché depuis js/products.js) ================= -->
-    <section class="section section--tight" id="matching-edit" aria-labelledby="edit-title">
-      <div class="container edit">
-        <div class="edit__intro reveal">
-          <p class="eyebrow" style="color:var(--camel)">Dog &amp; human</p>
-          <h2 class="section-title" id="edit-title">The<br>Matching<br>Edit</h2>
-          <p class="lede">One fabric, two pieces. Every collar has its match — same tweed, same denim, same velvet, same love.</p>
-          <a class="btn btn--outline" href="shop.html">Shop the edit</a>
-        </div>
-        <div class="edit__slider reveal" data-slider>
-          <div class="edit__arrows">
-            <button class="round-btn" type="button" data-slider-prev aria-label="Previous set"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left"/></svg></button>
-            <button class="round-btn" type="button" data-slider-next aria-label="Next set"><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
-          </div>
-          <div class="edit__track" data-slider-track data-edit-track></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= 6. STORYTELLING ================= -->
-    <section class="section section--tight" aria-labelledby="story-title">
-      <div class="container story">
-        <div class="panel story__text reveal">
-          <h2 class="section-title" id="story-title">Our story</h2>
-          <p>WOOF was born from a simple idea: that the moments with our dogs are the most beautiful ones.</p>
-          <p>Inspired by European life, long walks and café terraces, we design dog collars and the pieces that match them — for you.</p>
-          <a class="btn btn--outline" href="about.html">About us</a>
-          <svg class="icon icon--paw" aria-hidden="true"><use href="#i-paw"/></svg>
-        </div>
-
-        <div class="story__photo reveal">
-          <div class="media"><img src="images/histoire-dalmatien-porte-rouge.jpg" alt="Dalmatian with a burgundy bow in front of a red Parisian door, next to a card reading Good dogs, Good people" loading="lazy"></div>
-        </div>
-
-        <a class="tile details-tile reveal" href="index.html#the-diva">
-          <img src="images/the-diva-detail-medaille.jpg" alt="Gold-tone engraved Woof medallion on burgundy velvet" loading="lazy">
-          <div class="tile__content">
-            <h2 class="tile__title">Details<br>make<br>the story.</h2>
-            <span class="round-btn" aria-hidden="true"><svg class="icon"><use href="#i-arrow"/></svg></span>
-          </div>
-        </a>
-
-        <div class="panel gift reveal">
-          <div class="gift__text">
-            <h3>Signature details.</h3>
-            <svg class="icon icon--paw" aria-hidden="true"><use href="#i-paw"/></svg>
-            <p class="gift__note">A gold-tone buckle engraved WOOF and our iconic medallion on every collar.</p>
-          </div>
-          <div class="media"><img src="images/park-avenue-girl-detail-boucle.jpg" alt="Gold-tone buckle engraved WOOF on tweed" loading="lazy"></div>
-        </div>
-
-        <div class="panel thoughtful reveal">
-          <div class="media"><img src="images/denim-club-detail-attache.jpg" alt="Gold-tone adjuster on a denim collar" loading="lazy"></div>
-          <div>
-            <h3>Thoughtful details.</h3>
-            <ul class="feature-list">
-              <li><svg class="icon" aria-hidden="true"><use href="#i-c-check"/></svg>Durable &amp; comfortable</li>
-              <li><svg class="icon" aria-hidden="true"><use href="#i-c-heart"/></svg>Timeless design</li>
-              <li><svg class="icon" aria-hidden="true"><use href="#i-c-paw"/></svg>Made for them and for you</li>
-              <li><svg class="icon" aria-hidden="true"><use href="#i-c-flower"/></svg>A perfect match for everyday wear</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= 7. LA BOUTIQUE, PAR COLLECTION =================
-         Les produits ne s'écrivent PAS ici : ils viennent du fichier js/products.js -->
-    <section class="section" id="shop" aria-labelledby="shop-title">
-      <div class="container">
-        <div class="shop-head">
-          <div>
-            <p class="eyebrow">Shop by collection</p>
-            <h2 class="section-title" id="shop-title">The collections</h2>
-          </div>
-          <p class="lede" style="max-width:26em"><em>Little details. Big personality.</em> Each collection, one fabric: a dog collar and its matching scrunchie.</p>
-        </div>
-        <div class="coll-list" data-collection-shop></div>
-        <noscript><p>Please enable JavaScript to see our collections.</p></noscript>
-      </div>
-    </section>
-
-    <!-- ================= 8. NEWSLETTER ================= -->
-    <section class="section section--tight" id="join" aria-labelledby="news-title">
-      <div class="container newsletter">
-        <div class="media reveal"><img src="images/collection-park-avenue-girl.jpg" alt="Woman kissing her spaniel wearing a burgundy tweed collar" loading="lazy"></div>
-        <div class="panel newsletter__box reveal">
-          <h2 class="section-title" id="news-title">Join the pack.</h2>
-          <p class="lede">Our collections are coming very soon. Be the first to know when they launch — and get early access.</p>
-          <!-- NEWSLETTER : formulaire visuel pour l'instant (voir README pour le relier à un service d'e-mails). -->
-          <form class="email-form" data-newsletter novalidate>
-            <label class="visually-hidden" for="news-email">Your email</label>
-            <input id="news-email" type="email" name="email" placeholder="Your email" autocomplete="email" required>
-            <button class="round-btn round-btn--filled" type="submit" aria-label="Subscribe"><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
-          </form>
-          <p class="email-form__msg" data-newsletter-msg role="status" aria-live="polite"></p>
-          <p class="newsletter__small">No spam, only good news. Unsubscribe anytime.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= 9. INSTAGRAM @woof_clubb ================= -->
-    <section class="section section--tight" aria-labelledby="insta-title">
-      <div class="container">
-        <div class="insta-head">
-          <h2 id="insta-title"><a href="https://www.instagram.com/woof_clubb/" target="_blank" rel="noopener">@woof_clubb</a></h2>
-          <svg class="icon" aria-hidden="true"><use href="#i-paw"/></svg>
-        </div>
-        <div class="insta-grid reveal">
-          <a href="https://www.instagram.com/woof_clubb/" target="_blank" rel="noopener"><div class="media"><img src="images/collection-park-avenue-girl.jpg" alt="Woman kissing her spaniel in a tweed collar" loading="lazy"></div></a>
-          <a href="https://www.instagram.com/woof_clubb/" target="_blank" rel="noopener"><div class="media"><img src="images/denim-club-scrunchie-1.jpg" alt="Denim scrunchie" loading="lazy"></div></a>
-          <a href="https://www.instagram.com/woof_clubb/" target="_blank" rel="noopener"><div class="media"><img src="images/the-diva-collier-1.jpg" alt="Velvet collar" loading="lazy"></div></a>
-          <a href="https://www.instagram.com/woof_clubb/" target="_blank" rel="noopener"><div class="media"><img src="images/histoire-dalmatien-porte-rouge.jpg" alt="Dalmatian with a burgundy bow" loading="lazy"></div></a>
-          <a href="https://www.instagram.com/woof_clubb/" target="_blank" rel="noopener"><div class="media"><img src="images/rodeo-kid-collier-1.jpg" alt="Red bandana collar" loading="lazy"></div></a>
-          <a href="https://www.instagram.com/woof_clubb/" target="_blank" rel="noopener"><div class="media"><img src="images/the-diva-scrunchie-2.jpg" alt="Velvet scrunchie in a bun" loading="lazy"></div></a>
-          <a href="https://www.instagram.com/woof_clubb/" target="_blank" rel="noopener"><div class="media"><img src="images/the-spoiled-one-collier-1.jpg" alt="Gold chain collar" loading="lazy"></div></a>
-          <a href="https://www.instagram.com/woof_clubb/" target="_blank" rel="noopener"><div class="media"><img src="images/park-avenue-girl-collier-1.jpg" alt="Tweed collar" loading="lazy"></div></a>
-          <a href="https://www.instagram.com/woof_clubb/" target="_blank" rel="noopener"><div class="media"><img src="images/rodeo-kid-scrunchie-1.jpg" alt="Red bandana scrunchie" loading="lazy"></div></a>
-        </div>
-        <p style="text-align:center;margin-top:24px"><a class="btn btn--outline" href="https://www.instagram.com/woof_clubb/" target="_blank" rel="noopener">Follow us on Instagram</a></p>
+        <p class="home-collections__tagline"><em>Little details. Big personality.</em></p>
       </div>
     </section>
 
