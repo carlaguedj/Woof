@@ -982,13 +982,7 @@ a:hover .media img, .media--zoom:hover img { transform: scale(1.04); }
 .talk__motto { font-size: .625rem; letter-spacing: .26em; text-transform: uppercase; color: var(--bordeaux); margin: 10px 0 0; }
 .stars { display: inline-flex; gap: 5px; font-size: .8rem; letter-spacing: 0; color: rgba(198, 164, 106, .35); }
 .stars .is-on { color: var(--gold); }
-.talk__list {
-  display: grid; grid-auto-flow: column; grid-auto-columns: 82%; gap: var(--gap);
-  overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
-  margin-right: calc(var(--gutter) * -1); padding-right: var(--gutter);
-}
-.talk__list::-webkit-scrollbar { display: none; }
-.talk-card { scroll-snap-align: start; }
+
 .talk-card figure {
   margin: 0; height: 100%;
   display: flex; flex-direction: column; gap: 16px;
@@ -1008,7 +1002,6 @@ a:hover .media img, .media--zoom:hover img { transform: scale(1.04); }
 .talk__note { text-align: center; font-size: .6875rem; font-style: italic; color: var(--espresso-soft); margin: 24px 0 0; }
 @media (min-width: 900px) {
   .talk { padding: 96px 0 110px; }
-  .talk__list { grid-auto-flow: row; grid-template-columns: repeat(4, 1fr); overflow: visible; margin-right: 0; padding-right: 0; gap: 18px; }
 }
 
 /* ==========================================================================
@@ -1210,3 +1203,81 @@ html.i18n-pending body { visibility: hidden; }
   .insta-strip__grid { grid-auto-flow: row; grid-template-columns: repeat(5, 1fr); overflow: visible; margin-right: 0; padding-right: 0; gap: 10px; }
   .insta-strip { padding-bottom: 80px; }
 }
+
+/* ==========================================================================
+   Avis : une seule ligne qui défile (marquee)
+   ========================================================================== */
+.talk__marquee {
+  --gap: 18px;
+  position: relative; overflow: hidden;
+  margin: 0 calc(var(--gutter) * -1);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+.talk__list { display: flex; gap: var(--gap); width: max-content; padding: 4px 0; animation: talk-marquee var(--marquee-duration, 70s) linear infinite; }
+.talk__marquee:hover .talk__list, .talk__marquee:focus-within .talk__list, .talk__marquee.is-paused .talk__list { animation-play-state: paused; }
+.talk-card { flex: 0 0 300px; }
+.talk-card figure { padding: 26px 24px 22px; }
+.talk-card blockquote p { font-size: 1.25rem; }
+@keyframes talk-marquee { to { transform: translateX(calc(-50% - var(--gap) / 2)); } }
+.talk__controls { text-align: center; margin: 18px 0 0; }
+.talk__toggle { font-size: .5625rem; letter-spacing: .22em; text-transform: uppercase; color: var(--espresso-soft); border-bottom: 1px solid rgba(198, 164, 106, .7); padding: 4px 0; transition: color .3s; }
+.talk__toggle:hover { color: var(--bordeaux); }
+@media (min-width: 900px) { .talk-card { flex-basis: 340px; } }
+@media (prefers-reduced-motion: reduce) {
+  .talk__list { animation: none; }
+  .talk__marquee { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
+  .talk-card[aria-hidden="true"], .talk__controls { display: none; }
+}
+
+/* ==========================================================================
+   Page Shop : collections (bannière cliquable + 2 produits)
+   ========================================================================== */
+.shop-colls { display: grid; gap: 64px; padding-top: 6px; }
+.shop-coll { scroll-margin-top: calc(var(--header-h) + 16px); }
+.shop-coll__banner {
+  position: relative; display: block; overflow: hidden;
+  border-radius: var(--radius); background: var(--camel);
+  aspect-ratio: 4 / 3; color: var(--ivory);
+}
+.shop-coll__banner img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.4s var(--ease); }
+.shop-coll__banner::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(36, 24, 16, .62) 0%, rgba(36, 24, 16, .12) 55%, rgba(36, 24, 16, 0) 100%); }
+.shop-coll__banner.is-link:hover img { transform: scale(1.03); }
+.shop-coll__text { position: absolute; left: 22px; right: 22px; bottom: 22px; z-index: 1; display: flex; flex-direction: column; gap: 6px; }
+.shop-coll__eyebrow { font-size: .5625rem; letter-spacing: .24em; text-transform: uppercase; opacity: .9; }
+.shop-coll__name { font-family: var(--font-title); font-size: clamp(2.6rem, 10vw, 5.4rem); line-height: .95; }
+.shop-coll__tagline { font-family: var(--font-title); font-style: italic; font-size: clamp(1.05rem, 3vw, 1.4rem); }
+.shop-coll__cta { display: inline-flex; align-items: center; gap: .6em; margin-top: 8px; font-size: .5625rem; letter-spacing: .22em; text-transform: uppercase; border-bottom: 1px solid rgba(244, 233, 216, .7); padding-bottom: 4px; align-self: flex-start; }
+.shop-coll__cta .icon { transition: transform .35s var(--ease); }
+.shop-coll__banner.is-link:hover .shop-coll__cta .icon { transform: translateX(4px); }
+.shop-coll__status { position: absolute; top: 16px; left: 16px; z-index: 1; background: var(--ivory); color: var(--bordeaux); font-size: .5625rem; letter-spacing: .22em; text-transform: uppercase; padding: 7px 14px; border-radius: 999px; }
+.shop-coll__set { font-size: .625rem; letter-spacing: .2em; text-transform: uppercase; color: var(--espresso-soft); margin: 16px 2px 0; }
+.shop-coll__set strong { font-family: var(--font-title); font-size: 1.3rem; letter-spacing: 0; font-weight: 500; color: var(--bordeaux); margin-left: 6px; }
+.shop-coll__products { display: grid; gap: 12px; margin-top: 14px; }
+.spc {
+  display: grid; grid-template-columns: 112px 1fr; gap: 16px; align-items: center;
+  background: var(--ivory-light); border: 1px solid rgba(198, 164, 106, .45); border-radius: var(--radius);
+  padding: 12px;
+}
+.spc__img { display: block; aspect-ratio: 1; overflow: hidden; border-radius: 4px; background: var(--ivory-deep); }
+.spc__img img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s var(--ease); }
+.spc:hover .spc__img img { transform: scale(1.05); }
+.spc__type { font-size: .5625rem; letter-spacing: .22em; text-transform: uppercase; color: var(--camel); margin: 0 0 2px; }
+.spc__name { font-size: 1.35rem; line-height: 1.1; color: var(--espresso); margin-bottom: 4px; }
+.spc__name a:hover { color: var(--bordeaux); }
+.spc__short { display: none; font-size: .75rem; color: var(--espresso-soft); margin: 0 0 8px; }
+.spc__price { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin: 0 0 10px; }
+.spc__amount { font-family: var(--font-title); font-size: 1.3rem; color: var(--espresso); }
+.spc .badge-soon { padding: .45em 1em; font-size: .5rem; }
+.spc .btn { padding: .85em 1.3em; }
+@media (min-width: 700px) {
+  .shop-coll__banner { aspect-ratio: 3 / 1; }
+  .shop-coll__text { left: 44px; bottom: 36px; right: auto; max-width: 60%; }
+  .shop-coll__status { top: 22px; left: 22px; }
+  .shop-coll__products { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .spc { grid-template-columns: 170px 1fr; padding: 16px; gap: 22px; }
+  .spc__short { display: block; }
+}
+@media (min-width: 1100px) { .spc { grid-template-columns: 200px 1fr; } .shop-colls { gap: 88px; } }
+/* Boutons des cartes produit : le texte peut passer à la ligne (libellés plus longs en français) */
+.product-card .btn, .spc .btn { white-space: normal; text-align: center; line-height: 1.35; }

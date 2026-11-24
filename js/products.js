@@ -12,7 +12,7 @@
    ========================================================================== */
 
 /* ---------- LES COLLECTIONS ----------
-   L'ordre ici = l'ordre d'affichage sur le site.
+   L'ordre ici = l'ordre d'affichage sur le site (accueil, page Shop, menus).
    status   : "coming-soon"   → affiche « Coming soon » (le prix reste visible)
               "released-soon" → affiche « Released soon »
               "available"     → en vente
@@ -26,17 +26,10 @@ window.WOOF_COLLECTIONS = [
     status: "coming-soon",
     setPrice: "€42",
     image: "images/couverture-the-diva.jpg",   // couverture de la collection (format portrait 3:4)
-    alt: "WOOF magazine cover: The Diva, velvet collection — a spaniel wearing a burgundy velvet collar"
-  },
-  {
-    id: "park-avenue-girl",
-    name: "Park Avenue Girl",
-    fabric: "Tweed",
-    tagline: "Classic charm, with a playful twist.",
-    status: "coming-soon",
-    setPrice: "€45",
-    image: "images/couverture-park-avenue-girl.jpg",
-    alt: "WOOF magazine cover: Park Avenue Girl, tweed collection — a cocker spaniel wearing a cream tweed collar checked in black and burgundy, with golden buckle"
+    alt: "WOOF magazine cover: The Diva, velvet collection — a spaniel wearing a burgundy velvet collar",
+    banner: "images/banniere-the-diva.jpg",       // bannière de la page Shop (format large 3:1)
+    bannerFocus: "55% 35%",            // point à garder visible sur mobile (horizontal vertical)
+    bannerAlt: "A woman kissing her spaniel wearing The Diva velvet collar, with the matching velvet scrunchie in her hair, on a café terrace"
   },
   {
     id: "denim-club",
@@ -46,7 +39,23 @@ window.WOOF_COLLECTIONS = [
     status: "coming-soon",
     setPrice: "€39",
     image: "images/couverture-denim-club.jpg",
-    alt: "WOOF magazine cover: Denim Club, the denim collection — a Shiba Inu wearing a navy denim collar with golden buckle"
+    alt: "WOOF magazine cover: Denim Club, the denim collection — a Shiba Inu wearing a navy denim collar with golden buckle",
+    banner: "images/banniere-denim-club.jpg",       // bannière de la page Shop (format large 3:1)
+    bannerFocus: "55% 40%",            // point à garder visible sur mobile (horizontal vertical)
+    bannerAlt: "A Shiba Inu wearing the Denim Club collar at a picnic, facing a woman with the matching denim scrunchie"
+  },
+  {
+    id: "park-avenue-girl",
+    name: "Park Avenue Girl",
+    fabric: "Tweed",
+    tagline: "Classic charm, with a playful twist.",
+    status: "coming-soon",
+    setPrice: "€45",
+    image: "images/couverture-park-avenue-girl.jpg",
+    alt: "WOOF magazine cover: Park Avenue Girl, tweed collection — a cocker spaniel wearing a cream tweed collar checked in black and burgundy, with golden buckle",
+    banner: "images/banniere-park-avenue-girl.jpg",       // bannière de la page Shop (format large 3:1)
+    bannerFocus: "55% 40%",            // point à garder visible sur mobile (horizontal vertical)
+    bannerAlt: "A whippet wearing the Park Avenue Girl tweed collar on a bed, next to a woman with the matching tweed scrunchie"
   },
   {
     id: "rodeo-kid",
@@ -56,7 +65,10 @@ window.WOOF_COLLECTIONS = [
     status: "coming-soon",
     setPrice: "€39",
     image: "images/couverture-rodeo-kid.jpg",
-    alt: "WOOF magazine cover: Rodeo Kid, the bandana collar — an Australian shepherd wearing a red paisley bandana collar"
+    alt: "WOOF magazine cover: Rodeo Kid, the bandana collar — an Australian shepherd wearing a red paisley bandana collar",
+    banner: "images/banniere-rodeo-kid.jpg",       // bannière de la page Shop (format large 3:1)
+    bannerFocus: "45% 40%",            // point à garder visible sur mobile (horizontal vertical)
+    bannerAlt: "An Australian shepherd wearing the Rodeo Kid bandana, next to a woman wearing the matching scrunchie on her wrist"
   },
   {
     id: "the-spoiled-one",
@@ -66,7 +78,10 @@ window.WOOF_COLLECTIONS = [
     status: "released-soon",          // pas au lancement : prix après devis
     setPrice: "",
     image: "images/couverture-the-spoiled-one.jpg",
-    alt: "WOOF magazine cover: The Spoiled One, the chain collection — a greyhound wearing a gold chain collar"
+    alt: "WOOF magazine cover: The Spoiled One, the chain collection — a greyhound wearing a gold chain collar",
+    banner: "images/banniere-the-spoiled-one.jpg",       // bannière de la page Shop (format large 3:1)
+    bannerFocus: "60% 40%",            // point à garder visible sur mobile (horizontal vertical)
+    bannerAlt: "A Dalmatian wearing The Spoiled One chain collar, next to a woman wearing the matching chain bracelet"
   }
 ];
 

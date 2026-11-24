@@ -138,7 +138,7 @@
       '<div class="product-card__info"><h3 class="product-card__name"><a href="' + productUrl(p) + '">' + esc(p.name) + "</a></h3>" +
       '<p class="product-card__price">' + priceOf(p) + "</p></div>" +
       '<p class="product-card__meta">' + esc(TYPE_LABEL[p.type] || "") + " · " + esc(c.fabric) + "</p>" +
-      '<a class="btn btn--small btn--outline" href="' + productUrl(p) + (st ? '#notify">Notify me' : '">Discover') + "</a>" +
+      '<a class="btn btn--small btn--outline" href="' + productUrl(p) + (st ? '#notify">' + t("nav.waitlist", "Join the waitlist") : '">Discover') + "</a>" +
       "</article>"
     );
   }
@@ -193,11 +193,47 @@
     }).join("");
   });
 
+  // Page Shop : une collection = bannière cliquable + ses produits
+  function shopProductHTML(p) {
+    var img = (p.images && p.images[0]) || { src: "", alt: "" }, st = statusOf(p), url = productUrl(p);
+    return (
+      '<article class="spc">' +
+      '<a class="spc__img" href="' + url + '" tabindex="-1" aria-hidden="true"><img src="' + esc(img.src) + '" alt="" loading="lazy"></a>' +
+      '<div class="spc__body">' +
+      '<p class="spc__type">' + esc(TYPE_LABEL[p.type] || "") + "</p>" +
+      '<h3 class="spc__name"><a href="' + url + '">' + esc(p.name) + "</a></h3>" +
+      '<p class="spc__short">' + esc(p.short || "") + "</p>" +
+      '<p class="spc__price">' + (p.price ? '<span class="spc__amount">' + esc(p.price) + "</span>" : "") + (st ? '<span class="badge-soon">' + st + "</span>" : "") + "</p>" +
+      '<a class="btn btn--small" href="' + url + (st ? '#notify">' + t("nav.waitlist", "Join the waitlist") : '">Discover') + "</a>" +
+      "</div></article>"
+    );
+  }
+  function shopCollectionHTML(c, asLink) {
+    var st = STATUS_LABEL[c.status] || "", tag = asLink ? "a" : "div";
+    var href = asLink ? ' href="shop.html?filter=' + encodeURIComponent(c.id) + '"' : "";
+    return (
+      '<section class="shop-coll" id="c-' + esc(c.id) + '" aria-label="' + esc(c.name) + '">' +
+      "<" + tag + ' class="shop-coll__banner' + (asLink ? " is-link" : "") + '"' + href + ">" +
+      '<img src="' + esc(c.banner || c.image) + '" alt="' + esc(c.bannerAlt || c.alt) + '" style="object-position:' + esc(c.bannerFocus || "center") + '" loading="lazy">' +
+      '<span class="shop-coll__text">' +
+      '<span class="shop-coll__eyebrow">' + esc(c.fabric) + " collection</span>" +
+      '<span class="shop-coll__name">' + esc(c.name) + "</span>" +
+      '<span class="shop-coll__tagline">' + esc(t("collection." + c.id + ".tagline", c.tagline)) + "</span>" +
+      (asLink ? '<span class="shop-coll__cta">' + t("shop.discover", "Discover the collection") + ' <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span>' : "") +
+      "</span>" +
+      (st ? '<span class="shop-coll__status">' + st + "</span>" : "") +
+      "</" + tag + ">" +
+      (c.setPrice ? '<p class="shop-coll__set">' + t("home.set", "Set") + " — " + productsOf(c).map(function (p) { return esc((TYPE_LABEL[p.type] || "").toLowerCase()); }).join(" + ") + " <strong>" + esc(c.setPrice) + "</strong></p>" : "") +
+      '<div class="shop-coll__products">' + productsOf(c).map(shopProductHTML).join("") + "</div>" +
+      "</section>"
+    );
+  }
+
   // Page Boutique : filtres par catégorie, « for you / for your dog » et par collection
   var shopPage = $("[data-shop]");
   if (shopPage) {
     var FILTERS = {
-      all: { eyebrow: "WOOF collection", title: "All pieces", intro: window.WOOF_TAGLINE || "Little details. Big personality." },
+      all: { eyebrow: "Shop", title: "The collections", intro: window.WOOF_TAGLINE || "Little details. Big personality." },
       collar: { eyebrow: "By category", title: "Dog collars", intro: "Every collar has its match." },
       scrunchie: { eyebrow: "By category", title: "Scrunchies", intro: "Cut from the same fabrics as our dog collars." },
       "for-you": { eyebrow: "For who?", title: "For you", intro: "Scrunchies and bracelets, made to match your dog." },
@@ -228,8 +264,24 @@
       $("[data-shop-eyebrow]", shopPage).textContent = info.eyebrow;
       $("[data-shop-title]", shopPage).textContent = info.title;
       $("[data-shop-intro]", shopPage).textContent = info.intro;
-      $("[data-shop-count]", shopPage).textContent = list.length + (list.length > 1 ? " pieces" : " piece");
-      $("[data-shop-grid]", shopPage).innerHTML = list.map(cardHTML).join("");
+      var grid = $("[data-shop-grid]", shopPage), coll = COLLECTIONS.filter(function (c) { return c.id === f; })[0];
+      var countEl = $("[data-shop-count]", shopPage);
+      if (f === "all") {
+        // Vue principale : les collections l'une après l'autre
+        grid.className = "shop-colls";
+        grid.innerHTML = COLLECTIONS.map(function (c) { return shopCollectionHTML(c, true); }).join("");
+        countEl.hidden = true;
+      } else if (coll) {
+        // Page d'une collection : sa bannière + ses produits
+        grid.className = "shop-colls shop-colls--single";
+        grid.innerHTML = shopCollectionHTML(coll, false);
+        countEl.hidden = true;
+      } else {
+        grid.className = "product-grid";
+        grid.innerHTML = list.map(cardHTML).join("");
+        countEl.hidden = false;
+        countEl.textContent = list.length + (list.length > 1 ? " pieces" : " piece");
+      }
       $$("[data-shop-filter]", shopPage).forEach(function (a) {
         if (a.getAttribute("data-shop-filter") === f) a.setAttribute("aria-current", "true");
         else a.removeAttribute("aria-current");
@@ -445,6 +497,25 @@
         "<figcaption>— " + esc(r.name) + "</figcaption></figure></li>"
       );
     }).join("");
+    var revList = $("[data-reviews-list]", revBox);
+    var cards = revList.innerHTML;
+    // Copie de la ligne pour un défilement sans fin (copie ignorée par les lecteurs d'écran)
+    revList.innerHTML = cards + cards.replace(/<li class="talk-card">/g, '<li class="talk-card" aria-hidden="true">');
+    var marquee = $("[data-marquee]", revBox);
+    if (marquee) {
+      var n = (REV.items || []).length || 1;
+      marquee.style.setProperty("--marquee-duration", Math.max(30, n * 9) + "s");
+      var pause = $("[data-marquee-toggle]", revBox);
+      if (pause) {
+        var label = function () {
+          var paused = marquee.classList.contains("is-paused");
+          pause.setAttribute("aria-pressed", String(paused));
+          pause.textContent = paused ? t("talk.play", "Play") : t("talk.pause", "Pause");
+        };
+        label();
+        pause.addEventListener("click", function () { marquee.classList.toggle("is-paused"); label(); });
+      }
+    }
     var revNote = $("[data-reviews-note]", revBox);
     if (revNote) revNote.hidden = !REV.isPlaceholder;
   }
