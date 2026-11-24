@@ -16,6 +16,8 @@
   var sprite =
     '<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">' +
     '<symbol id="i-paw" viewBox="0 0 32 32"><g fill="currentColor"><ellipse cx="9" cy="13" rx="2.6" ry="3.3" transform="rotate(-18 9 13)"/><ellipse cx="13.6" cy="8.4" rx="2.6" ry="3.4" transform="rotate(-6 13.6 8.4)"/><ellipse cx="18.4" cy="8.4" rx="2.6" ry="3.4" transform="rotate(6 18.4 8.4)"/><ellipse cx="23" cy="13" rx="2.6" ry="3.3" transform="rotate(18 23 13)"/><path d="M16 14.5c-3.6 0-7 4.6-7 7.6 0 2.2 1.8 3.2 3.6 3.2 1.4 0 2.3-.8 3.4-.8s2 .8 3.4.8c1.8 0 3.6-1 3.6-3.2 0-3-3.4-7.6-7-7.6z"/></g></symbol>' +
+    '<symbol id="i-logo-o" viewBox="0 0 100 100"><g fill="currentColor"><path fill-rule="evenodd" d="M50 1C23 1 3 23 3 50s20 49 47 49 47-22 47-49S77 1 50 1zm0 6c-17 0-29 19-29 43s12 43 29 43 29-19 29-43S67 7 50 7z"/></g></symbol>' +
+    '<symbol id="i-logo-o-paw" viewBox="0 0 100 100"><g fill="currentColor"><path fill-rule="evenodd" d="M50 1C23 1 3 23 3 50s20 49 47 49 47-22 47-49S77 1 50 1zm0 6c-17 0-29 19-29 43s12 43 29 43 29-19 29-43S67 7 50 7z"/><g transform="translate(24.4 27) scale(1.6)"><ellipse cx="9" cy="13" rx="2.6" ry="3.3" transform="rotate(-18 9 13)"/><ellipse cx="13.6" cy="8.4" rx="2.6" ry="3.4" transform="rotate(-6 13.6 8.4)"/><ellipse cx="18.4" cy="8.4" rx="2.6" ry="3.4" transform="rotate(6 18.4 8.4)"/><ellipse cx="23" cy="13" rx="2.6" ry="3.3" transform="rotate(18 23 13)"/><path d="M16 14.5c-3.6 0-7 4.6-7 7.6 0 2.2 1.8 3.2 3.6 3.2 1.4 0 2.3-.8 3.4-.8s2 .8 3.4.8c1.8 0 3.6-1 3.6-3.2 0-3-3.4-7.6-7-7.6z"/></g></g></symbol>' +
     '<symbol id="i-bow" viewBox="0 0 48 32"><g ' + S + '><path d="M24 12C20 7 13 3 9 5c-3 1.5-2.5 6 0 8 3 2.5 10 1.5 15-1"/><path d="M24 12c4-5 11-9 15-7 3 1.5 2.5 6 0 8-3 2.5-10 1.5-15-1"/><path d="M12 7.5c3 .5 6 2 9 4M36 7.5c-3 .5-6 2-9 4"/><ellipse cx="24" cy="12.5" rx="2.6" ry="2.4"/><path d="M22.5 14.6c-2 4.2-5 9.2-8 13.8l3.1-.7 1.2 2.7c2.6-5 4.6-10 5.7-15"/><path d="M25.5 14.6c2 4.2 5 9.2 8 13.8l-3.1-.7-1.2 2.7c-2.6-5-4.6-10-5.7-15"/></g></symbol>' +
     '<symbol id="i-flower" viewBox="0 0 24 24"><g ' + S + '><circle cx="12" cy="7.4" r="2.7"/><circle cx="16.4" cy="10.6" r="2.7"/><circle cx="14.7" cy="15.7" r="2.7"/><circle cx="9.3" cy="15.7" r="2.7"/><circle cx="7.6" cy="10.6" r="2.7"/><circle cx="12" cy="12" r="1.4"/></g></symbol>' +
     '<symbol id="i-heart" viewBox="0 0 24 24"><path ' + S + ' d="M12 19.5s-7-4.3-7-9.2A3.8 3.8 0 0 1 12 8.1a3.8 3.8 0 0 1 7 2.2c0 4.9-7 9.2-7 9.2z"/></symbol>' +
@@ -212,6 +214,130 @@
     if (e.key === "Escape") { closeMenu(); closeCart(); }
   });
 
+  /* ---------- 4b. Catalogue : affichage des produits (données dans js/products.js) ---------- */
+  var PRODUCTS = window.WOOF_PRODUCTS || [];
+  var COLLECTIONS = window.WOOF_COLLECTIONS || [];
+  var TYPE_LABEL = { collar: "Dog collar", scrunchie: "Scrunchie" };
+  function collectionOf(p) { return COLLECTIONS.filter(function (c) { return c.id === p.collection; })[0] || { name: "", fabric: "" }; }
+  function priceOf(p) { return p.price ? esc(p.price) : "Coming soon"; }
+  function productUrl(p) { return "product.html?id=" + encodeURIComponent(p.id); }
+
+  function cardHTML(p) {
+    var c = collectionOf(p), img = (p.images && p.images[0]) || { src: "", alt: "" };
+    return (
+      '<article class="product-card reveal is-visible">' +
+      '<a href="' + productUrl(p) + '" class="media"><img src="' + esc(img.src) + '" alt="' + esc(img.alt) + '" loading="lazy">' +
+      (p.price ? "" : '<span class="product-card__tag">Coming soon</span>') + "</a>" +
+      '<div class="product-card__info"><h3 class="product-card__name"><a href="' + productUrl(p) + '">' + esc(p.name) + "</a></h3>" +
+      '<p class="product-card__price">' + priceOf(p) + "</p></div>" +
+      '<p class="product-card__meta">' + esc(c.name) + " · " + esc(TYPE_LABEL[p.type] || "") + "</p>" +
+      '<a class="btn btn--small btn--outline" href="' + productUrl(p) + '#notify">' + (p.price ? "Discover" : "Notify me") + "</a>" +
+      "</article>"
+    );
+  }
+
+  function readFilter() {
+    try { return new URLSearchParams(window.location.search).get("filter") || "all"; } catch (e) { return "all"; }
+  }
+
+  // Grille de la boutique (page d'accueil) + filtres
+  var grid = $("[data-product-grid]");
+  if (grid) {
+    var applyFilter = function (f) {
+      var list = PRODUCTS.filter(function (p) { return f === "all" || p.type === f || p.collection === f; });
+      if (!list.length) { list = PRODUCTS; f = "all"; }
+      grid.innerHTML = list.map(cardHTML).join("");
+      $$("[data-filter]").forEach(function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-filter") === f)); });
+    };
+    applyFilter(readFilter());
+    document.addEventListener("click", function (e) {
+      var b = e.target.closest("[data-filter]");
+      if (!b) return;
+      e.preventDefault();
+      applyFilter(b.getAttribute("data-filter"));
+      if (b.hasAttribute("data-filter-scroll")) $("#shop").scrollIntoView({ behavior: "smooth" });
+    });
+  }
+
+  // Grille des collections
+  var colGrid = $("[data-collection-grid]");
+  if (colGrid) {
+    colGrid.innerHTML = COLLECTIONS.map(function (c) {
+      return (
+        '<li class="cat-card"><a href="index.html?filter=' + encodeURIComponent(c.id) + '#shop" data-filter="' + esc(c.id) + '" data-filter-scroll>' +
+        '<div class="media"><img src="' + esc(c.image) + '" alt="' + esc(c.alt) + '" loading="lazy"></div>' +
+        '<span class="cat-card__label"><span>' + esc(c.name) + '<small>' + esc(c.fabric) + '</small></span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span></a></li>'
+      );
+    }).join("");
+  }
+
+  // Carrousel « The Matching Edit » : un set collier + scrunchie par collection
+  var editTrack = $("[data-edit-track]");
+  if (editTrack) {
+    editTrack.innerHTML = COLLECTIONS.map(function (c) {
+      var collar = PRODUCTS.filter(function (p) { return p.collection === c.id && p.type === "collar"; })[0];
+      var scr = PRODUCTS.filter(function (p) { return p.collection === c.id && p.type === "scrunchie"; })[0];
+      var pair = [collar, scr].filter(Boolean);
+      return (
+        '<figure class="edit__slide" style="margin:0"><div class="edit__pair">' +
+        pair.map(function (p) { return '<a href="' + productUrl(p) + '"><img src="' + esc(p.images[0].src) + '" alt="' + esc(p.images[0].alt) + '" loading="lazy"></a>'; }).join("") +
+        '</div><figcaption class="edit__caption"><h3>' + esc(c.name) + "</h3><p>" + esc(c.fabric) + " · collar + scrunchie</p></figcaption></figure>"
+      );
+    }).join("");
+  }
+
+  // Fiche produit
+  var page = $("[data-product-page]");
+  if (page && PRODUCTS.length) {
+    var pid = "";
+    try { pid = new URLSearchParams(window.location.search).get("id") || ""; } catch (e) { pid = ""; }
+    var p = PRODUCTS.filter(function (x) { return x.id === pid; })[0] || PRODUCTS[0];
+    var c = collectionOf(p);
+    var set = function (sel, html) { var el = $(sel, page); if (el) el.innerHTML = html; };
+    document.title = p.name + " — WOOF";
+    var md = $('meta[name="description"]'); if (md) md.setAttribute("content", p.short);
+    set("[data-p-crumb]", esc(p.name));
+    set("[data-p-crumb-type]", '<a href="index.html?filter=' + p.type + '#shop">' + esc(TYPE_LABEL[p.type]) + "s</a>");
+    set("[data-p-collection]", esc(c.name) + " collection · " + esc(c.fabric));
+    set("[data-p-name]", esc(p.name));
+    set("[data-p-price]", p.price ? esc(p.price) : '<span class="badge-soon">Coming soon</span>');
+    set("[data-p-short]", esc(p.short));
+    set("[data-p-description]", "<p>" + esc(p.description) + "</p>");
+    set("[data-p-details]", "<ul class=\"dash-list\">" + (p.details || []).map(function (d) { return "<li>" + esc(d) + "</li>"; }).join("") + "</ul>");
+    set("[data-p-notify-name]", esc(p.name));
+    var hidden = $("[data-p-notify-field]", page); if (hidden) hidden.value = p.name;
+    var sizeBox = $("[data-p-sizes]", page);
+    if (sizeBox) {
+      if (p.sizes && p.sizes.length) {
+        sizeBox.innerHTML = '<legend>Size</legend><div class="sizes">' + p.sizes.map(function (s, i) {
+          return '<label class="size"><input type="radio" name="size" value="Size ' + esc(s) + '"' + (i === 1 || p.sizes.length === 1 ? " checked" : "") + "><span>" + esc(s) + "</span></label>";
+        }).join("") + '</div><a class="size-guide-link" href="#size-guide" data-open-size>Size guide</a>';
+      } else {
+        sizeBox.innerHTML = '<legend>Size</legend><p class="option__note">One size — fits all hair types.</p>';
+      }
+    }
+    var sg = $("#size-guide", page); if (sg && p.type !== "collar") sg.remove();
+    page.addEventListener("click", function (e) { if (e.target.closest("[data-open-size]")) { var d = $("#size-guide"); if (d) d.open = true; } });
+    // Galerie
+    var imgs = p.images || [];
+    var main = $("[data-gallery-main]", page);
+    if (main && imgs[0]) { main.src = imgs[0].src; main.alt = imgs[0].alt; }
+    var thumbs = $("[data-gallery-thumbs]", page);
+    if (thumbs) {
+      thumbs.innerHTML = imgs.length > 1 ? imgs.map(function (im, i) {
+        return '<button type="button" data-gallery-thumb aria-current="' + (i === 0) + '" aria-label="View photo ' + (i + 1) + '"><img src="' + esc(im.src) + '" alt="' + esc(im.alt) + '" loading="lazy"></button>';
+      }).join("") : "";
+      if (imgs.length < 2) page.querySelector(".gallery").classList.add("gallery--single");
+    }
+    // Complete the look : l'autre pièce de la collection, puis d'autres collections
+    var look = $("[data-p-look]");
+    if (look) {
+      var twin = PRODUCTS.filter(function (x) { return x.collection === p.collection && x.id !== p.id; });
+      var others = PRODUCTS.filter(function (x) { return x.collection !== p.collection && x.type === p.type; });
+      look.innerHTML = twin.concat(others).slice(0, 3).map(cardHTML).join("");
+    }
+  }
+
   /* ---------- 5. Carrousel « The Matching Edit » ---------- */
   $$("[data-slider]").forEach(function (slider) {
     var track = $("[data-slider-track]", slider);
@@ -257,7 +383,7 @@
         input.focus();
         return;
       }
-      if (msg) msg.textContent = "Welcome to the pack. Something lovely is on its way.";
+      if (msg) msg.textContent = form.getAttribute("data-success") || "Welcome to the pack. Something lovely is on its way.";
       form.reset();
     });
   });

@@ -1,42 +1,59 @@
 # WOOF — site e-commerce
 
-Site statique (HTML, CSS, JavaScript simples), prêt pour GitHub Pages :
-`https://carlaguedj.github.io/Woof/`
+Site en ligne : https://carlaguedj.github.io/Woof/
 
 ## Les fichiers
 
 | Fichier | Contenu |
 |---|---|
+| `js/products.js` | **Le catalogue : tous les produits et collections** (c'est ici qu'on ajoute un produit) |
 | `index.html` | Page d'accueil |
-| `product.html` | Fiche produit (modèle : Cherry Charm Collar) |
-| `about.html` | Notre histoire |
-| `coming-soon.html` | Page « bientôt disponible » (Journal, Account, Collections…) |
-| `css/style.css` | Toute l'apparence (couleurs, polices, mise en page) |
-| `js/main.js` | Menu mobile, panier factice, carrousel, galerie (rien à modifier) |
-| `images/` | Toutes les photos (des emplacements pour l'instant) |
+| `product.html` | Fiche produit (une seule page qui affiche le produit choisi) |
+| `about.html` | About us |
+| `contact.html` | Contact (adresses e-mail à compléter) |
+| `coming-soon.html` | Page « bientôt disponible » (Journal, pages légales…) |
+| `css/style.css` | Apparence : couleurs, polices, mise en page |
+| `js/main.js` | Fonctionnement du site (rien à modifier) |
+| `images/` | Toutes les photos |
+
+## Ajouter ou modifier un produit
+
+Tout se passe dans **`js/products.js`** (sur GitHub : ouvrir le fichier → crayon ✏️ → « Commit changes »).
+
+- **Modifier** : changez le texte entre guillemets (nom, description, détails…).
+- **Ajouter** : copiez un bloc produit entier, du `{` jusqu'au `},` inclus, collez-le juste en dessous,
+  puis changez son `id` (unique, en minuscules avec des tirets), son nom, ses textes et ses photos.
+- **Prix** : `price: ""` affiche « Coming soon ». Pour afficher un prix : `price: "€45"`.
+- **Nouvelle collection** : ajoutez un bloc dans `WOOF_COLLECTIONS` en haut du fichier.
+
+La page d'accueil, les filtres, les collections et les fiches produits se mettent à jour tout seuls.
+L'adresse d'une fiche produit est `product.html?id=` suivi de l'`id` (ex. `product.html?id=the-diva-collar`).
 
 ## Remplacer une photo
 
-1. Chaque emplacement indique sur lui-même le **nom du fichier** et la **taille conseillée**
-   (ex. `images/accueil-hero-cafe-dalmatien.jpg · 1800×1200`).
-2. Renommez votre photo **exactement** avec ce nom (en `.jpg`) et déposez-la dans `images/`
-   en remplaçant l'ancienne. C'est tout.
-3. Si possible, compressez vos photos avant (ex. sur squoosh.app) : moins de 400 Ko chacune.
-
-## Changer un texte ou un prix
-
-Ouvrez le fichier `.html` (sur GitHub : bouton crayon ✏️), cherchez le texte avec Ctrl+F
-(Cmd+F sur Mac), modifiez-le, puis « Commit changes ».
-Les prix se trouvent dans les balises qui contiennent `data-product-price` (ex. `€85`).
-Le panier lit le nom et le prix directement à cet endroit.
+Déposez votre photo dans `images/` avec **exactement le même nom** que celle à remplacer (en `.jpg`).
+Pour une nouvelle photo, déposez-la dans `images/` puis indiquez son nom dans `js/products.js`.
+Les photos actuelles sont découpées dans le catalogue : remplacez-les dès que possible
+par les originaux en haute qualité (au moins 1200 px de large).
 
 ## Changer les couleurs
 
-Dans `css/style.css`, tout en haut, bloc `:root` : chaque couleur a une ligne
-(ex. `--bordeaux: #7D101C;`). Changez le code couleur, tout le site suit.
+`css/style.css`, tout en haut, bloc `:root` : une ligne par couleur (ex. `--bordeaux: #7D101C;`).
 
-## Brancher Shopify (plus tard)
+## Instagram
 
-Dans le code, chaque produit contient un bloc repéré par
-`SHOPIFY BUY BUTTON — nom du produit`. Supprimez le bouton « Add to cart » factice
-de ce bloc et collez à sa place le code « Buy Button » fourni par Shopify.
+Le site renvoie vers @woof_clubb (en-tête, menu, galerie, pied de page, page Contact).
+Pour afficher le vrai fil Instagram en direct : créer un compte gratuit sur un service comme
+Behold (behold.so) ou LightWidget, s'y connecter **vous-même** avec Instagram, puis coller le
+code fourni à la place de la grille `insta-grid` dans `index.html`.
+Ne mettez jamais de mot de passe dans le site.
+
+## Alertes « Notify me » et newsletter
+
+Les formulaires sont visuels pour l'instant : les adresses ne sont pas encore enregistrées.
+Pour les recevoir, il faut les relier à un service d'e-mails (Shopify, Mailchimp, Brevo ou Formspree).
+
+## Shopify (plus tard)
+
+Le jour de la vente : renseigner les prix dans `js/products.js` et remplacer le bloc « Coming soon »
+de la fiche produit par le bouton d'achat Shopify (bloc commenté `SHOPIFY` dans `product.html`).
