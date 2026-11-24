@@ -14,20 +14,25 @@ Site en ligne : https://carlaguedj.github.io/Woof/
 | `coming-soon.html` | Page « bientôt disponible » (Journal, pages légales…) |
 | `css/style.css` | Apparence : couleurs, polices, mise en page |
 | `js/main.js` | Fonctionnement du site (rien à modifier) |
-| `images/` | Toutes les photos |
+| `images/` | Toutes les photos (`menu-dalmatien.png` = illustration du menu mobile) |
 
-## Ajouter ou modifier un produit
+## Ajouter ou modifier une collection ou un produit
 
 Tout se passe dans **`js/products.js`** (sur GitHub : ouvrir le fichier → crayon ✏️ → « Commit changes »).
+Le site est organisé **par collection** : chaque collection contient un collier et sa pièce assortie
+(scrunchie, ou bracelet pour The Spoiled One).
 
-- **Modifier** : changez le texte entre guillemets (nom, description, détails…).
-- **Ajouter** : copiez un bloc produit entier, du `{` jusqu'au `},` inclus, collez-le juste en dessous,
-  puis changez son `id` (unique, en minuscules avec des tirets), son nom, ses textes et ses photos.
-- **Prix** : `price: ""` affiche « Coming soon ». Pour afficher un prix : `price: "€45"`.
-- **Nouvelle collection** : ajoutez un bloc dans `WOOF_COLLECTIONS` en haut du fichier.
+- **Ordre des collections** : celui de la liste `WOOF_COLLECTIONS`, en haut du fichier.
+- **Statut d'une collection** (ligne `status`) :
+  - `"coming-soon"` → affiche « Coming soon »
+  - `"released-soon"` → affiche « Released soon »
+  - `"available"` → en vente : le prix des produits s'affiche
+- **Nouvelle collection** : copiez un bloc de `WOOF_COLLECTIONS` (du `{` au `},`), changez son `id`, son nom…
+- **Nouveau produit** : copiez un bloc de `WOOF_PRODUCTS`, changez son `id`, et indiquez dans `collection`
+  l'`id` de sa collection. `type` vaut `"collar"`, `"scrunchie"` ou `"bracelet"`.
+- **Prix** : `price: "€45"` (il s'affiche quand la collection passe en `"available"`).
 
-La page d'accueil, les filtres, les collections et les fiches produits se mettent à jour tout seuls.
-L'adresse d'une fiche produit est `product.html?id=` suivi de l'`id` (ex. `product.html?id=the-diva-collar`).
+La page d'accueil, le menu des collections, le pied de page et les fiches produits se mettent à jour tout seuls.
 
 ## Remplacer une photo
 

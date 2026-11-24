@@ -23,7 +23,7 @@
   --font-title: "Cormorant Garamond", Georgia, "Times New Roman", serif;
   --font-body: "Libre Baskerville", Georgia, "Times New Roman", serif;
   --font-script: "Mrs Saint Delafield", "Snell Roundhand", cursive;
-  --font-logo: "Bodoni Moda", "Cormorant Garamond", Georgia, serif;
+  --font-logo: "Libre Bodoni", "Bodoni 72", Didot, Georgia, serif;
 
   /* ---- Mise en page ---- */
   --gutter: 16px;
@@ -209,17 +209,15 @@ a:hover .media img, .media--zoom:hover img { transform: scale(1.04); }
 
 .logo {
   font-family: var(--font-logo);
-  font-weight: 900;
+  font-weight: 700;
   font-size: 2.1rem;
   line-height: 1;
-  letter-spacing: -.01em;
-  font-variation-settings: "opsz" 96;
+  letter-spacing: .01em;
   color: var(--bordeaux);
   display: inline-flex; align-items: center;
 }
-.logo__o { width: .78em; height: .74em; margin: 0 .01em; transform: translateY(-.005em); flex: none; }
-.logo { gap: 0; transition: opacity .3s; }
-.logo:hover { opacity: .85; }
+.logo__paw { width: .8em; height: .8em; margin: 0 .01em 0 .02em; transform: translateY(-.03em); flex: none; transition: transform .5s var(--ease); }
+.logo:hover .logo__paw { transform: translateY(-.03em) rotate(-10deg); }
 
 @media (max-width: 959px) {
   .nav--left .nav__link, .nav--right .nav__link { display: none; }
@@ -232,27 +230,25 @@ a:hover .media img, .media--zoom:hover img { transform: scale(1.04); }
   .nav__icon--account { display: none; }
 }
 
-/* ---------- Menu mobile plein écran (vert olive) ---------- */
+/* ---------- Menu mobile plein écran (ivoire + vert olive, avec le dalmatien) ---------- */
 .mobile-menu {
   position: fixed; inset: 0; z-index: 100;
-  background: var(--olive); color: var(--ivory);
+  background: var(--ivory); color: var(--espresso);
   display: flex; flex-direction: column;
-  padding: 0 var(--gutter) 28px;
   visibility: hidden; opacity: 0;
   transform: translateY(-12px);
   transition: opacity .45s var(--ease), transform .45s var(--ease), visibility 0s .45s;
   overflow-y: auto;
 }
 .mobile-menu.is-open { visibility: visible; opacity: 1; transform: none; transition-delay: 0s; }
-.mobile-menu__top { display: flex; align-items: center; justify-content: space-between; height: var(--header-h); border-bottom: 1px solid rgba(244, 233, 216, .25); }
-.mobile-menu .logo { color: var(--ivory); }
-.mobile-menu__close { width: 40px; height: 40px; display: grid; place-items: center; margin-right: -8px; }
-.mobile-menu__close .icon { font-size: 22px; }
-.mobile-menu__links { margin-top: 18px; }
+.mobile-menu__top { display: flex; align-items: center; justify-content: space-between; height: var(--header-h); padding: 0 var(--gutter); flex: none; }
+.mobile-menu__close { width: 40px; height: 40px; display: grid; place-items: center; margin-right: -8px; color: var(--bordeaux); }
+.mobile-menu__close .icon { font-size: 24px; }
+.mobile-menu__links { padding: 10px var(--gutter) 0; }
 .mobile-menu__links a {
   display: flex; align-items: center; justify-content: space-between;
-  font-family: var(--font-title); font-size: 2rem; line-height: 1;
-  padding: 16px 0; border-bottom: 1px solid rgba(244, 233, 216, .18);
+  font-family: var(--font-title); font-size: 1.45rem; line-height: 1; letter-spacing: .08em; text-transform: uppercase;
+  padding: 15px 0;
   opacity: 0; transform: translateY(10px);
   transition: opacity .5s var(--ease), transform .5s var(--ease), color .3s;
 }
@@ -261,13 +257,18 @@ a:hover .media img, .media--zoom:hover img { transform: scale(1.04); }
 .mobile-menu.is-open .mobile-menu__links li:nth-child(3) a { transition-delay: .1s; }
 .mobile-menu.is-open .mobile-menu__links li:nth-child(4) a { transition-delay: .15s; }
 .mobile-menu.is-open .mobile-menu__links li:nth-child(5) a { transition-delay: .2s; }
-.mobile-menu__links a .icon { font-size: 16px; color: var(--gold); }
-.mobile-menu__links a:hover { color: var(--rose); }
-.mobile-menu__art { margin: auto 0 0; padding-top: 32px; display: flex; align-items: flex-end; justify-content: space-between; }
-.mobile-menu__art .icon--bow { width: 92px; height: 62px; color: var(--rose); }
-.mobile-menu__art .script { color: var(--ivory); font-size: 2.6rem; }
-.mobile-menu__foot { display: flex; gap: 22px; margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(244, 233, 216, .25); font-size: .6875rem; letter-spacing: .18em; text-transform: uppercase; }
-.mobile-menu__foot a, .mobile-menu__foot button { opacity: .9; }
+.mobile-menu__links a .icon { font-size: 18px; color: var(--bordeaux); }
+.mobile-menu__links a:hover { color: var(--bordeaux); }
+.mobile-menu__art { margin-top: auto; display: flex; justify-content: flex-end; padding: 24px var(--gutter) 0; }
+.mobile-menu__art img { width: 170px; height: auto; margin-bottom: -6px; position: relative; z-index: 1; }
+.mobile-menu__foot {
+  background: var(--olive); color: var(--ivory);
+  display: flex; flex-direction: column; gap: 14px;
+  padding: 26px var(--gutter) 34px;
+  font-family: var(--font-title); font-size: 1.3rem;
+  border-radius: 18px 0 0 0;
+}
+.mobile-menu__foot a:hover { color: var(--rose); }
 
 /* ==========================================================================
    Accueil — Hero
@@ -481,7 +482,29 @@ a:hover .media img, .media--zoom:hover img { transform: scale(1.04); }
 
 /* Grille des 4 collections */
 .cat-card__label small { display: block; font-size: .5625rem; color: var(--camel); letter-spacing: .2em; margin-top: 2px; }
-@media (min-width: 768px) { .cat-grid--4 { grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 768px) { .cat-grid--4 { grid-template-columns: repeat(4, 1fr); } .cat-grid--5 { grid-template-columns: repeat(5, 1fr); } }
+.cat-card .media .product-card__tag { background: var(--bordeaux); color: var(--ivory); }
+
+/* ---------- Boutique par collection ---------- */
+.coll-list { display: grid; gap: 40px; }
+.coll { display: grid; gap: var(--gap); scroll-margin-top: calc(var(--header-h) + 16px); }
+.coll__visual { min-height: 380px; }
+.coll__visual .tile__title { font-size: clamp(2.6rem, 9vw, 4.2rem); margin-bottom: 10px; }
+.coll__visual .eyebrow { margin-bottom: 8px; }
+.coll__tagline { font-family: var(--font-title); font-style: italic; font-size: 1.25rem; margin: 0; }
+.coll__status {
+  display: inline-block; margin-bottom: 14px;
+  background: var(--ivory); color: var(--bordeaux);
+  font-size: .5625rem; letter-spacing: .22em; text-transform: uppercase;
+  padding: 7px 14px; border-radius: 999px;
+}
+.coll__products { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); align-content: start; }
+@media (min-width: 900px) {
+  .coll { grid-template-columns: 5fr 7fr; align-items: stretch; }
+  .coll--reverse .coll__visual { order: 2; }
+  .coll__visual { min-height: 520px; }
+  .coll-list { gap: 56px; }
+}
 
 /* Paires collier + scrunchie dans le carrousel */
 .edit__pair { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--ivory-light); }
