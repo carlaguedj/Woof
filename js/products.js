@@ -276,7 +276,7 @@ window.WOOF_PRODUCTS = [
     ],
     sizes: [],                         // [] = one size
     images: [
-      { src: "images/rodeo-kid-scrunchie-1.jpg", alt: "Rodeo Kid burgundy paisley scrunchie worn on the wrist with a cream sweater" },
+      { src: "images/rodeo-kid-scrunchie-1.jpg", alt: "Rodeo Kid scrunchie in burgundy paisley bandana print" },
       { src: "images/rodeo-kid-scrunchie-2.jpg", alt: "Close-up of the Rodeo Kid scrunchie on a wrist" }
     ]
   },
