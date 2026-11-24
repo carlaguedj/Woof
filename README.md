@@ -111,3 +111,10 @@ Le champ caché `_gotcha` sert de piège anti-spam (compatible Formspree).
 
 Brouillons : chaque `[À COMPLÉTER]` est à remplacer dans `js/i18n/en.js` et `js/i18n/fr.js` (clés `legal.…`).
 Une fois la page complétée et relue, supprimez dans le fichier `.html` le bloc `<aside class="legal-draft">`.
+
+## Page Shop
+
+La page `shop.html` présente les collections l'une après l'autre : une grande bannière cliquable
+(champ `banner` de chaque collection dans `js/products.js`, format large 3:1, ex. `images/banniere-the-diva.jpg`)
+puis ses 2 produits. `bannerFocus` règle la partie de la photo gardée visible sur mobile (ex. "55% 40%").
+Un clic sur la bannière ouvre la page de la collection (`shop.html?filter=the-diva`).

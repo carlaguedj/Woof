@@ -202,7 +202,11 @@
             <p class="talk__motto" data-i18n="talk.motto">For them. For you. For us.</p>
           </div>
         </header>
-        <ul class="talk__list" data-reviews-list></ul>
+        <!-- Une seule ligne d'avis qui défile doucement de droite à gauche (pause au survol ou avec le bouton) -->
+        <div class="talk__marquee" data-marquee>
+          <ul class="talk__list" data-reviews-list></ul>
+        </div>
+        <p class="talk__controls"><button class="talk__toggle" type="button" data-marquee-toggle aria-pressed="false">Pause</button></p>
         <p class="talk__note" data-reviews-note data-i18n="talk.note" hidden>Sample reviews — our first customer reviews will appear here after launch.</p>
       </div>
     </section>
