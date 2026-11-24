@@ -825,3 +825,96 @@ a:hover .media img, .media--zoom:hover img { transform: scale(1.04); }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
   .js .reveal { opacity: 1; transform: none; }
 }
+
+/* ==========================================================================
+   Hero illustré (page d'accueil)
+   ========================================================================== */
+.hero--art { display: block; min-height: 0; color: var(--espresso); background: var(--ivory-deep); }
+.hero--art::after { display: none; }
+.hero--art .hero__img { position: relative; inset: auto; height: auto; aspect-ratio: 3 / 2; animation: none; }
+.hero__card {
+  position: relative; z-index: 1;
+  background: var(--ivory-light);
+  padding: 26px 22px 28px;
+  border-top: 1px solid rgba(198, 164, 106, .6);
+}
+.hero__card .eyebrow { color: var(--camel); margin-bottom: 10px; }
+.hero--art .hero__title { color: var(--bordeaux); font-size: clamp(3.2rem, 13vw, 6.2rem); line-height: .9; margin-bottom: 14px; }
+.hero__text { color: var(--espresso-soft); margin-bottom: 20px; }
+.hero__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; }
+@media (min-width: 900px) {
+  .hero__card {
+    display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 10px 48px;
+    padding: 34px 44px 36px;
+  }
+  .hero__card .eyebrow { grid-column: 1 / -1; margin-bottom: 0; }
+  .hero--art .hero__title { margin: 0; white-space: nowrap; }
+  .hero__card .hero__text { grid-column: 2; grid-row: 2; margin: 0 0 4px; text-align: right; }
+  .hero__card .hero__actions { grid-column: 2; grid-row: 3; justify-content: flex-end; }
+  .hero--art .hero__title { grid-row: 2 / span 2; }
+}
+
+/* ==========================================================================
+   Menu déroulant « Shop » (ordinateur)
+   ========================================================================== */
+.nav-drop { position: relative; }
+.nav-drop__panel {
+  position: absolute; top: calc(100% + 18px); left: -28px; z-index: 70;
+  display: grid; grid-template-columns: repeat(3, max-content); gap: 36px;
+  background: var(--ivory-light);
+  border: 1px solid rgba(198, 164, 106, .7); border-radius: var(--radius);
+  padding: 26px 30px;
+  box-shadow: 0 24px 40px -28px rgba(36, 24, 16, .55);
+  opacity: 0; visibility: hidden; transform: translateY(6px);
+  transition: opacity .3s var(--ease), transform .3s var(--ease), visibility 0s .3s;
+}
+.nav-drop__panel::before { content: ""; position: absolute; left: 0; right: 0; top: -20px; height: 20px; }
+.nav-drop:hover .nav-drop__panel, .nav-drop:focus-within .nav-drop__panel { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
+.nav-drop__title { font-size: .5625rem; letter-spacing: .22em; text-transform: uppercase; color: var(--camel); margin-bottom: 10px; }
+.nav-drop__panel li { margin-bottom: 4px; }
+.nav-drop__panel a { font-family: var(--font-title); font-size: 1.2rem; white-space: nowrap; transition: color .3s; }
+.nav-drop__panel a:hover { color: var(--bordeaux); }
+@media (max-width: 959px) { .nav-drop { display: contents; } .nav-drop__panel { display: none; } }
+
+/* Sous-menus du menu mobile */
+.mm-sub summary {
+  list-style: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: space-between;
+  font-family: var(--font-title); font-size: 1.45rem; line-height: 1; letter-spacing: .08em; text-transform: uppercase;
+  padding: 15px 0;
+}
+.mm-sub summary::-webkit-details-marker { display: none; }
+.mm-sub summary .icon { font-size: 18px; color: var(--bordeaux); transition: transform .3s var(--ease); }
+.mm-sub[open] summary .icon { transform: rotate(90deg); }
+.mm-sub__body { display: flex; flex-direction: column; padding: 0 0 12px 14px; border-left: 1px solid var(--gold); margin-bottom: 6px; }
+.mobile-menu .mm-sub__body a { font-family: var(--font-title); font-size: 1.2rem; padding: 6px 0; opacity: 1; transform: none; text-transform: none; letter-spacing: 0; }
+.mm-sub__body p { font-size: .5625rem; letter-spacing: .22em; text-transform: uppercase; color: var(--camel); margin: 10px 0 2px; }
+
+/* ==========================================================================
+   Page Boutique
+   ========================================================================== */
+.shop-hero { padding: 40px 0 22px; text-align: center; }
+.shop-hero .eyebrow { color: var(--camel); margin-bottom: 8px; }
+.shop-hero .section-title { font-size: clamp(2.8rem, 10vw, 4.8rem); margin-bottom: 10px; }
+.shop-hero .lede { margin: 0 auto; }
+.shop-nav { display: grid; gap: 16px; padding: 20px 0; border-top: 1px solid rgba(198, 164, 106, .6); border-bottom: 1px solid rgba(198, 164, 106, .6); margin-bottom: 18px; }
+.shop-nav__label { font-size: .5625rem; letter-spacing: .22em; text-transform: uppercase; color: var(--camel); margin-bottom: 8px; }
+.filter[aria-current="true"] { background: var(--bordeaux); border-color: var(--bordeaux); color: var(--ivory); }
+.shop-count { font-size: .6875rem; letter-spacing: .14em; text-transform: uppercase; color: var(--espresso-soft); margin-bottom: 16px; }
+@media (min-width: 900px) {
+  .shop-nav { grid-template-columns: auto auto 1fr; gap: 40px; }
+}
+
+/* About us : photo entière + titre côte à côte */
+.page-hero--split { display: grid; min-height: 0; color: var(--espresso); background: var(--ivory-light); border: 1px solid rgba(198, 164, 106, .55); }
+.page-hero--split::after { display: none; }
+.page-hero--split > img { position: static; aspect-ratio: 848 / 934; height: auto; }
+.page-hero--split .page-hero__content { padding: 30px 24px 34px; align-self: center; }
+.page-hero--split h1 { color: var(--bordeaux); }
+.page-hero--split .eyebrow { color: var(--camel); }
+.page-hero--split .script { display: block; font-size: 2.6rem; margin-top: 14px; }
+@media (min-width: 900px) {
+  .page-hero--split { grid-template-columns: 1fr 1fr; max-height: 760px; }
+  .page-hero--split > img { order: 2; height: 100%; max-height: 760px; aspect-ratio: auto; object-fit: cover; }
+  .page-hero--split .page-hero__content { padding: 56px; }
+}

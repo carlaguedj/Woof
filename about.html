@@ -4,13 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>About us — WOOF</title>
-  <meta name="description" content="WOOF was born from a simple idea: that the moments with our dogs are the most beautiful ones. Discover our story.">
+  <meta name="description" content="WOOF is a French brand born from a simple idea: your dog is part of your world, so why shouldn't they be part of your style too?">
   <meta name="theme-color" content="#F4E9D8">
   <!-- Aperçu lors d'un partage sur les réseaux sociaux -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="WOOF">
   <meta property="og:title" content="About us — WOOF">
-  <meta property="og:description" content="WOOF was born from a simple idea: that the moments with our dogs are the most beautiful ones. Discover our story.">
+  <meta property="og:description" content="WOOF is a French brand born from a simple idea: your dog is part of your world, so why shouldn't they be part of your style too?">
   <meta property="og:image" content="images/og-partage.jpg">
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <!-- Polices Google : Cormorant Garamond (titres), Libre Baskerville (texte), Mrs Saint Delafield (manuscrit), Libre Bodoni (logo) -->
@@ -33,7 +33,31 @@
         <button class="burger" type="button" data-menu-open aria-controls="mobile-menu" aria-expanded="false" aria-label="Open menu">
           <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg>
         </button>
-        <a class="nav__link" href="index.html#shop">Shop</a>
+        <div class="nav-drop">
+          <a class="nav__link" href="shop.html">Shop</a>
+          <div class="nav-drop__panel">
+            <div>
+              <p class="nav-drop__title">By category</p>
+              <ul>
+                <li><a href="shop.html?filter=collar">Dog collars</a></li>
+                <li><a href="shop.html?filter=scrunchie">Scrunchies</a></li>
+                <li><a href="shop.html">All pieces</a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="nav-drop__title">For who?</p>
+              <ul>
+                <li><a href="shop.html?filter=for-you">For you</a></li>
+                <li><a href="shop.html?filter=for-dog">For your dog</a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="nav-drop__title">By collection</p>
+              <!-- Liste remplie automatiquement depuis js/products.js -->
+              <ul data-collection-links="shop"></ul>
+            </div>
+          </div>
+        </div>
         <a class="nav__link" href="index.html#collections">Collections</a>
         <a class="nav__link" href="about.html" aria-current="page">About us</a>
       </nav>
@@ -59,8 +83,26 @@
       </button>
     </div>
     <ul class="mobile-menu__links">
-      <li><a href="index.html#shop">Shop <svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></a></li>
-      <li><a href="index.html#collections">Collections <svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></a></li>
+      <li>
+        <details class="mm-sub">
+          <summary>Shop <svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+          <div class="mm-sub__body">
+            <p>By category</p>
+            <a href="shop.html?filter=collar">Dog collars</a>
+            <a href="shop.html?filter=scrunchie">Scrunchies</a>
+            <p>For who?</p>
+            <a href="shop.html?filter=for-you">For you</a>
+            <a href="shop.html?filter=for-dog">For your dog</a>
+            <a href="shop.html">All pieces</a>
+          </div>
+        </details>
+      </li>
+      <li>
+        <details class="mm-sub">
+          <summary>Collections <svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+          <div class="mm-sub__body" data-collection-links="shop-mobile"></div>
+        </details>
+      </li>
       <li><a href="about.html">About us</a></li>
       <li><a href="contact.html">Contact</a></li>
       <li><a href="coming-soon.html?p=journal">Journal</a></li>
@@ -77,71 +119,57 @@
   </div>
 
   <main id="main">
-    <section class="page-hero" aria-labelledby="about-title">
-      <img src="images/apropos-hero-terrasse.jpg" alt="Parisian café terrace with a Dalmatian resting under the table" fetchpriority="high">
+    <section class="page-hero page-hero--split" aria-labelledby="about-title">
+      <img src="images/histoire-dalmatien-porte-rouge.jpg" alt="Dalmatian with a burgundy bow in front of a red Parisian door, next to a card reading Good dogs, Good people" fetchpriority="high" width="848" height="934">
       <div class="page-hero__content">
         <p class="eyebrow">About us</p>
         <h1 id="about-title">Our story.</h1>
       </div>
     </section>
 
+    <!-- ================= TEXTE « ABOUT US » ================= -->
     <section class="section">
       <div class="container manifesto reveal">
         <div class="ornament" style="justify-content:center"><svg class="icon" aria-hidden="true" style="font-size:22px"><use href="#i-paw"/></svg></div>
-        <p class="big">WOOF was born from a simple idea: that the moments with our dogs are <em>the most beautiful ones.</em></p>
-        <p class="lede" style="margin:0 auto">A morning coffee on a terrace, a long walk through the park, a stranger who stops to say hello. We wanted to make objects worthy of those moments — for them, and for you.</p>
-        <span class="script">Good dogs, good people.</span>
+        <p class="big">WOOF is a French brand born from a simple idea: <em>your dog is part of your world, so why shouldn’t they be part of your style too?</em></p>
       </div>
     </section>
 
     <div class="container">
       <article class="chapter reveal">
-        <div class="media"><img src="images/histoire-dalmatien-porte-rouge.jpg" alt="Dalmatian with a burgundy bow in front of a red Parisian door, a card reading Good dogs, Good people" loading="lazy"></div>
+        <div class="media"><img src="images/collection-park-avenue-girl.jpg" alt="Woman kissing her spaniel wearing a burgundy tweed collar" loading="lazy"></div>
         <div class="chapter__text">
           <p class="chapter__num">i.</p>
-          <h2>Born on a café terrace</h2>
-          <p>Inspired by European life — Parisian streets, Sunday markets, long walks and slow mornings — WOOF imagines accessories with the eye of a fashion house and the heart of a dog lover.</p>
-          <p>Nothing that looks like a pet shop. Everything that looks like you.</p>
+          <h2>The French touch</h2>
+          <p>Inspired by French fashion, Parisian life and the little details that make everyday moments special, WOOF creates accessories designed to celebrate the bond between dogs and their humans.</p>
+          <p>Our pieces are made to feel like more than just pet accessories. They are little expressions of personality, designed to fit naturally into your own wardrobe and lifestyle. From elegant collars to playful details, every design brings together fashion, comfort and that unmistakable French touch.</p>
         </div>
       </article>
 
       <article class="chapter chapter--reverse reveal">
-        <div class="media"><img src="images/denim-club-collier-1.jpg" alt="Denim Club collar, made to match its scrunchie" loading="lazy"></div>
+        <div class="media"><img src="images/collection-denim-club.jpg" alt="Woman with her curly dog, both wearing matching denim accessories" loading="lazy"></div>
         <div class="chapter__text">
           <p class="chapter__num">ii.</p>
-          <h2>Made to be matched</h2>
-          <p>A dog collar and its matching piece cut from the same fabric — tweed for Park Avenue Girl, denim for Denim Club, velvet for The Diva, red bandana for Rodeo Kid, gold chain for The Spoiled One. Our pieces are designed in pairs, because matching always looks better.</p>
-          <a class="btn btn--outline" href="index.html#matching-edit">The Matching Edit</a>
+          <h2>Made to match</h2>
+          <p>Some of our favourite pieces are made to match. Our dog collars and scrunchies are designed in the same fabrics, colours and prints, so you and your dog can share a look without ever feeling too “matchy-matchy”. Just a subtle little detail that says you belong together.</p>
+          <a class="btn btn--outline" href="shop.html">Shop the pieces</a>
         </div>
       </article>
 
       <article class="chapter reveal">
-        <div class="media"><img src="images/the-diva-collier-1.jpg" alt="Ruched burgundy velvet collar with its gold Woof medallion" loading="lazy"></div>
+        <div class="media"><img src="images/collection-the-diva.jpg" alt="Woman hugging her spaniel wearing a burgundy velvet collar" loading="lazy"></div>
         <div class="chapter__text">
           <p class="chapter__num">iii.</p>
-          <h2>Details make the story</h2>
-          <p>Premium tweed, denim and velvet, a gold-tone buckle engraved WOOF and our signature medallion. We work in small batches, choosing materials that are comfortable for dogs and made to last.</p>
+          <h2>Little moments</h2>
+          <p>Because at WOOF, we believe the best accessories are the ones that tell a story — the morning walks, the café afternoons, the weekends away, the spontaneous adventures and all those little moments that make your dog so much more than a pet.</p>
         </div>
       </article>
     </div>
 
-    <section class="section section--tight">
-      <div class="container values">
-        <div class="panel reveal">
-          <svg class="icon" aria-hidden="true"><use href="#i-c-heart"/></svg>
-          <h3>Comfort first</h3>
-          <p>Soft linings, light hardware, sizes made for real necks.</p>
-        </div>
-        <div class="panel reveal">
-          <svg class="icon" aria-hidden="true"><use href="#i-c-flower"/></svg>
-          <h3>Timeless design</h3>
-          <p>Colours and shapes you will still love in ten years.</p>
-        </div>
-        <div class="panel reveal">
-          <svg class="icon" aria-hidden="true"><use href="#i-c-paw"/></svg>
-          <h3>Small batches</h3>
-          <p>Fewer pieces, chosen with care, made to last.</p>
-        </div>
+    <section class="section">
+      <div class="container manifesto reveal">
+        <span class="script" style="font-size:clamp(3rem,10vw,4.6rem)">For them. For you. For us.</span>
+        <p class="big" style="margin-top:22px">WOOF is about celebrating that bond, <em>one beautiful detail at a time.</em></p>
       </div>
     </section>
 
@@ -170,7 +198,7 @@
           <div class="footer-col">
             <h3>Collections</h3>
             <!-- Liste remplie automatiquement depuis js/products.js -->
-            <ul data-collection-links>
+            <ul data-collection-links="shop">
               <li><a href="index.html#collections">Collections</a></li>
             </ul>
           </div>
@@ -180,15 +208,16 @@
               <li><a href="about.html">About us</a></li>
               <li><a href="coming-soon.html?p=journal">Journal</a></li>
               <li><a href="contact.html">Contact</a></li>
+              <li><a href="coming-soon.html?p=delivery">Delivery &amp; returns</a></li>
             </ul>
           </div>
           <div class="footer-col">
-            <h3>Help</h3>
+            <h3>Shop</h3>
             <ul>
-              <li><a href="coming-soon.html?p=delivery">Delivery &amp; returns</a></li>
-              <li><a href="coming-soon.html?p=sizes">Size guide</a></li>
-              <li><a href="coming-soon.html?p=care">Care guide</a></li>
-              <li><a href="contact.html">Contact us</a></li>
+              <li><a href="shop.html?filter=collar">Dog collars</a></li>
+              <li><a href="shop.html?filter=scrunchie">Scrunchies</a></li>
+              <li><a href="shop.html?filter=for-you">For you</a></li>
+              <li><a href="shop.html?filter=for-dog">For your dog</a></li>
             </ul>
           </div>
           <div class="footer-col">

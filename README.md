@@ -7,7 +7,8 @@ Site en ligne : https://carlaguedj.github.io/Woof/
 | Fichier | Contenu |
 |---|---|
 | `js/products.js` | **Le catalogue : tous les produits et collections** (c'est ici qu'on ajoute un produit) |
-| `index.html` | Page d'accueil |
+| `index.html` | Page d'accueil (illustration : `images/accueil-illustration-paris.jpg`) |
+| `shop.html` | Boutique : par catégorie, « for you / for your dog » et par collection |
 | `product.html` | Fiche produit (une seule page qui affiche le produit choisi) |
 | `about.html` | About us |
 | `contact.html` | Contact (adresses e-mail à compléter) |
@@ -32,7 +33,10 @@ Le site est organisé **par collection** : chaque collection contient un collier
   l'`id` de sa collection. `type` vaut `"collar"`, `"scrunchie"` ou `"bracelet"`.
 - **Prix** : `price: "€45"` (il s'affiche quand la collection passe en `"available"`).
 
-La page d'accueil, le menu des collections, le pied de page et les fiches produits se mettent à jour tout seuls.
+La page d'accueil, la boutique, le menu Shop, le pied de page et les fiches produits se mettent à jour tout seuls.
+
+Adresses utiles de la boutique : `shop.html?filter=collar` (dog collars), `?filter=scrunchie`,
+`?filter=for-you`, `?filter=for-dog`, ou l'`id` d'une collection (ex. `shop.html?filter=the-diva`).
 
 ## Remplacer une photo
 
