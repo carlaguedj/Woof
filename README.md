@@ -11,6 +11,8 @@ Site en ligne : https://carlaguedj.github.io/Woof/
 | `shop.html` | Boutique : par catégorie, « for you / for your dog » et par collection |
 | `product.html` | Fiche produit (une seule page qui affiche le produit choisi) |
 | `about.html` | About us |
+| `faq.html` | FAQ (réponses à compléter : cherchez « À COMPLÉTER ») |
+| `js/reviews.js` | Avis clients et note de l'accueil (exemples pour l'instant) |
 | `contact.html` | Contact (adresses e-mail à compléter) |
 | `coming-soon.html` | Page « bientôt disponible » (pages légales…) |
 | `css/style.css` | Apparence : couleurs, polices, mise en page |
@@ -71,3 +73,15 @@ Pour les recevoir, il faut les relier à un service d'e-mails (Shopify, Mailchim
 
 Le jour de la vente : renseigner les prix dans `js/products.js` et remplacer le bloc « Coming soon »
 de la fiche produit par le bouton d'achat Shopify (bloc commenté `SHOPIFY` dans `product.html`).
+
+## Avis clients (accueil)
+
+Dans `js/reviews.js`. Les avis actuels sont des **exemples** : une mention « Sample reviews » s'affiche
+tant que `isPlaceholder: true`. Avec de vrais avis : remplacez les textes, mettez `isPlaceholder: false`,
+et indiquez la note réelle (ex. `rating: "4.8"`). Tant que `rating` vaut `null`, aucune note n'est affichée.
+
+## FAQ
+
+Dans `faq.html`. Les réponses en italique marquées `À COMPLÉTER` dans le code attendent vos informations
+(pays et délais de livraison, retours, échanges, annulation, suivi, entretien, emballage cadeau).
+Les tailles, les collections et les matières sont reprises automatiquement de `js/products.js`.
