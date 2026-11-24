@@ -20,12 +20,12 @@
 window.WOOF_COLLECTIONS = [
   {
     id: "the-diva",                  // identifiant (minuscules, tirets, pas d'espace)
-    name: "Diva",
+    name: "The Diva",
     fabric: "Velvet",
     tagline: "Burgundy velvet for main characters.",
     status: "coming-soon",
-    image: "images/collection-the-diva.jpg",
-    alt: "Woman hugging her spaniel wearing a burgundy velvet collar"
+    image: "images/couverture-the-diva.jpg",   // couverture de la collection (format portrait 3:4)
+    alt: "WOOF magazine cover: The Diva, velvet collection — a spaniel wearing a burgundy velvet collar"
   },
   {
     id: "park-avenue-girl",
@@ -33,8 +33,8 @@ window.WOOF_COLLECTIONS = [
     fabric: "Tweed",
     tagline: "Tweed, gold and very good manners.",
     status: "coming-soon",
-    image: "images/collection-park-avenue-girl.jpg",
-    alt: "Woman kissing her spaniel wearing a burgundy tweed collar"
+    image: "images/couverture-park-avenue-girl.jpg",
+    alt: "WOOF magazine cover: Park Avenue Girl, tweed collection — a cocker spaniel wearing a tweed collar"
   },
   {
     id: "denim-club",
@@ -42,8 +42,8 @@ window.WOOF_COLLECTIONS = [
     fabric: "Denim",
     tagline: "Your favourite jeans, for both of you.",
     status: "coming-soon",
-    image: "images/collection-denim-club.jpg",
-    alt: "Woman with her curly dog, both wearing matching denim accessories"
+    image: "images/couverture-denim-club.jpg",
+    alt: "WOOF magazine cover: Denim Club — a curly dog wearing a denim collar"
   },
   {
     id: "rodeo-kid",
@@ -51,8 +51,8 @@ window.WOOF_COLLECTIONS = [
     fabric: "Red bandana",
     tagline: "A little wild, always charming.",
     status: "coming-soon",
-    image: "images/rodeo-kid-collier-1.jpg",
-    alt: "Red paisley bandana dog collar with a gold Woof medallion"
+    image: "images/couverture-rodeo-kid.jpg",
+    alt: "WOOF magazine cover: Rodeo Kid, the bandana collar — an Australian shepherd wearing a red paisley bandana collar"
   },
   {
     id: "the-spoiled-one",
@@ -60,8 +60,8 @@ window.WOOF_COLLECTIONS = [
     fabric: "Gold chain",
     tagline: "Gold chains, black leather, zero compromise.",
     status: "released-soon",
-    image: "images/collection-the-spoiled-one.jpg",
-    alt: "Woman kissing her spaniel, both wearing gold chain and black leather pieces"
+    image: "images/couverture-the-spoiled-one.jpg",
+    alt: "WOOF magazine cover: The Spoiled One, the chain collection — a greyhound wearing a gold chain collar"
   }
 ];
 
@@ -74,12 +74,12 @@ window.WOOF_PRODUCTS = [
   /* ===== DIVA — velours ===== */
   {
     id: "the-diva-collar",
-    name: "Diva Collar",
+    name: "The Diva Collar",
     collection: "the-diva",
     type: "collar",
     price: "",
     short: "Ruched burgundy velvet and gold-tone hardware.",
-    description: "For the main character of every walk. Diva is a softly ruched collar in deep burgundy velvet, finished with our gold-tone engraved buckle and signature medallion. Elegant, plush and impossible to ignore.",
+    description: "For the main character of every walk. The Diva is a softly ruched collar in deep burgundy velvet, finished with our gold-tone engraved buckle and signature medallion. Elegant, plush and impossible to ignore.",
     details: [
       "Premium velvet, soft and elegant",
       "Signature buckle with WOOF engraving",
@@ -98,12 +98,12 @@ window.WOOF_PRODUCTS = [
   },
   {
     id: "the-diva-scrunchie",
-    name: "Diva Scrunchie",
+    name: "The Diva Scrunchie",
     collection: "the-diva",
     type: "scrunchie",
     price: "",
     short: "Burgundy velvet, for a perfect match.",
-    description: "A plush burgundy velvet scrunchie, the twin of the Diva collar. Soft on hair and beautifully elegant — the easiest way to match your dog.",
+    description: "A plush burgundy velvet scrunchie, the twin of The Diva collar. Soft on hair and beautifully elegant — the easiest way to match your dog.",
     details: [
       "Soft velvet",
       "Gentle elastic, holds without pulling",

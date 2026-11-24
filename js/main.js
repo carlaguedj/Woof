@@ -253,12 +253,13 @@
       var st = STATUS_LABEL[c.status] || "";
       return (
         '<article class="coll' + (i % 2 ? " coll--reverse" : "") + '" id="' + esc(c.id) + '">' +
-        '<div class="tile coll__visual"><img src="' + esc(c.image) + '" alt="' + esc(c.alt) + '" loading="lazy">' +
-        '<div class="tile__content">' + (st ? '<span class="coll__status">' + st + "</span>" : "") +
+        '<figure class="coll__cover"><img src="' + esc(c.image) + '" alt="' + esc(c.alt) + '" loading="lazy">' +
+        (st ? '<span class="coll__status">' + st + "</span>" : "") + "</figure>" +
+        '<div class="coll__side"><div class="coll__head">' +
         '<p class="eyebrow">' + esc(c.fabric) + " collection</p>" +
-        '<h3 class="tile__title">' + esc(c.name) + "</h3>" +
-        '<p class="coll__tagline">' + esc(c.tagline) + "</p></div></div>" +
-        '<div class="coll__products">' + productsOf(c).map(cardHTML).join("") + "</div>" +
+        '<h3 class="coll__name">' + esc(c.name) + "</h3>" +
+        '<p class="coll__tagline">' + esc(c.tagline) + "</p></div>" +
+        '<div class="coll__products">' + productsOf(c).map(cardHTML).join("") + "</div></div>" +
         "</article>"
       );
     }).join("");
