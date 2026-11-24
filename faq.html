@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FAQ — WOOF</title>
-  <meta name="description" content="Everything you need to know about WOOF: the Matching Collection, collar sizes, materials and care, orders, shipping, returns and more.">
+  <title data-i18n="page.faq.title">FAQ — WOOF</title>
+  <meta name="description" content="Everything you need to know about WOOF: the Matching Collection, collar sizes, materials, orders, shipping, returns and more." data-i18n-attr="content:page.faq.desc">
   <meta name="theme-color" content="#F4E9D8">
   <!-- Aperçu lors d'un partage sur les réseaux sociaux -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="WOOF">
   <meta property="og:title" content="FAQ — WOOF">
-  <meta property="og:description" content="Everything you need to know about WOOF: the Matching Collection, collar sizes, materials and care, orders, shipping, returns and more.">
+  <meta property="og:description" content="Everything you need to know about WOOF: the Matching Collection, collar sizes, materials, orders, shipping, returns and more.">
   <meta property="og:image" content="images/og-partage.jpg">
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <!-- Polices Google : Cormorant Garamond (titres), Libre Baskerville (texte), Mrs Saint Delafield (manuscrit), Libre Bodoni (logo) -->
@@ -19,54 +19,58 @@
   <link href="https://fonts.googleapis.com/css2?family=Libre+Bodoni:wght@700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Libre+Baskerville:wght@400;700&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <script>document.documentElement.classList.add("js");</script>
+  <!-- Réglages (liste d'attente, langues) puis traductions -->
+  <script src="js/config.js"></script>
+  <script src="js/i18n.js"></script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+  <a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to content</a>
 
-  <!-- Bandeau d'annonce : modifiez le texte librement -->
-  <p class="announce">Coming soon <svg class="icon" aria-hidden="true"><use href="#i-paw"/></svg> <a href="shop.html">Discover the collections</a></p>
+  <!-- Bandeau d'annonce (texte : clés "announce.*" dans js/i18n/) -->
+  <p class="announce"><span data-i18n="announce.soon">Coming soon</span> <svg class="icon" aria-hidden="true"><use href="#i-paw"/></svg> <a href="index.html#waitlist" data-i18n="announce.cta">Join the waitlist</a></p>
 
   <!-- ================= EN-TÊTE / NAVIGATION ================= -->
   <header class="site-header">
     <div class="header-inner">
       <nav class="nav nav--left" aria-label="Main">
-        <button class="burger" type="button" data-menu-open aria-controls="mobile-menu" aria-expanded="false" aria-label="Open menu">
+        <button class="burger" type="button" data-menu-open aria-controls="mobile-menu" aria-expanded="false" aria-label="Open menu" data-i18n-attr="aria-label:nav.menu.open">
           <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg>
         </button>
         <div class="nav-drop">
-          <a class="nav__link" href="shop.html">Shop</a>
+          <a class="nav__link" href="shop.html" data-i18n="nav.shop">Shop</a>
           <div class="nav-drop__panel">
             <div>
-              <p class="nav-drop__title">By category</p>
+              <p class="nav-drop__title" data-i18n="nav.bycat">By category</p>
               <ul>
-                <li><a href="shop.html?filter=collar">Dog collars</a></li>
-                <li><a href="shop.html?filter=scrunchie">Scrunchies</a></li>
-                <li><a href="shop.html">All pieces</a></li>
+                <li><a href="shop.html?filter=collar" data-i18n="nav.dogcollars">Dog collars</a></li>
+                <li><a href="shop.html?filter=scrunchie" data-i18n="nav.scrunchies">Scrunchies</a></li>
+                <li><a href="shop.html" data-i18n="nav.allpieces">All pieces</a></li>
               </ul>
             </div>
             <div>
-              <p class="nav-drop__title">For who?</p>
+              <p class="nav-drop__title" data-i18n="nav.forwho">For who?</p>
               <ul>
-                <li><a href="shop.html?filter=for-you">For you</a></li>
-                <li><a href="shop.html?filter=for-dog">For your dog</a></li>
+                <li><a href="shop.html?filter=for-you" data-i18n="nav.foryou">For you</a></li>
+                <li><a href="shop.html?filter=for-dog" data-i18n="nav.fordog">For your dog</a></li>
               </ul>
             </div>
             <div>
-              <p class="nav-drop__title">By collection</p>
+              <p class="nav-drop__title" data-i18n="nav.bycollection">By collection</p>
               <!-- Liste remplie automatiquement depuis js/products.js -->
               <ul data-collection-links="shop"></ul>
             </div>
           </div>
         </div>
-        <a class="nav__link" href="index.html#collections">Collections</a>
-        <a class="nav__link" href="about.html">About us</a>
+        <a class="nav__link" href="index.html#collections" data-i18n="nav.collections">Collections</a>
+        <a class="nav__link" href="about.html" data-i18n="nav.about">About us</a>
       </nav>
 
-      <a class="logo" href="index.html" aria-label="WOOF — home">WO<svg class="logo__paw" aria-hidden="true"><use href="#i-paw"/></svg>F</a>
+      <a class="logo" href="index.html" aria-label="WOOF — home">WO<svg class="logo__paw" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><g fill="currentColor"><ellipse cx="9" cy="13" rx="2.6" ry="3.3" transform="rotate(-18 9 13)"/><ellipse cx="13.6" cy="8.4" rx="2.6" ry="3.4" transform="rotate(-6 13.6 8.4)"/><ellipse cx="18.4" cy="8.4" rx="2.6" ry="3.4" transform="rotate(6 18.4 8.4)"/><ellipse cx="23" cy="13" rx="2.6" ry="3.3" transform="rotate(18 23 13)"/><path d="M16 14.5c-3.6 0-7 4.6-7 7.6 0 2.2 1.8 3.2 3.6 3.2 1.4 0 2.3-.8 3.4-.8s2 .8 3.4.8c1.8 0 3.6-1 3.6-3.2 0-3-3.4-7.6-7-7.6z"/></g></svg><span class="visually-hidden">O</span>F</a>
 
-      <nav class="nav nav--right" aria-label="Account and bag">
-        <a class="nav__link" href="faq.html" aria-current="page">FAQ</a>
-        <a class="nav__link" href="contact.html">Contact</a>
+      <nav class="nav nav--right" aria-label="Help and language">
+        <a class="nav__link" href="faq.html" aria-current="page" data-i18n="nav.faq">FAQ</a>
+        <a class="nav__link" href="contact.html" data-i18n="nav.contact">Contact</a>
+        <div class="lang-switch" data-lang-switch></div>
         <a class="nav__icon" href="https://www.instagram.com/woof_clubb/" target="_blank" rel="noopener" aria-label="WOOF on Instagram (@woof_clubb)">
           <svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg>
         </a>
@@ -74,400 +78,346 @@
     </div>
   </header>
 
-  <!-- Menu mobile plein écran (vert olive) -->
+  <!-- Menu mobile plein écran -->
   <div class="mobile-menu" id="mobile-menu" aria-hidden="true" role="dialog" aria-label="Menu">
     <div class="mobile-menu__top">
-      <a class="logo" href="index.html" aria-label="WOOF — home">WO<svg class="logo__paw" aria-hidden="true"><use href="#i-paw"/></svg>F</a>
-      <button class="mobile-menu__close" type="button" data-menu-close aria-label="Close menu">
+      <a class="logo" href="index.html" aria-label="WOOF — home">WO<svg class="logo__paw" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><g fill="currentColor"><ellipse cx="9" cy="13" rx="2.6" ry="3.3" transform="rotate(-18 9 13)"/><ellipse cx="13.6" cy="8.4" rx="2.6" ry="3.4" transform="rotate(-6 13.6 8.4)"/><ellipse cx="18.4" cy="8.4" rx="2.6" ry="3.4" transform="rotate(6 18.4 8.4)"/><ellipse cx="23" cy="13" rx="2.6" ry="3.3" transform="rotate(18 23 13)"/><path d="M16 14.5c-3.6 0-7 4.6-7 7.6 0 2.2 1.8 3.2 3.6 3.2 1.4 0 2.3-.8 3.4-.8s2 .8 3.4.8c1.8 0 3.6-1 3.6-3.2 0-3-3.4-7.6-7-7.6z"/></g></svg><span class="visually-hidden">O</span>F</a>
+      <button class="mobile-menu__close" type="button" data-menu-close aria-label="Close menu" data-i18n-attr="aria-label:nav.menu.close">
         <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>
       </button>
     </div>
     <ul class="mobile-menu__links">
       <li>
         <details class="mm-sub">
-          <summary>Shop <svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+          <summary><span data-i18n="nav.shop">Shop</span> <svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
           <div class="mm-sub__body">
-            <p>By category</p>
-            <a href="shop.html?filter=collar">Dog collars</a>
-            <a href="shop.html?filter=scrunchie">Scrunchies</a>
-            <p>For who?</p>
-            <a href="shop.html?filter=for-you">For you</a>
-            <a href="shop.html?filter=for-dog">For your dog</a>
-            <a href="shop.html">All pieces</a>
+            <p data-i18n="nav.bycat">By category</p>
+            <a href="shop.html?filter=collar" data-i18n="nav.dogcollars">Dog collars</a>
+            <a href="shop.html?filter=scrunchie" data-i18n="nav.scrunchies">Scrunchies</a>
+            <p data-i18n="nav.forwho">For who?</p>
+            <a href="shop.html?filter=for-you" data-i18n="nav.foryou">For you</a>
+            <a href="shop.html?filter=for-dog" data-i18n="nav.fordog">For your dog</a>
+            <a href="shop.html" data-i18n="nav.allpieces">All pieces</a>
           </div>
         </details>
       </li>
       <li>
         <details class="mm-sub">
-          <summary>Collections <svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+          <summary><span data-i18n="nav.collections">Collections</span> <svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
           <div class="mm-sub__body" data-collection-links="shop-mobile"></div>
         </details>
       </li>
-      <li><a href="about.html">About us</a></li>
-      <li><a href="faq.html">FAQ</a></li>
-      <li><a href="contact.html">Contact</a></li>
+      <li><a href="about.html" data-i18n="nav.about">About us</a></li>
+      <li><a href="faq.html" data-i18n="nav.faq">FAQ</a></li>
+      <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
     </ul>
     <!-- Illustration du menu : images/menu-dalmatien.png -->
     <div class="mobile-menu__art">
       <img src="images/menu-dalmatien.png" alt="" width="487" height="473">
     </div>
     <div class="mobile-menu__foot">
-      <a href="https://www.instagram.com/woof_clubb/" target="_blank" rel="noopener">Instagram</a>
-      <a href="contact.html">Contact</a>
-      <a href="shop.html">Shop</a>
+      <a href="index.html#waitlist" data-i18n="nav.waitlist">Join the waitlist</a>
+      <a href="https://www.instagram.com/woof_clubb/" target="_blank" rel="noopener">Instagram @woof_clubb</a>
+      <div class="lang-switch lang-switch--light" data-lang-switch></div>
     </div>
   </div>
 
   <main id="main">
     <!-- ================= FAQ =================
-         Chaque question = un bloc <div class="faq-item"> … </div>.
-         Pour modifier une réponse : changez le texte dans <div class="faq-a__inner">.
-         Pour ajouter une question : copiez un bloc faq-item entier et changez son id (unique).
-         Les réponses marquées « À COMPLÉTER » attendent une information de votre part
-         (politique de retour, délais, pays de livraison…). Cherchez « À COMPLÉTER » avec Ctrl+F. -->
+         Les TEXTES des questions et réponses sont dans js/i18n/en.js (anglais) et js/i18n/fr.js (français),
+         clés "faq.<id>.q" (question) et "faq.<id>.a" (réponse).
+         Réponses provisoires à compléter : clés marquées ci-dessous « À COMPLÉTER ». -->
     <header class="faq-hero">
       <div class="container">
-        <p class="eyebrow">Help &amp; questions</p>
-        <h1 class="faq-hero__title">FAQ</h1>
-        <p class="faq-hero__lede">Everything you need to know about WOOF.</p>
-        <nav class="faq-toc" aria-label="FAQ categories">
-          <a href="#about-woof">About WOOF</a>
-          <a href="#matching">The Matching Collection</a>
-          <a href="#collars">Dog collars</a>
-          <a href="#care">Materials &amp; care</a>
-          <a href="#orders">Orders</a>
-          <a href="#shipping">Shipping</a>
-          <a href="#returns">Returns &amp; exchanges</a>
-          <a href="#safety">Dog safety</a>
-          <a href="#gifting">Gifting</a>
-          <a href="#contact-faq">Contact</a>
+        <p class="eyebrow" data-i18n="faq.eyebrow">Help & questions</p>
+        <h1 class="faq-hero__title" data-i18n="faq.title">FAQ</h1>
+        <p class="faq-hero__lede" data-i18n="faq.lede">Everything you need to know about WOOF.</p>
+        <nav class="faq-toc" aria-label="FAQ">
+          <a href="#about-woof" data-i18n="faq.cat.about-woof">About WOOF</a>
+          <a href="#matching" data-i18n="faq.cat.matching">The Matching Collection</a>
+          <a href="#collars" data-i18n="faq.cat.collars">Dog collars</a>
+          <a href="#care" data-i18n="faq.cat.care">Materials & care</a>
+          <a href="#orders" data-i18n="faq.cat.orders">Orders</a>
+          <a href="#shipping" data-i18n="faq.cat.shipping">Shipping</a>
+          <a href="#returns" data-i18n="faq.cat.returns">Returns & exchanges</a>
+          <a href="#safety" data-i18n="faq.cat.safety">Dog safety</a>
+          <a href="#gifting" data-i18n="faq.cat.gifting">Gifting</a>
+          <a href="#contact-faq" data-i18n="faq.cat.contact-faq">Contact</a>
         </nav>
       </div>
     </header>
 
     <div class="container faq" data-faq>
-
-      <!-- ===== ABOUT WOOF ===== -->
-      <section class="faq-cat" id="about-woof" aria-labelledby="h-about">
-        <h2 class="faq-cat__title" id="h-about"><span>i.</span> About WOOF</h2>
-        <div class="faq-item" id="what-is-woof">
-          <h3><button class="faq-q" type="button">What is WOOF?</button></h3>
+      <section class="faq-cat" id="about-woof" aria-labelledby="h-about-woof">
+        <h2 class="faq-cat__title" id="h-about-woof"><span>i.</span> <span data-i18n="faq.cat.about-woof">About WOOF</span></h2>
+        <div class="faq-item" id="what">
+          <h3><button class="faq-q" type="button" data-i18n="faq.what.q">What is WOOF?</button></h3>
           <div class="faq-a"><div class="faq-a__inner">
-            <p>WOOF is a French-inspired lifestyle brand creating accessories designed to celebrate the bond between dogs and their humans. Our pieces combine fashion, everyday practicality and playful details, with a particular focus on accessories that allow you and your dog to share a look.</p>
+            <div data-i18n="faq.what.a"><p>WOOF is a French-inspired lifestyle brand creating accessories designed to celebrate the bond between dogs and their humans. Our pieces combine fashion, everyday practicality and playful details, with a particular focus on accessories that allow you and your dog to share a look.</p></div>
           </div></div>
         </div>
-        <div class="faq-item">
-          <h3><button class="faq-q" type="button">What makes WOOF different from other dog accessory brands?</button></h3>
+        <div class="faq-item" id="different">
+          <h3><button class="faq-q" type="button" data-i18n="faq.different.q">What makes WOOF different from other dog accessory brands?</button></h3>
           <div class="faq-a"><div class="faq-a__inner">
-            <p>WOOF was created with the idea that your dog is part of your world — so their accessories can be part of your style too. Rather than traditional pet-store accessories, WOOF pieces are designed with a fashion and lifestyle perspective, inspired by French style, Parisian life and the details of everyday moments.</p>
+            <div data-i18n="faq.different.a"><p>WOOF was created with the idea that your dog is part of your world — so their accessories can be part of your style too. Rather than traditional pet-store accessories, WOOF pieces are designed with a fashion and lifestyle perspective, inspired by French style, Parisian life and the details of everyday moments.</p></div>
           </div></div>
         </div>
-        <div class="faq-item">
-          <h3><button class="faq-q" type="button">Is WOOF a French brand?</button></h3>
+        <div class="faq-item" id="french">
+          <h3><button class="faq-q" type="button" data-i18n="faq.french.q">Is WOOF a French brand?</button></h3>
           <div class="faq-a"><div class="faq-a__inner">
-            <p>WOOF is a French-inspired brand built around French fashion, Parisian lifestyle and the idea of effortless everyday elegance.</p>
+            <div data-i18n="faq.french.a"><p>WOOF is a French-inspired brand built around French fashion, Parisian lifestyle and the idea of effortless everyday elegance. WOOF is also a European lifestyle brand.</p></div>
           </div></div>
         </div>
       </section>
-
-      <!-- ===== THE MATCHING COLLECTION ===== -->
       <section class="faq-cat" id="matching" aria-labelledby="h-matching">
-        <h2 class="faq-cat__title" id="h-matching"><span>ii.</span> The Matching Collection</h2>
-        <div class="faq-item">
-          <h3><button class="faq-q" type="button">What is the Matching Collection?</button></h3>
+        <h2 class="faq-cat__title" id="h-matching"><span>ii.</span> <span data-i18n="faq.cat.matching">The Matching Collection</span></h2>
+        <div class="faq-item" id="matching-what">
+          <h3><button class="faq-q" type="button" data-i18n="faq.matching-what.q">What is the Matching Collection?</button></h3>
           <div class="faq-a"><div class="faq-a__inner">
-            <p>The Matching Collection is designed around the idea of sharing a little detail with your dog. Selected dog collars and human accessories are made in matching fabrics, colours and prints so you can coordinate without looking overly “matching”.</p>
+            <div data-i18n="faq.matching-what.a"><p>The Matching Collection is designed around the idea of sharing a little detail with your dog. Selected dog collars and human accessories are made in matching fabrics, colours and prints so you can coordinate without looking overly “matching”.</p></div>
           </div></div>
         </div>
-        <div class="faq-item">
-          <h3><button class="faq-q" type="button">Do I have to match my dog exactly?</button></h3>
+        <div class="faq-item" id="separately">
+          <h3><button class="faq-q" type="button" data-i18n="faq.separately.q">Can I buy the collar and matching accessory separately?</button></h3>
           <div class="faq-a"><div class="faq-a__inner">
-            <p>Not at all. The idea is subtle coordination rather than identical outfits. A matching scrunchie, for example, can be a small detail that connects your look to your dog’s collar.</p>
+            <div data-i18n="faq.separately.a"><p>Yes. Each piece is shown with its own price, and each collection also has a set price for the collar and its matching accessory together. The prices are shown on every product page.</p></div>
           </div></div>
         </div>
-        <div class="faq-item">
-          <h3><button class="faq-q" type="button">Can I buy the collar and matching accessory separately?</button></h3>
+        <div class="faq-item" id="which">
+          <h3><button class="faq-q" type="button" data-i18n="faq.which.q">Which products are part of the Matching Collection?</button></h3>
           <div class="faq-a"><div class="faq-a__inner">
-            <p>Yes. Each piece is shown with its own price, and each collection also has a set price for the collar and its matching accessory together. The prices are shown on every product page.</p>
-          </div></div>
-        </div>
-        <div class="faq-item">
-          <h3><button class="faq-q" type="button">Which products are part of the Matching Collection?</button></h3>
-          <div class="faq-a"><div class="faq-a__inner">
-            <!-- Liste générée automatiquement depuis js/products.js -->
-            <ul class="faq-list" data-faq-collections></ul>
-            <p><a class="link-arrow" href="shop.html">Discover all pieces <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
+            <div data-i18n="faq.which.a"><p>Each collection pairs a dog collar with its matching piece for you:</p></div>
+            <ul class="faq-list" data-faq-collections></ul><p><a class="link-arrow" href="shop.html"><span data-i18n="faq.discover">Discover all pieces</span> <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
           </div></div>
         </div>
       </section>
-
-      <!-- ===== DOG COLLARS ===== -->
       <section class="faq-cat" id="collars" aria-labelledby="h-collars">
-        <h2 class="faq-cat__title" id="h-collars"><span>iii.</span> Dog collars</h2>
-        <div class="faq-item">
-          <h3><button class="faq-q" type="button">How do I choose the right collar size?</button></h3>
+        <h2 class="faq-cat__title" id="h-collars"><span>iii.</span> <span data-i18n="faq.cat.collars">Dog collars</span></h2>
+        <div class="faq-item" id="size">
+          <h3><button class="faq-q" type="button" data-i18n="faq.size.q">How do I choose the right collar size?</button></h3>
           <div class="faq-a"><div class="faq-a__inner">
-            <p>Use your dog’s neck measurement as the main reference. Measure around the neck where the collar will naturally sit, leaving enough room for comfortable movement, then choose the size whose length range includes that measurement.</p>
-            <p><a class="btn btn--small btn--outline" href="#size-guide" data-faq-open="size-guide">View our size guide</a></p>
+            <div data-i18n="faq.size.a"><p>Use your dog’s neck measurement as the main reference. Measure around the neck where the collar will naturally sit, leaving enough room for comfortable movement, then choose the size whose length range includes that measurement.</p></div>
+            <p><a class="btn btn--small btn--outline" href="#size-guide" data-faq-open="size-guide" data-i18n="faq.sizeguide.btn">View our size guide</a></p>
           </div></div>
         </div>
         <div class="faq-item" id="size-guide">
-          <h3><button class="faq-q" type="button">Size guide</button></h3>
+          <h3><button class="faq-q" type="button" data-i18n="faq.size-guide.q">Size guide</button></h3>
           <div class="faq-a"><div class="faq-a__inner">
-            <!-- Tableau généré depuis WOOF_SIZES dans js/products.js -->
-            <table class="faq-table" data-faq-sizes></table>
-            <p>Scrunchies and bracelets are one size.</p>
+            <table class="faq-table" data-faq-sizes></table><p data-i18n="faq.sizeguide.onesize">Scrunchies and bracelets are one size.</p>
           </div></div>
         </div>
-        <div class="faq-item">
-          <h3><button class="faq-q" type="button">How should the collar fit?</button></h3>
+        <div class="faq-item" id="fit">
+          <h3><button class="faq-q" type="button" data-i18n="faq.fit.q">How should the collar fit?</button></h3>
           <div class="faq-a"><div class="faq-a__inner">
-            <p>The collar should sit comfortably around your dog’s neck without being excessively tight or loose. You should be able to fit approximately two fingers comfortably between the collar and your dog’s neck.</p>
+            <div data-i18n="faq.fit.a"><p>The collar should sit comfortably around your dog’s neck without being excessively tight or loose. You should be able to fit approximately two fingers comfortably between the collar and your dog’s neck.</p></div>
           </div></div>
         </div>
-        <div class="faq-item">
-          <h3><button class="faq-q" type="button">Are WOOF collars adjustable?</button></h3>
+        <div class="faq-item" id="adjustable">
+          <h3><button class="faq-q" type="button" data-i18n="faq.adjustable.q">Are WOOF collars adjustable?</button></h3>
           <div class="faq-a"><div class="faq-a__inner">
-            <p>Yes. Each collar size has an adjustable length:</p>
+            <div data-i18n="faq.adjustable.a"><p>Yes. Each collar size has an adjustable length:</p></div>
             <ul class="faq-list" data-faq-adjust></ul>
           </div></div>
         </div>
-        <div class="faq-item">
-          <h3><button class="faq-q" type="button">Are the collars suitable for every dog?</button></h3>
+        <div class="faq-item" id="suitable">
+          <h3><button class="faq-q" type="button" data-i18n="faq.suitable.q">Are the collars suitable for every dog?</button></h3>
           <div class="faq-a"><div class="faq-a__inner">
-            <p>WOOF collars are designed for the neck sizes specified for each product. Please always check the size information before ordering.</p>
+            <div data-i18n="faq.suitable.a"><p>WOOF collars are designed for the neck sizes specified for each product. Please always check the size information before ordering.</p></div>
           </div></div>
         </div>
-        <div class="faq-item">
-          <h3><button class="faq-q" type="button">Are WOOF collars comfortable for dogs?</button></h3>
+        <div class="faq-item" id="comfortable">
+          <h3><button class="faq-q" type="button" data-i18n="faq.comfortable.q">Are WOOF collars comfortable for dogs?</button></h3>
           <div class="faq-a"><div class="faq-a__inner">
-            <p>The collars are designed to combine everyday comfort with a fashionable appearance. You’ll find the exact materials and construction of each collar in the “Details” section of its product page.</p>
+            <div data-i18n="faq.comfortable.a"><p>The collars are designed to combine everyday comfort with a fashionable appearance. You’ll find the exact materials and construction of each collar in the “Details” section of its product page.</p></div>
           </div></div>
         </div>
-        <div class="faq-item">
-          <h3><button class="faq-q" type="button">Can my dog wear the collar every day?</button></h3>
+        <div class="faq-item" id="everyday">
+          <h3><button class="faq-q" type="button" data-i18n="faq.everyday.q">Can my dog wear the collar every day?</button></h3>
           <div class="faq-a"><div class="faq-a__inner">
-            <p>The collars are designed for everyday lifestyle use, but please inspect the collar and hardware regularly for signs of wear, especially if your dog is very active.</p>
+            <div data-i18n="faq.everyday.a"><p>The collars are designed for everyday lifestyle use, but please inspect the collar and hardware regularly for signs of wear, especially if your dog is very active.</p></div>
           </div></div>
         </div>
       </section>
-
-      <!-- ===== MATERIALS & CARE ===== -->
       <section class="faq-cat" id="care" aria-labelledby="h-care">
-        <h2 class="faq-cat__title" id="h-care"><span>iv.</span> Materials &amp; care</h2>
-        <div class="faq-item">
-          <h3><button class="faq-q" type="button">What materials are WOOF products made from?</button></h3>
+        <h2 class="faq-cat__title" id="h-care"><span>iv.</span> <span data-i18n="faq.cat.care">Materials & care</span></h2>
+        <div class="faq-item" id="materials">
+          <h3><button class="faq-q" type="button" data-i18n="faq.materials.q">What materials are WOOF products made from?</button></h3>
           <div class="faq-a"><div class="faq-a__inner">
-            <p>Each piece is made in the fabric of its collection. Here is the material information currently available — full details are on each product page:</p>
-            <!-- Liste générée depuis la 1re ligne « details » de chaque produit (js/products.js) -->
-            <ul class="faq-list" data-faq-materials></ul>
+            <div data-i18n="faq.materials.a"><div class="faq-mat"><h4>Velvet Collection — The Diva</h4><ul class="faq-list"><li>The Diva Velvet Collar: rich burgundy velvet</li><li>The Diva Scrunchie: sumptuous burgundy velvet</li></ul></div><div class="faq-mat"><h4>Tweed Collection — Park Avenue Girl</h4><ul class="faq-list"><li>Park Avenue Girl Tweed Collar: burgundy, black and cream tweed</li><li>Park Avenue Girl Scrunchie: burgundy, black and cream tweed</li></ul></div><div class="faq-mat"><h4>Denim Collection — Denim Club</h4><ul class="faq-list"><li>Denim Club Denim Collar: classic blue denim with refined stitching</li><li>Denim Club Scrunchie: easy-going blue denim</li></ul></div><div class="faq-mat"><h4>Bandana Collection — Rodeo Kid</h4><ul class="faq-list"><li>Rodeo Kid Bandana Collar: burgundy paisley bandana fabric</li><li>Rodeo Kid Scrunchie: burgundy paisley bandana print</li></ul></div><div class="faq-mat"><h4>Chain Collection — The Spoiled One</h4><ul class="faq-list"><li>The Spoiled One Chain Collar: rich black leather woven with golden chain links</li><li>The Spoiled One Bracelet: black leather woven with golden chain links</li></ul></div></div>
           </div></div>
         </div>
-        <div class="faq-item">
-          <h3><button class="faq-q" type="button">How do I clean my WOOF collar?</button></h3>
+        <div class="faq-item" id="machine">
+          <h3><button class="faq-q" type="button" data-i18n="faq.machine.q">Can I wash the collars in a washing machine?</button></h3>
           <div class="faq-a"><div class="faq-a__inner">
-            <!-- À COMPLÉTER : instructions d'entretien confirmées pour chaque matière -->
-            <p class="faq-pending">Product-specific care instructions are being finalised and will be added to each product page. In the meantime, please <a href="contact.html">contact us</a> before cleaning your collar and we’ll be happy to advise.</p>
-          </div></div>
-        </div>
-        <div class="faq-item">
-          <h3><button class="faq-q" type="button">Can I wash the collars in a washing machine?</button></h3>
-          <div class="faq-a"><div class="faq-a__inner">
-            <!-- À COMPLÉTER : uniquement si le lavage en machine est confirmé -->
-            <p class="faq-pending">We haven’t confirmed machine washing for our collars, so please don’t put them in the washing machine for now. <a href="contact.html">Contact us</a> for advice on your piece.</p>
-          </div></div>
-        </div>
-        <div class="faq-item">
-          <h3><button class="faq-q" type="button">How do I take care of my WOOF accessories?</button></h3>
-          <div class="faq-a"><div class="faq-a__inner">
-            <p>Store them away from excessive moisture and heat, and avoid unnecessary exposure to harsh products. Product-specific care instructions always take priority.</p>
-          </div></div>
-        </div>
-        <div class="faq-item">
-          <h3><button class="faq-q" type="button">Will the colours stay vibrant over time?</button></h3>
-          <div class="faq-a"><div class="faq-a__inner">
-            <p>The longevity of colours and materials depends on use, exposure and care. Like any fabric accessory, your piece will naturally evolve over time — gentle care helps keep it looking its best.</p>
+            <div data-i18n="faq.machine.a"><p>We recommend washing your collars by hand rather than in a washing machine.</p></div>
           </div></div>
         </div>
       </section>
-
-      <!-- ===== ORDERS ===== -->
       <section class="faq-cat" id="orders" aria-labelledby="h-orders">
-        <h2 class="faq-cat__title" id="h-orders"><span>v.</span> Orders</h2>
-        <div class="faq-item">
-          <h3><button class="faq-q" type="button">Where can I buy WOOF products?</button></h3>
+        <h2 class="faq-cat__title" id="h-orders"><span>v.</span> <span data-i18n="faq.cat.orders">Orders</span></h2>
+        <div class="faq-item" id="where-buy">
+          <h3><button class="faq-q" type="button" data-i18n="faq.where-buy.q">Where can I buy WOOF products?</button></h3>
           <div class="faq-a"><div class="faq-a__inner">
-            <p>WOOF products will be available directly on the WOOF website. Our collections are coming soon — leave your email on any product page with “Notify me” to be the first to know when they launch.</p>
+            <div data-i18n="faq.where-buy.a"><p>WOOF products will be available directly on the WOOF website. Sales are not open yet — <a href="index.html#waitlist">join the waitlist</a> to get priority access at launch.</p></div>
           </div></div>
         </div>
-        <div class="faq-item">
-          <h3><button class="faq-q" type="button">Can I modify my order after placing it?</button></h3>
+        <div class="faq-item" id="modify">
+          <h3><button class="faq-q" type="button" data-i18n="faq.modify.q">Can I modify my order after placing it?</button></h3>
           <div class="faq-a"><div class="faq-a__inner">
-            <!-- À COMPLÉTER : politique de modification de commande -->
-            <p class="faq-pending">Our order policy will be published when online ordering opens. If you need to change something, please <a href="contact.html">contact us</a> as soon as possible.</p>
+            <!-- À COMPLÉTER : texte provisoire, clé "faq.modify.a" dans js/i18n/en.js et fr.js -->
+            <div class="faq-pending" data-i18n="faq.modify.a"><p>Our order policy will be published when online ordering opens. If you need to change something, please <a href="contact.html">contact us</a> as soon as possible.</p></div>
           </div></div>
         </div>
-        <div class="faq-item">
-          <h3><button class="faq-q" type="button">Can I cancel my order?</button></h3>
+        <div class="faq-item" id="cancel">
+          <h3><button class="faq-q" type="button" data-i18n="faq.cancel.q">Can I cancel my order?</button></h3>
           <div class="faq-a"><div class="faq-a__inner">
-            <!-- À COMPLÉTER : politique d'annulation -->
-            <p class="faq-pending">Our cancellation policy will be published when online ordering opens. Please <a href="contact.html">contact us</a> as soon as possible if you wish to cancel.</p>
+            <!-- À COMPLÉTER : texte provisoire, clé "faq.cancel.a" dans js/i18n/en.js et fr.js -->
+            <div class="faq-pending" data-i18n="faq.cancel.a"><p>Our cancellation policy will be published when online ordering opens. Please <a href="contact.html">contact us</a> as soon as possible if you wish to cancel.</p></div>
           </div></div>
         </div>
-        <div class="faq-item">
-          <h3><button class="faq-q" type="button">How will I know that my order has been confirmed?</button></h3>
+        <div class="faq-item" id="confirm">
+          <h3><button class="faq-q" type="button" data-i18n="faq.confirm.q">How will I know that my order has been confirmed?</button></h3>
           <div class="faq-a"><div class="faq-a__inner">
-            <p>You should receive an order confirmation after a successful purchase.</p>
+            <div data-i18n="faq.confirm.a"><p>You should receive an order confirmation after a successful purchase.</p></div>
           </div></div>
         </div>
       </section>
-
-      <!-- ===== SHIPPING ===== -->
       <section class="faq-cat" id="shipping" aria-labelledby="h-shipping">
-        <h2 class="faq-cat__title" id="h-shipping"><span>vi.</span> Shipping</h2>
-        <div class="faq-item">
-          <h3><button class="faq-q" type="button">Where does WOOF ship?</button></h3>
+        <h2 class="faq-cat__title" id="h-shipping"><span>vi.</span> <span data-i18n="faq.cat.shipping">Shipping</span></h2>
+        <div class="faq-item" id="ship-where">
+          <h3><button class="faq-q" type="button" data-i18n="faq.ship-where.q">Where does WOOF ship?</button></h3>
           <div class="faq-a"><div class="faq-a__inner">
-            <!-- À COMPLÉTER : liste des pays livrés -->
-            <p class="faq-pending">Shipping destinations will be confirmed at checkout when online ordering opens.</p>
+            <!-- À COMPLÉTER : texte provisoire, clé "faq.ship-where.a" dans js/i18n/en.js et fr.js -->
+            <div class="faq-pending" data-i18n="faq.ship-where.a"><p>Shipping destinations will be confirmed at checkout when online ordering opens.</p></div>
           </div></div>
         </div>
-        <div class="faq-item">
-          <h3><button class="faq-q" type="button">How long does delivery take?</button></h3>
+        <div class="faq-item" id="ship-time">
+          <h3><button class="faq-q" type="button" data-i18n="faq.ship-time.q">How long does delivery take?</button></h3>
           <div class="faq-a"><div class="faq-a__inner">
-            <!-- À COMPLÉTER : délais de livraison -->
-            <p class="faq-pending">Delivery times will be confirmed at checkout.</p>
+            <!-- À COMPLÉTER : texte provisoire, clé "faq.ship-time.a" dans js/i18n/en.js et fr.js -->
+            <div class="faq-pending" data-i18n="faq.ship-time.a"><p>Delivery times will be confirmed at checkout.</p></div>
           </div></div>
         </div>
-        <div class="faq-item">
-          <h3><button class="faq-q" type="button">How much does shipping cost?</button></h3>
+        <div class="faq-item" id="ship-cost">
+          <h3><button class="faq-q" type="button" data-i18n="faq.ship-cost.q">How much does shipping cost?</button></h3>
           <div class="faq-a"><div class="faq-a__inner">
-            <p>Shipping is <strong>€4.90</strong> for orders below €60, and <strong>free from €60</strong> — that’s two sets.</p>
+            <div data-i18n="faq.ship-cost.a"><p>Shipping is <strong>€4.90</strong> for orders below €60, and <strong>free from €60</strong> — that’s two sets.</p></div>
           </div></div>
         </div>
-        <div class="faq-item">
-          <h3><button class="faq-q" type="button">Can I track my order?</button></h3>
+        <div class="faq-item" id="tracking">
+          <h3><button class="faq-q" type="button" data-i18n="faq.tracking.q">Can I track my order?</button></h3>
           <div class="faq-a"><div class="faq-a__inner">
-            <!-- À COMPLÉTER : suivi de commande -->
-            <p class="faq-pending">Information about order tracking will be shared when online ordering opens.</p>
+            <!-- À COMPLÉTER : texte provisoire, clé "faq.tracking.a" dans js/i18n/en.js et fr.js -->
+            <div class="faq-pending" data-i18n="faq.tracking.a"><p>Information about order tracking will be shared when online ordering opens.</p></div>
           </div></div>
         </div>
-        <div class="faq-item">
-          <h3><button class="faq-q" type="button">What should I do if my package arrives damaged?</button></h3>
+        <div class="faq-item" id="damaged">
+          <h3><button class="faq-q" type="button" data-i18n="faq.damaged.q">What should I do if my package arrives damaged?</button></h3>
           <div class="faq-a"><div class="faq-a__inner">
-            <p>Please <a href="contact.html">contact us</a> as soon as possible and include photographs of the damaged package and product, so we can help you quickly.</p>
+            <div data-i18n="faq.damaged.a"><p>Please <a href="contact.html">contact us</a> as soon as possible and include photographs of the damaged package and product, so we can help you quickly.</p></div>
           </div></div>
         </div>
       </section>
-
-      <!-- ===== RETURNS & EXCHANGES ===== -->
       <section class="faq-cat" id="returns" aria-labelledby="h-returns">
-        <h2 class="faq-cat__title" id="h-returns"><span>vii.</span> Returns &amp; exchanges</h2>
-        <div class="faq-item">
-          <h3><button class="faq-q" type="button">Can I return my order?</button></h3>
+        <h2 class="faq-cat__title" id="h-returns"><span>vii.</span> <span data-i18n="faq.cat.returns">Returns & exchanges</span></h2>
+        <div class="faq-item" id="return">
+          <h3><button class="faq-q" type="button" data-i18n="faq.return.q">Can I return my order?</button></h3>
           <div class="faq-a"><div class="faq-a__inner">
-            <!-- À COMPLÉTER : politique de retour -->
-            <p class="faq-pending">Our returns policy will be published when online ordering opens.</p>
+            <!-- À COMPLÉTER : texte provisoire, clé "faq.return.a" dans js/i18n/en.js et fr.js -->
+            <div class="faq-pending" data-i18n="faq.return.a"><p>Our returns policy will be published when online ordering opens.</p></div>
           </div></div>
         </div>
-        <div class="faq-item">
-          <h3><button class="faq-q" type="button">How long do I have to return an item?</button></h3>
+        <div class="faq-item" id="return-period">
+          <h3><button class="faq-q" type="button" data-i18n="faq.return-period.q">How long do I have to return an item?</button></h3>
           <div class="faq-a"><div class="faq-a__inner">
-            <!-- À COMPLÉTER : délai de retour (nombre de jours) -->
-            <p class="faq-pending">The return period will be confirmed in our returns policy when online ordering opens.</p>
+            <!-- À COMPLÉTER : texte provisoire, clé "faq.return-period.a" dans js/i18n/en.js et fr.js -->
+            <div class="faq-pending" data-i18n="faq.return-period.a"><p>The return period will be confirmed in our returns policy when online ordering opens.</p></div>
           </div></div>
         </div>
-        <div class="faq-item">
-          <h3><button class="faq-q" type="button">Are sale items eligible for returns?</button></h3>
+        <div class="faq-item" id="sale">
+          <h3><button class="faq-q" type="button" data-i18n="faq.sale.q">Are sale items eligible for returns?</button></h3>
           <div class="faq-a"><div class="faq-a__inner">
-            <!-- À COMPLÉTER : retours des articles soldés -->
-            <p class="faq-pending">This will be covered in our returns policy when online ordering opens.</p>
+            <!-- À COMPLÉTER : texte provisoire, clé "faq.sale.a" dans js/i18n/en.js et fr.js -->
+            <div class="faq-pending" data-i18n="faq.sale.a"><p>This will be covered in our returns policy when online ordering opens.</p></div>
           </div></div>
         </div>
-        <div class="faq-item">
-          <h3><button class="faq-q" type="button">Can I exchange an item for another size?</button></h3>
+        <div class="faq-item" id="exchange">
+          <h3><button class="faq-q" type="button" data-i18n="faq.exchange.q">Can I exchange an item for another size?</button></h3>
           <div class="faq-a"><div class="faq-a__inner">
-            <!-- À COMPLÉTER : politique d'échange -->
-            <p class="faq-pending">Our exchange policy will be published when online ordering opens. Not sure about the size? Check our <a href="#size-guide" data-faq-open="size-guide">size guide</a> or <a href="contact.html">ask us</a> before ordering.</p>
+            <!-- À COMPLÉTER : texte provisoire, clé "faq.exchange.a" dans js/i18n/en.js et fr.js -->
+            <div class="faq-pending" data-i18n="faq.exchange.a"><p>Our exchange policy will be published when online ordering opens. Not sure about the size? Check our <a href="#size-guide" data-faq-open="size-guide">size guide</a> or <a href="contact.html">ask us</a> before ordering.</p></div>
           </div></div>
         </div>
-        <div class="faq-item">
-          <h3><button class="faq-q" type="button">How do I start a return?</button></h3>
+        <div class="faq-item" id="start-return">
+          <h3><button class="faq-q" type="button" data-i18n="faq.start-return.q">How do I start a return?</button></h3>
           <div class="faq-a"><div class="faq-a__inner">
-            <!-- À COMPLÉTER : procédure de retour -->
-            <p class="faq-pending">The return process will be explained here when online ordering opens.</p>
+            <!-- À COMPLÉTER : texte provisoire, clé "faq.start-return.a" dans js/i18n/en.js et fr.js -->
+            <div class="faq-pending" data-i18n="faq.start-return.a"><p>The return process will be explained here when online ordering opens.</p></div>
           </div></div>
         </div>
-        <div class="faq-item">
-          <h3><button class="faq-q" type="button">What happens if I receive the wrong item?</button></h3>
+        <div class="faq-item" id="wrong">
+          <h3><button class="faq-q" type="button" data-i18n="faq.wrong.q">What happens if I receive the wrong item?</button></h3>
           <div class="faq-a"><div class="faq-a__inner">
-            <p>Please <a href="contact.html">contact us</a> and we’ll resolve the issue with you.</p>
+            <div data-i18n="faq.wrong.a"><p>Please <a href="contact.html">contact us</a> and we’ll resolve the issue with you.</p></div>
           </div></div>
         </div>
       </section>
-
-      <!-- ===== DOG SAFETY ===== -->
       <section class="faq-cat" id="safety" aria-labelledby="h-safety">
-        <h2 class="faq-cat__title" id="h-safety"><span>viii.</span> Dog safety</h2>
-        <div class="faq-item">
-          <h3><button class="faq-q" type="button">Is the collar a substitute for a harness?</button></h3>
+        <h2 class="faq-cat__title" id="h-safety"><span>viii.</span> <span data-i18n="faq.cat.safety">Dog safety</span></h2>
+        <div class="faq-item" id="harness">
+          <h3><button class="faq-q" type="button" data-i18n="faq.harness.q">Is the collar a substitute for a harness?</button></h3>
           <div class="faq-a"><div class="faq-a__inner">
-            <p>No. The collar is a fashion and lifestyle accessory and should not automatically be treated as a substitute for a harness, particularly for dogs that require specialised walking equipment.</p>
+            <div data-i18n="faq.harness.a"><p>No. The collar is a fashion and lifestyle accessory and should not automatically be treated as a substitute for a harness, particularly for dogs that require specialised walking equipment.</p></div>
           </div></div>
         </div>
-        <div class="faq-item">
-          <h3><button class="faq-q" type="button">Can my dog wear the collar while playing?</button></h3>
+        <div class="faq-item" id="playing">
+          <h3><button class="faq-q" type="button" data-i18n="faq.playing.q">Can my dog wear the collar while playing?</button></h3>
           <div class="faq-a"><div class="faq-a__inner">
-            <p>Please inspect the collar regularly, and consider removing it in situations where it could become caught or damaged.</p>
+            <div data-i18n="faq.playing.a"><p>Please inspect the collar regularly, and consider removing it in situations where it could become caught or damaged.</p></div>
           </div></div>
         </div>
-        <div class="faq-item">
-          <h3><button class="faq-q" type="button">How often should I check the collar?</button></h3>
+        <div class="faq-item" id="check">
+          <h3><button class="faq-q" type="button" data-i18n="faq.check.q">How often should I check the collar?</button></h3>
           <div class="faq-a"><div class="faq-a__inner">
-            <p>Inspect the fabric, stitching, buckle and rings regularly, particularly if the collar is used frequently.</p>
+            <div data-i18n="faq.check.a"><p>Inspect the fabric, stitching, buckle and rings regularly, particularly if the collar is used frequently.</p></div>
           </div></div>
         </div>
       </section>
-
-      <!-- ===== GIFTING ===== -->
       <section class="faq-cat" id="gifting" aria-labelledby="h-gifting">
-        <h2 class="faq-cat__title" id="h-gifting"><span>ix.</span> Gifting</h2>
-        <div class="faq-item">
-          <h3><button class="faq-q" type="button">Is WOOF a good gift for a dog lover?</button></h3>
+        <h2 class="faq-cat__title" id="h-gifting"><span>ix.</span> <span data-i18n="faq.cat.gifting">Gifting</span></h2>
+        <div class="faq-item" id="gift">
+          <h3><button class="faq-q" type="button" data-i18n="faq.gift.q">Is WOOF a good gift for a dog lover?</button></h3>
           <div class="faq-a"><div class="faq-a__inner">
-            <p>Absolutely. WOOF is designed around the relationship between dogs and their humans, making our accessories a lovely gift for dog lovers who appreciate fashion, lifestyle and thoughtful details.</p>
+            <div data-i18n="faq.gift.a"><p>Absolutely. WOOF is designed around the relationship between dogs and their humans, making our accessories a lovely gift for dog lovers who appreciate fashion, lifestyle and thoughtful details.</p></div>
           </div></div>
         </div>
-        <div class="faq-item">
-          <h3><button class="faq-q" type="button">Can I send a WOOF product as a gift?</button></h3>
+        <div class="faq-item" id="send-gift">
+          <h3><button class="faq-q" type="button" data-i18n="faq.send-gift.q">Can I send a WOOF product as a gift?</button></h3>
           <div class="faq-a"><div class="faq-a__inner">
-            <!-- À COMPLÉTER : options d'envoi cadeau -->
-            <p class="faq-pending">Gifting options will be confirmed when online ordering opens.</p>
+            <!-- À COMPLÉTER : texte provisoire, clé "faq.send-gift.a" dans js/i18n/en.js et fr.js -->
+            <div class="faq-pending" data-i18n="faq.send-gift.a"><p>Gifting options will be confirmed when online ordering opens.</p></div>
           </div></div>
         </div>
-        <div class="faq-item">
-          <h3><button class="faq-q" type="button">Does WOOF offer gift packaging?</button></h3>
+        <div class="faq-item" id="packaging">
+          <h3><button class="faq-q" type="button" data-i18n="faq.packaging.q">Does WOOF offer gift packaging?</button></h3>
           <div class="faq-a"><div class="faq-a__inner">
-            <!-- À COMPLÉTER : emballage cadeau -->
-            <p class="faq-pending">Packaging options will be confirmed when online ordering opens.</p>
+            <!-- À COMPLÉTER : texte provisoire, clé "faq.packaging.a" dans js/i18n/en.js et fr.js -->
+            <div class="faq-pending" data-i18n="faq.packaging.a"><p>Packaging options will be confirmed when online ordering opens.</p></div>
           </div></div>
         </div>
       </section>
-
-      <!-- ===== CONTACT ===== -->
-      <section class="faq-cat" id="contact-faq" aria-labelledby="h-contact">
-        <h2 class="faq-cat__title" id="h-contact"><span>x.</span> Contact</h2>
-        <div class="faq-item">
-          <h3><button class="faq-q" type="button">How can I contact WOOF?</button></h3>
+      <section class="faq-cat" id="contact-faq" aria-labelledby="h-contact-faq">
+        <h2 class="faq-cat__title" id="h-contact-faq"><span>x.</span> <span data-i18n="faq.cat.contact-faq">Contact</span></h2>
+        <div class="faq-item" id="contact-how">
+          <h3><button class="faq-q" type="button" data-i18n="faq.contact-how.q">How can I contact WOOF?</button></h3>
           <div class="faq-a"><div class="faq-a__inner">
-            <!-- À COMPLÉTER : ajouter l'adresse e-mail du service client quand elle existe -->
-            <p>You’ll find all our contact details on our <a href="contact.html">contact page</a>. You can also send us a message on Instagram at <a href="https://www.instagram.com/woof_clubb/" target="_blank" rel="noopener">@woof_clubb</a>.</p>
+            <div data-i18n="faq.contact-how.a"><p>You’ll find all our contact details on our <a href="contact.html">contact page</a>. You can also send us a message on Instagram at <a href="https://www.instagram.com/woof_clubb/" target="_blank" rel="noopener">@woof_clubb</a>.</p></div>
           </div></div>
         </div>
-        <div class="faq-item">
-          <h3><button class="faq-q" type="button">I have a question that isn’t answered here. What should I do?</button></h3>
+        <div class="faq-item" id="other">
+          <h3><button class="faq-q" type="button" data-i18n="faq.other.q">I have a question that isn’t answered here. What should I do?</button></h3>
           <div class="faq-a"><div class="faq-a__inner">
-            <p>We’d love to hear from you — please get in touch through our <a href="contact.html">contact page</a>.</p>
+            <div data-i18n="faq.other.a"><p>We’d love to hear from you — please get in touch through our <a href="contact.html">contact page</a>.</p></div>
           </div></div>
         </div>
       </section>
@@ -477,9 +427,9 @@
       <div class="container">
         <div class="faq-cta">
           <svg class="icon icon--bow" aria-hidden="true"><use href="#i-bow"/></svg>
-          <h2 class="faq-cta__title">Still have a question?</h2>
-          <p class="eyebrow">We’d love to hear from you.</p>
-          <a class="btn btn--light" href="contact.html">Contact us</a>
+          <h2 class="faq-cta__title" data-i18n="faq.cta.title">Still have a question?</h2>
+          <p class="eyebrow" data-i18n="faq.cta.text">We’d love to hear from you.</p>
+          <a class="btn btn--light" href="contact.html" data-i18n="faq.cta.btn">Contact us</a>
         </div>
       </div>
     </section>
@@ -490,58 +440,85 @@
     <div class="container">
       <div class="footer-top">
         <div class="footer-brand">
-          <a class="logo" href="index.html" aria-label="WOOF — home">WO<svg class="logo__paw" aria-hidden="true"><use href="#i-paw"/></svg>F</a>
-          <span class="script">Good dogs, good people.</span>
-          <p>Dog collars and their matching pieces — for them, for you, for us. Imagined between café terraces and long walks in the park.</p>
+          <a class="logo" href="index.html" aria-label="WOOF — home">WO<svg class="logo__paw" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><g fill="currentColor"><ellipse cx="9" cy="13" rx="2.6" ry="3.3" transform="rotate(-18 9 13)"/><ellipse cx="13.6" cy="8.4" rx="2.6" ry="3.4" transform="rotate(-6 13.6 8.4)"/><ellipse cx="18.4" cy="8.4" rx="2.6" ry="3.4" transform="rotate(6 18.4 8.4)"/><ellipse cx="23" cy="13" rx="2.6" ry="3.3" transform="rotate(18 23 13)"/><path d="M16 14.5c-3.6 0-7 4.6-7 7.6 0 2.2 1.8 3.2 3.6 3.2 1.4 0 2.3-.8 3.4-.8s2 .8 3.4.8c1.8 0 3.6-1 3.6-3.2 0-3-3.4-7.6-7-7.6z"/></g></svg><span class="visually-hidden">O</span>F</a>
+          <span class="script" data-i18n="footer.script">Good dogs, good people.</span>
+          <p data-i18n="footer.text">Dog collars and their matching pieces — for them, for you, for us. Imagined between café terraces and long walks in the park.</p>
+          <!-- Formulaire compact de liste d'attente -->
+          <div class="footer-wl">
+            <p class="footer-wl__title" data-i18n="footer.wl.title">Join the waitlist</p>
+            <p class="footer-wl__text" data-i18n="footer.wl.text">Priority access at launch.</p>
+            <!-- ===== FORMULAIRE LISTE D'ATTENTE (envoi : WAITLIST_ENDPOINT dans js/config.js) ===== -->
+            <form class="wl-form wl-form--compact" data-waitlist novalidate>
+              <div class="wl-fields">
+                <label class="wl-field">
+                  <span class="wl-label"><span data-i18n="form.firstname">First name</span> <small data-i18n="form.optional">(optional)</small></span>
+                  <input type="text" name="first_name" autocomplete="given-name" maxlength="60" placeholder="Your first name" data-i18n-attr="placeholder:form.firstname.ph">
+                </label>
+                <label class="wl-field">
+                  <span class="wl-label"><span data-i18n="form.email">Email</span> <small data-i18n="form.required">(required)</small></span>
+                  <input type="email" name="email" required autocomplete="email" maxlength="120" placeholder="your@email.com" data-i18n-attr="placeholder:form.email.ph">
+                </label>
+              </div>
+              <!-- Piège anti-spam (honeypot) : invisible pour les visiteurs, ne pas supprimer -->
+              <div class="wl-hp" aria-hidden="true">
+                <label><span data-i18n="form.hp">Leave this field empty</span><input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label>
+              </div>
+              <label class="wl-consent">
+                <input type="checkbox" name="consent" value="yes" required>
+                <span data-i18n="form.consent">I agree to receive emails from WOOF and have read the <a href="privacy-policy.html">privacy policy</a>.</span>
+              </label>
+              <button class="btn wl-submit" type="submit" data-i18n="form.submit">Join the waitlist</button>
+              <p class="wl-msg" data-wl-msg role="status" aria-live="polite"></p>
+            </form>
+          </div>
         </div>
         <div class="footer-cols">
           <div class="footer-col">
-            <h3>Collections</h3>
+            <h3 data-i18n="footer.col.collections">Collections</h3>
             <!-- Liste remplie automatiquement depuis js/products.js -->
             <ul data-collection-links="shop">
-              <li><a href="index.html#collections">Collections</a></li>
+              <li><a href="index.html#collections" data-i18n="nav.collections">Collections</a></li>
             </ul>
           </div>
           <div class="footer-col">
-            <h3>WOOF</h3>
+            <h3 data-i18n="footer.col.woof">WOOF</h3>
             <ul>
-              <li><a href="about.html">About us</a></li>
-              <li><a href="contact.html">Contact</a></li>
-              <li><a href="faq.html">FAQ</a></li>
-              <li><a href="faq.html#shipping">Delivery &amp; returns</a></li>
+              <li><a href="about.html" data-i18n="nav.about">About us</a></li>
+              <li><a href="faq.html" data-i18n="nav.faq">FAQ</a></li>
+              <li><a href="faq.html#shipping" data-i18n="footer.delivery">Delivery & returns</a></li>
+              <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
             </ul>
           </div>
           <div class="footer-col">
-            <h3>Shop</h3>
+            <h3 data-i18n="footer.col.shop">Shop</h3>
             <ul>
-              <li><a href="shop.html?filter=collar">Dog collars</a></li>
-              <li><a href="shop.html?filter=scrunchie">Scrunchies</a></li>
-              <li><a href="shop.html?filter=for-you">For you</a></li>
-              <li><a href="shop.html?filter=for-dog">For your dog</a></li>
+              <li><a href="shop.html?filter=collar" data-i18n="nav.dogcollars">Dog collars</a></li>
+              <li><a href="shop.html?filter=scrunchie" data-i18n="nav.scrunchies">Scrunchies</a></li>
+              <li><a href="shop.html?filter=for-you" data-i18n="nav.foryou">For you</a></li>
+              <li><a href="shop.html?filter=for-dog" data-i18n="nav.fordog">For your dog</a></li>
             </ul>
           </div>
           <div class="footer-col">
-            <h3>Follow</h3>
+            <h3 data-i18n="footer.col.follow">Follow</h3>
             <div class="socials">
               <a href="https://www.instagram.com/woof_clubb/" target="_blank" rel="noopener" aria-label="WOOF on Instagram (@woof_clubb)"><svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg></a>
             </div>
+            <p class="footer-lang"><span data-i18n="lang.label">Language</span></p>
+            <div class="lang-switch" data-lang-switch></div>
           </div>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© <span data-year>2026</span> WOOF — Paris</p>
+        <p>© <span data-year>2026</span> WOOF</p>
         <ul>
-          <li><a href="coming-soon.html?p=legal">Legal notice</a></li>
-          <li><a href="coming-soon.html?p=privacy">Privacy</a></li>
-          <li><a href="coming-soon.html?p=terms">Terms of sale</a></li>
+          <li><a href="legal-notice.html" data-i18n="footer.legal">Legal notice</a></li>
+          <li><a href="privacy-policy.html" data-i18n="footer.privacy">Privacy policy</a></li>
+          <li><a href="terms-of-sale.html" data-i18n="footer.terms">Terms of sale</a></li>
+          <li><a href="cookies.html" data-i18n="footer.cookies">Cookie policy</a></li>
         </ul>
       </div>
     </div>
   </footer>
-
-  <div class="toast" id="toast" role="status" aria-live="polite">
-    <svg class="icon" aria-hidden="true"><use href="#i-paw"/></svg><span data-toast-text></span>
-  </div>
 
   <script src="js/products.js"></script>
   <script src="js/reviews.js"></script>

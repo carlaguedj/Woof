@@ -11,6 +11,9 @@ Site en ligne : https://carlaguedj.github.io/Woof/
 | `shop.html` | Boutique : par catégorie, « for you / for your dog » et par collection |
 | `product.html` | Fiche produit (une seule page qui affiche le produit choisi) |
 | `about.html` | About us |
+| `js/config.js` | **Réglages** : adresse de la liste d'attente (`WAITLIST_ENDPOINT`) et langues |
+| `js/i18n/en.js`, `js/i18n/fr.js` | **Tous les textes** du site, en anglais et en français |
+| `legal-notice.html`, `privacy-policy.html`, `terms-of-sale.html`, `cookies.html` | Pages légales (brouillons à compléter) |
 | `faq.html` | FAQ (réponses à compléter : cherchez « À COMPLÉTER ») |
 | `js/reviews.js` | Avis clients et note de l'accueil (exemples pour l'instant) |
 | `contact.html` | Contact (adresses e-mail à compléter) |
@@ -85,3 +88,26 @@ et indiquez la note réelle (ex. `rating: "4.8"`). Tant que `rating` vaut `null`
 Dans `faq.html`. Les réponses en italique marquées `À COMPLÉTER` dans le code attendent vos informations
 (pays et délais de livraison, retours, échanges, annulation, suivi, entretien, emballage cadeau).
 Les tailles, les collections et les matières sont reprises automatiquement de `js/products.js`.
+
+## Langues (EN | FR)
+
+- Les textes sont dans `js/i18n/en.js` (anglais) et `js/i18n/fr.js` (français) : même clé à gauche, texte à droite.
+  Ne changez que le texte, jamais la clé.
+- Le site choisit la langue du navigateur (anglais si elle n'existe pas), et retient le choix fait avec EN | FR.
+- **Ajouter une langue** (ex. italien) : copiez `js/i18n/en.js` en `js/i18n/it.js`, remplacez `register("en"` par
+  `register("it"`, traduisez les textes, puis ajoutez `it: "IT",` dans `WOOF_LANGUAGES` (fichier `js/config.js`).
+- Pas encore traduits : les descriptions de produits (`js/products.js`) et le corps des pages Shop, fiche produit,
+  About us et Contact (le menu et le pied de page sont traduits).
+
+## Liste d'attente
+
+Formulaires sur l'accueil (`#waitlist`), dans le pied de page et sur chaque fiche produit.
+Ils envoient à l'adresse `WAITLIST_ENDPOINT` de `js/config.js`. Tant qu'elle vaut `REMPLACER_PAR_MON_URL`,
+rien n'est envoyé et un petit message « Mode test » s'affiche.
+Données envoyées : email, prénom, consentement, langue, page, et produit + taille depuis une fiche produit.
+Le champ caché `_gotcha` sert de piège anti-spam (compatible Formspree).
+
+## Pages légales
+
+Brouillons : chaque `[À COMPLÉTER]` est à remplacer dans `js/i18n/en.js` et `js/i18n/fr.js` (clés `legal.…`).
+Une fois la page complétée et relue, supprimez dans le fichier `.html` le bloc `<aside class="legal-draft">`.
