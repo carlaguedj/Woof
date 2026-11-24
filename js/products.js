@@ -250,7 +250,9 @@ window.WOOF_PRODUCTS = [
     ],
     sizes: ["S", "M"],
     images: [
-      { src: "images/rodeo-kid-collier-1.jpg", alt: "Red paisley bandana dog collar with a gold Woof medallion" }
+      { src: "images/rodeo-kid-collier-1.jpg", alt: "Rodeo Kid bandana collar in burgundy paisley with golden buckle, on cream linen" },
+      { src: "images/rodeo-kid-collier-2.jpg", alt: "Close-up of the Rodeo Kid bandana collar: golden buckle and D-rings" },
+      { src: "images/rodeo-kid-collier-3.jpg", alt: "Cavalier King Charles spaniel wearing the Rodeo Kid bandana collar" }
     ]
   },
   {
@@ -268,7 +270,8 @@ window.WOOF_PRODUCTS = [
     ],
     sizes: [],                         // [] = one size
     images: [
-      { src: "images/rodeo-kid-scrunchie-1.jpg", alt: "Red paisley scrunchie with a gold Woof charm" }
+      { src: "images/rodeo-kid-scrunchie-1.jpg", alt: "Rodeo Kid burgundy paisley scrunchie worn on the wrist with a cream sweater" },
+      { src: "images/rodeo-kid-scrunchie-2.jpg", alt: "Close-up of the Rodeo Kid scrunchie on a wrist" }
     ]
   },
 
