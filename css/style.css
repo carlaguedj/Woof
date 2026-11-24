@@ -1184,3 +1184,29 @@ html.i18n-pending body { visibility: hidden; }
 .legal-list { margin: 0 0 14px; }
 .legal-list li { position: relative; padding-left: 18px; margin-bottom: 4px; }
 .legal-list li::before { content: ""; position: absolute; left: 0; top: .9em; width: 9px; height: 1px; background: var(--gold); }
+
+/* ==========================================================================
+   Accueil — bande Instagram (compacte)
+   ========================================================================== */
+.insta-strip { padding: 8px 0 64px; }
+.insta-strip__head { display: flex; align-items: baseline; gap: 6px 16px; flex-wrap: wrap; margin-bottom: 16px; }
+.insta-strip__head .eyebrow { color: var(--camel); width: 100%; }
+.insta-strip__title { font-size: clamp(1.6rem, 5vw, 2.1rem); }
+.insta-strip__title a:hover { opacity: .8; }
+.insta-strip__head .link-arrow { margin-left: auto; }
+.insta-strip__grid {
+  display: grid; grid-auto-flow: column; grid-auto-columns: 38%; gap: 8px;
+  overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+  margin-right: calc(var(--gutter) * -1); padding-right: var(--gutter);
+}
+.insta-strip__grid::-webkit-scrollbar { display: none; }
+.insta-strip__grid li { scroll-snap-align: start; }
+.insta-strip__grid a { display: block; position: relative; overflow: hidden; border-radius: 3px; aspect-ratio: 1; background: var(--ivory-deep); }
+.insta-strip__grid img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s var(--ease); }
+.insta-strip__grid a::after { content: ""; position: absolute; inset: 0; background: rgba(125, 16, 28, 0); transition: background-color .4s var(--ease); }
+.insta-strip__grid a:hover img { transform: scale(1.04); }
+.insta-strip__grid a:hover::after { background: rgba(125, 16, 28, .15); }
+@media (min-width: 768px) {
+  .insta-strip__grid { grid-auto-flow: row; grid-template-columns: repeat(5, 1fr); overflow: visible; margin-right: 0; padding-right: 0; gap: 10px; }
+  .insta-strip { padding-bottom: 80px; }
+}
