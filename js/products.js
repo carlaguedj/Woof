@@ -36,7 +36,7 @@ window.WOOF_COLLECTIONS = [
     status: "coming-soon",
     setPrice: "€45",
     image: "images/couverture-park-avenue-girl.jpg",
-    alt: "WOOF magazine cover: Park Avenue Girl, tweed collection — a cocker spaniel wearing a tweed collar"
+    alt: "WOOF magazine cover: Park Avenue Girl, tweed collection — a cocker spaniel wearing a cream tweed collar checked in black and burgundy, with golden buckle"
   },
   {
     id: "denim-club",
