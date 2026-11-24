@@ -81,7 +81,7 @@ window.WOOF_SIZES = {
 window.WOOF_TAGLINE = "Little details. Big personality.";
 
 /* ---------- LES PRODUITS ----------
-   type : "collar" (collier) ou "scrunchie"
+   type : "collar" (collier), "scrunchie" ou "bracelet"
    collection : l'identifiant d'une collection ci-dessus
    images : la 1re photo est celle des vignettes ; ajoutez-en autant que vous voulez */
 window.WOOF_PRODUCTS = [
@@ -286,34 +286,35 @@ window.WOOF_PRODUCTS = [
     description: "For the dog who knows exactly what they deserve. **The Spoiled One** combines rich black leather with bold golden chain links for a look that is confident, polished and unapologetically glamorous. Statement-making without being loud, it was designed for the little one who is, quite simply, spoiled — and proud of it.",
     details: [
       "Rich black leather woven with golden chain links",
-      "Adjustable buckle",
-      "Golden O-ring for a leash",
-      "Engraved Woof medallion",
+      "Golden buckle, adjustable fit",
       "Size S: 2.0 cm wide, 28–43 cm adjustable length",
       "Size M: 2.5 cm wide, 38–56 cm adjustable length",
       "Designed in France"
     ],
     sizes: ["S", "M"],
     images: [
-      { src: "images/the-spoiled-one-collier-1.jpg", alt: "Gold chain and black leather dog collar with Woof medallion" }
+      { src: "images/the-spoiled-one-collier-1.jpg", alt: "The Spoiled One collar: black leather woven with golden chain links, golden buckle" },
+      { src: "images/the-spoiled-one-collier-2.jpg", alt: "Close-up of the golden chain links and black leather of The Spoiled One collar" },
+      { src: "images/the-spoiled-one-collier-3.jpg", alt: "Cocker spaniel wearing The Spoiled One chain collar in a Parisian street" }
     ]
   },
   {
-    id: "the-spoiled-one-scrunchie",
-    name: "The Spoiled One Scrunchie",
+    id: "the-spoiled-one-bracelet",
+    name: "The Spoiled One Bracelet",
     collection: "the-spoiled-one",
-    type: "scrunchie",
+    type: "bracelet",
     price: "",
     short: "A little gold, a little attitude.",
-    description: "A little gold, a little attitude. **The Spoiled One** scrunchie brings the spirit of the collection into your own look with an elegant black finish and a bold, fashion-forward feel. The perfect accessory for the human who knows their dog is the best-dressed one in the room.",
+    description: "A little gold, a little attitude. **The Spoiled One** bracelet brings the spirit of the collection into your own look with an elegant black finish and a bold, fashion-forward feel. The perfect accessory for the human who knows their dog is the best-dressed one in the room.",
     details: [
-      "Elegant black finish",
-      "Gentle elastic, holds without pulling",
+      "Black leather woven with golden chain links",
+      "Adjustable extension chain",
       "One size"
     ],
     sizes: [],                         // [] = one size
     images: [
-      { src: "images/the-spoiled-one-scrunchie-1.jpg", alt: "The Spoiled One scrunchie — photo coming soon" }
+      { src: "images/the-spoiled-one-bracelet-1.jpg", alt: "The Spoiled One bracelet: golden chain woven with black leather, adjustable extension chain" },
+      { src: "images/the-spoiled-one-bracelet-2.jpg", alt: "The Spoiled One bracelet worn on the wrist with a black tweed jacket" }
     ]
   }
 

@@ -309,7 +309,7 @@
       all: { eyebrow: "WOOF collection", title: "All pieces", intro: window.WOOF_TAGLINE || "Little details. Big personality." },
       collar: { eyebrow: "By category", title: "Dog collars", intro: "Every collar has its match." },
       scrunchie: { eyebrow: "By category", title: "Scrunchies", intro: "Cut from the same fabrics as our dog collars." },
-      "for-you": { eyebrow: "For who?", title: "For you", intro: "Scrunchies made to match your dog." },
+      "for-you": { eyebrow: "For who?", title: "For you", intro: "Scrunchies and bracelets, made to match your dog." },
       "for-dog": { eyebrow: "For who?", title: "For your dog", intro: "Collars for good dogs — tweed, denim, velvet, bandana and gold chain." }
     };
     COLLECTIONS.forEach(function (c) {
