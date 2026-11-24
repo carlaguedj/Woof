@@ -106,11 +106,9 @@ window.WOOF_PRODUCTS = [
     ],
     sizes: ["S", "M"],
     images: [
-      { src: "images/the-diva-collier-1.jpg", alt: "Ruched burgundy velvet dog collar with Woof medallion" },
-      { src: "images/the-diva-detail-boucle.jpg", alt: "Gold-tone buckle engraved WOOF on velvet" },
-      { src: "images/the-diva-detail-velours.jpg", alt: "Close-up of the burgundy velvet" },
-      { src: "images/the-diva-detail-medaille.jpg", alt: "Gold-tone Woof medallion" },
-      { src: "images/the-diva-detail-attache.jpg", alt: "Gold-tone adjuster on the velvet collar" }
+      { src: "images/the-diva-collier-1.jpg", alt: "The Diva collar in ruched burgundy velvet with golden hardware" },
+      { src: "images/the-diva-collier-2.jpg", alt: "Close-up of The Diva velvet collar and its golden D-ring" },
+      { src: "images/the-diva-collier-3.jpg", alt: "Whippet wearing The Diva burgundy velvet collar on a café terrace" }
     ]
   },
   {
@@ -128,8 +126,8 @@ window.WOOF_PRODUCTS = [
     ],
     sizes: [],                         // [] = one size
     images: [
-      { src: "images/the-diva-scrunchie-1.jpg", alt: "Burgundy velvet scrunchie" },
-      { src: "images/the-diva-scrunchie-2.jpg", alt: "Velvet scrunchie worn in a bun" }
+      { src: "images/the-diva-scrunchie-1.jpg", alt: "The Diva scrunchie in burgundy velvet" },
+      { src: "images/the-diva-scrunchie-2.jpg", alt: "The Diva velvet scrunchie worn on the wrist on a café terrace" }
     ]
   },
 
