@@ -9,8 +9,8 @@
    - [À COMPLÉTER] = information à fournir (pages légales, FAQ).
    ========================================================================== */
 WOOF_I18N.register("en", {
-  "page.index.title": "WOOF — French accessories for dogs and their humans",
-  "page.index.desc": "WOOF designs dog collars and matching scrunchies: The Diva, Park Avenue Girl, Denim Club, Rodeo Kid and The Spoiled One. Coming soon — join the waitlist.",
+  "page.index.title": "WOOF — French Accessories for Dogs & Their Humans",
+  "page.index.desc": "WOOF creates French fashion-inspired accessories for dogs and their humans, designed to celebrate the bond between them. Discover collars, matching accessories and timeless pieces made for everyday moments together.",
   "page.shop.title": "Shop — WOOF",
   "page.shop.desc": "Discover WOOF by category, for you or for your dog, or by collection.",
   "page.product.title": "WOOF — Dog collars & matching scrunchies",

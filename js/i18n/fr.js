@@ -8,7 +8,7 @@
    ========================================================================== */
 WOOF_I18N.register("fr", {
   "page.index.title": "WOOF — Accessoires français pour les chiens et leurs humains",
-  "page.index.desc": "WOOF crée des colliers pour chien et leurs chouchous assortis : The Diva, Park Avenue Girl, Denim Club, Rodeo Kid et The Spoiled One. Bientôt disponible — rejoignez la liste d'attente.",
+  "page.index.desc": "WOOF crée des accessoires inspirés de la mode française pour les chiens et leurs humains, pensés pour célébrer le lien qui les unit. Découvrez des colliers, des accessoires assortis et des pièces intemporelles pour tous les moments partagés au quotidien.",
   "page.shop.title": "Boutique — WOOF",
   "page.shop.desc": "Découvrez WOOF par catégorie, pour vous ou pour votre chien, ou par collection.",
   "page.product.title": "WOOF — Colliers pour chien et chouchous assortis",
