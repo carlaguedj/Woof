@@ -198,11 +198,9 @@ window.WOOF_PRODUCTS = [
     ],
     sizes: ["S", "M"],
     images: [
-      { src: "images/denim-club-collier-1.jpg", alt: "Navy denim dog collar with gold buckle and Woof medallion" },
-      { src: "images/denim-club-detail-boucle.jpg", alt: "Gold-tone buckle engraved WOOF on denim" },
-      { src: "images/denim-club-detail-denim.jpg", alt: "Close-up of the navy denim and gold stitching" },
-      { src: "images/denim-club-detail-medaille.jpg", alt: "Gold-tone Woof medallion" },
-      { src: "images/denim-club-detail-attache.jpg", alt: "Gold-tone adjuster on the denim collar" }
+      { src: "images/denim-club-collier-1.jpg", alt: "Denim Club collar in navy denim with golden stitching, golden buckle and D-ring" },
+      { src: "images/denim-club-collier-2.jpg", alt: "Close-up of the Denim Club collar and its golden buckle" },
+      { src: "images/denim-club-collier-3.jpg", alt: "Shiba Inu wearing the Denim Club collar on a café terrace" }
     ]
   },
   {
@@ -220,9 +218,8 @@ window.WOOF_PRODUCTS = [
     ],
     sizes: [],                         // [] = one size
     images: [
-      { src: "images/denim-club-scrunchie-1.jpg", alt: "Navy denim scrunchie with a gold Woof charm" },
-      { src: "images/denim-club-scrunchie-2.jpg", alt: "Gold Woof charm on the denim scrunchie" },
-      { src: "images/denim-club-scrunchie-3.jpg", alt: "Close-up of the denim fabric" }
+      { src: "images/denim-club-scrunchie-1.jpg", alt: "Denim Club scrunchie in navy denim with golden stitching" },
+      { src: "images/denim-club-scrunchie-2.jpg", alt: "Denim Club scrunchie worn on the wrist on a café terrace" }
     ]
   },
 
