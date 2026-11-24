@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cherry Charm Collar — WOOF</title>
+  <meta name="description" content="The Cherry Charm Collar: soft cherry-red velvet with gold-tone charms, made to be matched with its bracelet. By WOOF.">
+  <meta name="theme-color" content="#F4E9D8">
+  <!-- Aperçu lors d'un partage sur les réseaux sociaux -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="WOOF">
+  <meta property="og:title" content="Cherry Charm Collar — WOOF">
+  <meta property="og:description" content="The Cherry Charm Collar: soft cherry-red velvet with gold-tone charms, made to be matched with its bracelet. By WOOF.">
+  <meta property="og:image" content="images/og-partage.jpg">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <!-- Polices Google : Cormorant Garamond (titres), Libre Baskerville (texte), Mrs Saint Delafield (manuscrit), Bodoni Moda (logo) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Libre+Baskerville:wght@400;700&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Bandeau d'annonce : modifiez le texte librement -->
+  <p class="announce">Free delivery in France from €80 <svg class="icon" aria-hidden="true"><use href="#i-paw"/></svg> Every order comes with a little charm</p>
+
+  <!-- ================= EN-TÊTE / NAVIGATION ================= -->
+  <header class="site-header">
+    <div class="header-inner">
+      <nav class="nav nav--left" aria-label="Main">
+        <button class="burger" type="button" data-menu-open aria-controls="mobile-menu" aria-expanded="false" aria-label="Open menu">
+          <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg>
+        </button>
+        <a class="nav__link" href="index.html#shop">Shop</a>
+        <a class="nav__link" href="about.html">About</a>
+        <a class="nav__link" href="coming-soon.html?p=collections">Collections</a>
+      </nav>
+
+      <a class="logo" href="index.html" aria-label="WOOF — home">WO<svg class="logo__paw" aria-hidden="true"><use href="#i-paw"/></svg>F</a>
+
+      <nav class="nav nav--right" aria-label="Account and bag">
+        <a class="nav__link" href="coming-soon.html?p=journal">Journal</a>
+        <a class="nav__link" href="coming-soon.html?p=account">Account</a>
+        <a class="nav__icon nav__icon--search" href="coming-soon.html?p=search" aria-label="Search">
+          <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
+        </a>
+        <a class="nav__icon nav__icon--account" href="coming-soon.html?p=account" aria-label="Account">
+          <svg class="icon" aria-hidden="true"><use href="#i-user"/></svg>
+        </a>
+        <button class="nav__icon" type="button" data-cart-open aria-label="Open bag">
+          <svg class="icon" aria-hidden="true"><use href="#i-bag"/></svg>
+          <span class="cart-count" data-cart-count>0</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Menu mobile plein écran (vert olive) -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true" role="dialog" aria-label="Menu">
+    <div class="mobile-menu__top">
+      <a class="logo" href="index.html" aria-label="WOOF — home">WO<svg class="logo__paw" aria-hidden="true"><use href="#i-paw"/></svg>F</a>
+      <button class="mobile-menu__close" type="button" data-menu-close aria-label="Close menu">
+        <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>
+      </button>
+    </div>
+    <ul class="mobile-menu__links">
+      <li><a href="index.html#shop">Shop <svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></a></li>
+      <li><a href="coming-soon.html?p=collections">Collections <svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></a></li>
+      <li><a href="about.html">About <svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></a></li>
+      <li><a href="coming-soon.html?p=journal">Journal <svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></a></li>
+      <li><a href="coming-soon.html?p=delivery">FAQ <svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></a></li>
+    </ul>
+    <div class="mobile-menu__art">
+      <span class="script">for good dogs</span>
+      <svg class="icon icon--bow" aria-hidden="true"><use href="#i-bow"/></svg>
+    </div>
+    <div class="mobile-menu__foot">
+      <a href="coming-soon.html?p=search">Search</a>
+      <a href="coming-soon.html?p=account">Account</a>
+      <button type="button" data-cart-open>Cart (<span data-cart-count-text>0</span>)</button>
+    </div>
+  </div>
+
+  <main id="main">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a><span>/</span><a href="index.html#shop">Dog collars</a><span>/</span>Cherry Charm Collar
+      </nav>
+
+      <!-- ================= FICHE PRODUIT (modèle) =================
+           Pour créer un nouveau produit : dupliquez ce fichier (ex. product-bandana.html),
+           puis changez le nom, le prix, les photos et les textes ci-dessous. -->
+      <section class="pdp" data-product>
+
+        <!-- Galerie photo : la grande image + les miniatures -->
+        <div class="gallery" data-gallery>
+          <div class="media gallery__main">
+            <img data-gallery-main data-product-image src="images/produit-cherry-charm-collar.jpg" alt="Cherry Charm Collar in burgundy worn by a poodle" width="900" height="1125">
+          </div>
+          <div class="gallery__thumbs">
+            <button type="button" data-gallery-thumb aria-current="true" aria-label="View photo 1"><img src="images/produit-cherry-charm-collar.jpg" alt="Cherry Charm Collar in burgundy worn by a poodle"></button>
+            <button type="button" data-gallery-thumb aria-current="false" aria-label="View photo 2"><img src="images/produit-cherry-charm-collar-2.jpg" alt="Cherry Charm Collar laid flat with its cherry charms" loading="lazy"></button>
+            <button type="button" data-gallery-thumb aria-current="false" aria-label="View photo 3"><img src="images/produit-cherry-charm-collar-3.jpg" alt="Detail of the gold-tone buckle" loading="lazy"></button>
+            <button type="button" data-gallery-thumb aria-current="false" aria-label="View photo 4"><img src="images/produit-cherry-charm-collar-4.jpg" alt="Collar worn, side view" loading="lazy"></button>
+            <button type="button" data-gallery-thumb aria-current="false" aria-label="View photo 5"><img src="images/produit-cherry-charm-collar-5.jpg" alt="Collar and matching bracelet in their pouch" loading="lazy"></button>
+          </div>
+        </div>
+
+        <!-- Informations -->
+        <div class="pdp__info">
+          <p class="eyebrow" style="color:var(--camel);margin-bottom:10px">The Cherry collection</p>
+          <h1 data-product-name>Cherry Charm Collar</h1>
+          <p class="pdp__price" data-product-price>€85</p>
+          <p class="pdp__intro">A soft velvet collar in cherry red, finished with gold-tone charms that catch the light on every walk. Made to be matched with its bracelet.</p>
+
+          <fieldset class="option">
+            <legend>Colour</legend>
+            <div class="swatches">
+              <label class="swatch" title="Cherry Red"><input type="radio" name="color" value="Cherry Red" checked><span style="background:#7D101C"></span><span class="visually-hidden">Cherry Red</span></label>
+              <label class="swatch" title="Olive"><input type="radio" name="color" value="Olive"><span style="background:#4F5738"></span><span class="visually-hidden">Olive</span></label>
+              <label class="swatch" title="Espresso"><input type="radio" name="color" value="Espresso"><span style="background:#4B3A2D"></span><span class="visually-hidden">Espresso</span></label>
+              <label class="swatch" title="Powder Pink"><input type="radio" name="color" value="Powder Pink"><span style="background:#D8A39A"></span><span class="visually-hidden">Powder Pink</span></label>
+              <label class="swatch" title="Cream"><input type="radio" name="color" value="Cream"><span style="background:#E9DAC1"></span><span class="visually-hidden">Cream</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="option">
+            <legend>Size</legend>
+            <div class="sizes">
+              <label class="size"><input type="radio" name="size" value="Size S"><span>S</span></label>
+              <label class="size"><input type="radio" name="size" value="Size M" checked><span>M</span></label>
+              <label class="size"><input type="radio" name="size" value="Size L"><span>L</span></label>
+            </div>
+            <a class="size-guide-link" href="#size-guide" onclick="document.getElementById('size-guide').open=true">Size guide</a>
+          </fieldset>
+
+          <!-- ===== SHOPIFY BUY BUTTON — Cherry Charm Collar =====
+               Le jour où Shopify est prêt : supprimez le <button> ci-dessous
+               (et si besoin les choix de couleur/taille au-dessus, que Shopify affiche lui-même)
+               puis collez à sa place le code « Buy Button » de ce produit. -->
+          <div class="shopify-slot" id="shopify-product">
+            <button class="btn btn--block" type="button" data-add-to-cart>Add to cart</button>
+          </div>
+          <!-- ===== FIN SHOPIFY ===== -->
+
+          <ul class="pdp__reassure">
+            <li><svg class="icon" aria-hidden="true"><use href="#i-truck"/></svg>Free delivery from €80</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-gift"/></svg>Gift charm in every order</li>
+          </ul>
+
+          <div class="accordion">
+            <details open>
+              <summary>Description <svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary>
+              <div><p>Our signature collar, imagined for long walks and café terraces. Soft cotton velvet on the outside, a supple lining on the inside, and three little charms — two cherries and a paw — that make it unmistakably WOOF.</p></div>
+            </details>
+            <details>
+              <summary>Details <svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary>
+              <div><p>Cotton velvet, gold-tone brass hardware, removable charms. Width 2 cm. Designed in Paris.</p></div>
+            </details>
+            <details id="size-guide">
+              <summary>Size guide <svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary>
+              <div>
+                <table>
+                  <tr><th>Size</th><th>Neck</th><th>For</th></tr>
+                  <tr><td>S</td><td>25 – 33 cm</td><td>Small dogs</td></tr>
+                  <tr><td>M</td><td>32 – 42 cm</td><td>Medium dogs</td></tr>
+                  <tr><td>L</td><td>40 – 52 cm</td><td>Large dogs</td></tr>
+                </table>
+              </div>
+            </details>
+            <details>
+              <summary>Care instructions <svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary>
+              <div><p>Remove charms, hand wash in cold water with a mild soap, lay flat to dry. Brush the velvet gently once dry.</p></div>
+            </details>
+            <details>
+              <summary>Delivery &amp; returns <svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary>
+              <div><p>Shipped within 2–3 working days in our signature pouch. Free delivery in France from €80. Returns accepted within 30 days.</p></div>
+            </details>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ================= COMPLETE THE LOOK ================= -->
+    <section class="section" aria-labelledby="look-title">
+      <div class="container">
+        <div class="shop-head">
+          <div>
+            <p class="eyebrow">For you, for them</p>
+            <h2 class="section-title" id="look-title">Complete the look</h2>
+          </div>
+          <a class="link-arrow" href="index.html#shop">All pieces <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+        <div class="product-grid">
+          <article class="product-card reveal" data-product>
+            <a href="product.html" class="media"><img data-product-image src="images/produit-cherry-charm-bracelet.jpg" alt="Gold-tone Cherry Charm bracelet worn on a wrist" loading="lazy" width="900" height="1125"><span class="product-card__tag">Matching</span></a>
+            <div class="product-card__info">
+              <h3 class="product-card__name"><a href="product.html" data-product-name>Cherry Charm Bracelet</a></h3>
+              <p class="product-card__price" data-product-price>€65</p>
+            </div>
+            <!-- ===== SHOPIFY BUY BUTTON — Cherry Charm Bracelet ===== -->
+            <div class="shopify-slot"><button class="btn btn--small" type="button" data-add-to-cart>Add to cart</button></div>
+            <!-- ===== FIN SHOPIFY ===== -->
+          </article>
+          <article class="product-card reveal" data-product>
+            <a href="product.html" class="media"><img data-product-image src="images/produit-silk-bow-scrunchie.jpg" alt="Ivory silk bow scrunchie" loading="lazy" width="900" height="1125"></a>
+            <div class="product-card__info">
+              <h3 class="product-card__name"><a href="product.html" data-product-name>Silk Bow Scrunchie</a></h3>
+              <p class="product-card__price" data-product-price>€29</p>
+            </div>
+            <!-- ===== SHOPIFY BUY BUTTON — Silk Bow Scrunchie ===== -->
+            <div class="shopify-slot"><button class="btn btn--small" type="button" data-add-to-cart>Add to cart</button></div>
+            <!-- ===== FIN SHOPIFY ===== -->
+          </article>
+          <article class="product-card reveal" data-product>
+            <a href="product.html" class="media"><img data-product-image src="images/produit-golden-bone-charm.jpg" alt="Gold-tone bone charm engraved with a W" loading="lazy" width="900" height="1125"></a>
+            <div class="product-card__info">
+              <h3 class="product-card__name"><a href="product.html" data-product-name>Golden Bone Charm</a></h3>
+              <p class="product-card__price" data-product-price>€35</p>
+            </div>
+            <!-- ===== SHOPIFY BUY BUTTON — Golden Bone Charm ===== -->
+            <div class="shopify-slot"><button class="btn btn--small" type="button" data-add-to-cart>Add to cart</button></div>
+            <!-- ===== FIN SHOPIFY ===== -->
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= PIED DE PAGE ================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a class="logo" href="index.html" aria-label="WOOF — home">WO<svg class="logo__paw" aria-hidden="true"><use href="#i-paw"/></svg>F</a>
+          <span class="script">Good dogs, good people.</span>
+          <p>Accessories for them and you — collars, bandanas, scrunchies and matching bracelets, imagined between café terraces and long walks in the park.</p>
+        </div>
+        <div class="footer-cols">
+          <div class="footer-col">
+            <h3>Shop</h3>
+            <ul>
+              <li><a href="index.html#shop">Dog collars</a></li>
+              <li><a href="index.html#shop">Bandanas</a></li>
+              <li><a href="index.html#shop">Scrunchies</a></li>
+              <li><a href="index.html#shop">Bracelets</a></li>
+              <li><a href="index.html#shop">Charms</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h3>WOOF</h3>
+            <ul>
+              <li><a href="about.html">Our story</a></li>
+              <li><a href="coming-soon.html?p=collections">Collections</a></li>
+              <li><a href="coming-soon.html?p=journal">Journal</a></li>
+              <li><a href="coming-soon.html?p=account">Account</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h3>Help</h3>
+            <ul>
+              <li><a href="coming-soon.html?p=delivery">Delivery &amp; returns</a></li>
+              <li><a href="coming-soon.html?p=sizes">Size guide</a></li>
+              <li><a href="coming-soon.html?p=care">Care guide</a></li>
+              <li><a href="coming-soon.html?p=contact">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h3>Follow</h3>
+            <!-- Remplacez les "#" par les adresses de vos comptes -->
+            <div class="socials">
+              <a href="#" aria-label="WOOF on Instagram"><svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg></a>
+              <a href="#" aria-label="WOOF on TikTok"><svg class="icon" aria-hidden="true"><use href="#i-tiktok"/></svg></a>
+              <a href="#" aria-label="WOOF on Pinterest"><svg class="icon" aria-hidden="true"><use href="#i-pinterest"/></svg></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© <span data-year>2026</span> WOOF — Paris</p>
+        <ul>
+          <li><a href="coming-soon.html?p=legal">Legal notice</a></li>
+          <li><a href="coming-soon.html?p=privacy">Privacy</a></li>
+          <li><a href="coming-soon.html?p=terms">Terms of sale</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= PANIER (factice, en attendant Shopify) ================= -->
+  <div class="cart-overlay" id="cart-overlay"></div>
+  <aside class="cart-drawer" id="cart-drawer" aria-hidden="true" aria-label="Your bag">
+    <div class="cart-drawer__head">
+      <h2>Your bag</h2>
+      <button class="round-btn" type="button" data-cart-close aria-label="Close bag"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
+    </div>
+    <div class="cart-drawer__body" data-cart-body></div>
+    <div class="cart-drawer__foot">
+      <div class="cart-total"><span>Subtotal</span><span data-cart-total>€0</span></div>
+      <p class="cart-drawer__note">Shipping calculated at checkout. Online checkout opens very soon.</p>
+      <!-- SHOPIFY : une fois Shopify branché, ce bouton sera remplacé par le panier Shopify. -->
+      <button class="btn btn--block" type="button" disabled aria-disabled="true" style="opacity:.75;cursor:not-allowed">Checkout — coming soon</button>
+    </div>
+  </aside>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <svg class="icon" aria-hidden="true"><use href="#i-paw"/></svg><span data-toast-text></span>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
