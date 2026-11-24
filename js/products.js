@@ -46,7 +46,7 @@ window.WOOF_COLLECTIONS = [
     status: "coming-soon",
     setPrice: "€39",
     image: "images/couverture-denim-club.jpg",
-    alt: "WOOF magazine cover: Denim Club — a curly dog wearing a denim collar"
+    alt: "WOOF magazine cover: Denim Club, the denim collection — a Shiba Inu wearing a navy denim collar with golden buckle"
   },
   {
     id: "rodeo-kid",
