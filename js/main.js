@@ -106,7 +106,21 @@
   /* ---------- 4b. Catalogue : affichage des collections et produits (données dans js/products.js) ---------- */
   var PRODUCTS = window.WOOF_PRODUCTS || [];
   var COLLECTIONS = window.WOOF_COLLECTIONS || [];
-  var TYPE_LABEL = { collar: "Dog collar", scrunchie: "Scrunchie", bracelet: "Bracelet" };
+  var TYPE_LABEL = { collar: t("label.collar", "Dog collar"), scrunchie: t("label.scrunchie", "Scrunchie"), bracelet: t("label.bracelet", "Bracelet") };
+  // Texte d'un produit ou d'une collection dans la langue affichée : bloc « fr: { … } » de js/products.js, sinon anglais
+  function tr(obj, field) {
+    var loc = obj && obj[I18N.lang];
+    return loc && loc[field] != null ? loc[field] : obj[field];
+  }
+  // Prix : « €34 » en anglais, « 34 € » en français
+  function money(s) {
+    if (!s || I18N.lang === "en") return s;
+    return String(s).replace(/^€\s?([\d.,]+)$/, function (_, n) { return n.replace(".", ",") + "\u00a0€"; });
+  }
+  function fabricOf(c) { return tr(c, "fabric") || ""; }
+  function collLabel(c) { return t("label.collection", "{fabric} collection").replace("{fabric}", fabricOf(c)); }
+  function fmt(key, fallback, vals) { var s = t(key, fallback); Object.keys(vals).forEach(function (k) { s = s.split("{" + k + "}").join(vals[k]); }); return s; }
+  function pairOf(c) { return productsOf(c).map(function (p) { return (TYPE_LABEL[p.type] || "").toLowerCase(); }).join(" + "); }
   var STATUS_LABEL = { "coming-soon": t("status.coming-soon", "Coming soon"), "released-soon": t("status.released-soon", "Released soon"), available: "" };
   function collectionOf(p) { return COLLECTIONS.filter(function (c) { return c.id === p.collection; })[0] || { name: "", fabric: "", status: "coming-soon" }; }
   function productsOf(c) {
@@ -120,7 +134,7 @@
     return STATUS_LABEL[st] || STATUS_LABEL["coming-soon"];
   }
   // Prix affiché (même pendant « Coming soon ») ; sinon le statut
-  function priceOf(p) { return p.price ? esc(p.price) : (statusOf(p) || ""); }
+  function priceOf(p) { return p.price ? esc(money(p.price)) : (statusOf(p) || ""); }
   // **gras** dans les descriptions
   function rich(text) { return esc(text).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>"); }
   function productUrl(p) { return "product.html?id=" + encodeURIComponent(p.id); }
@@ -129,16 +143,17 @@
   }
   function collectionUrl(c) { return "shop.html?filter=" + encodeURIComponent(c.id); }
 
+  function imgAlt(p, i) { var alts = tr(p, "alts"); return (alts && alts[i]) || ((p.images || [])[i] || {}).alt || ""; }
   function cardHTML(p) {
     var c = collectionOf(p), img = (p.images && p.images[0]) || { src: "", alt: "" }, st = statusOf(p);
     return (
       '<article class="product-card">' +
-      '<a href="' + productUrl(p) + '" class="media"><img src="' + esc(img.src) + '" alt="' + esc(img.alt) + '" loading="lazy">' +
+      '<a href="' + productUrl(p) + '" class="media"><img src="' + esc(img.src) + '" alt="' + esc(imgAlt(p, 0)) + '" loading="lazy">' +
       (st ? '<span class="product-card__tag">' + st + "</span>" : "") + "</a>" +
-      '<div class="product-card__info"><h3 class="product-card__name"><a href="' + productUrl(p) + '">' + esc(p.name) + "</a></h3>" +
+      '<div class="product-card__info"><h3 class="product-card__name"><a href="' + productUrl(p) + '">' + esc(tr(p, "name")) + "</a></h3>" +
       '<p class="product-card__price">' + priceOf(p) + "</p></div>" +
-      '<p class="product-card__meta">' + esc(TYPE_LABEL[p.type] || "") + " · " + esc(c.fabric) + "</p>" +
-      '<a class="btn btn--small btn--outline" href="' + productUrl(p) + (st ? '#notify">' + t("nav.waitlist", "Join the waitlist") : '">Discover') + "</a>" +
+      '<p class="product-card__meta">' + esc(TYPE_LABEL[p.type] || "") + " · " + esc(fabricOf(c)) + "</p>" +
+      '<a class="btn btn--small btn--outline" href="' + productUrl(p) + (st ? '#notify">' + t("nav.waitlist", "Join the waitlist") : '">' + t("label.discover", "Discover")) + "</a>" +
       "</article>"
     );
   }
@@ -150,13 +165,13 @@
       var st = STATUS_LABEL[c.status] || "";
       return (
         '<article class="coll' + (i % 2 ? " coll--reverse" : "") + '" id="' + esc(c.id) + '">' +
-        '<figure class="coll__cover"><img src="' + esc(c.image) + '" alt="' + esc(c.alt) + '" loading="lazy">' +
+        '<figure class="coll__cover"><img src="' + esc(c.image) + '" alt="' + esc(tr(c, "alt")) + '" loading="lazy">' +
         (st ? '<span class="coll__status">' + st + "</span>" : "") + "</figure>" +
         '<div class="coll__side"><div class="coll__head">' +
-        '<p class="eyebrow">' + esc(c.fabric) + " collection</p>" +
+        '<p class="eyebrow">' + esc(collLabel(c)) + "</p>" +
         '<h3 class="coll__name">' + esc(c.name) + "</h3>" +
         '<p class="coll__tagline">' + esc(c.tagline) + "</p>" +
-        (c.setPrice ? '<p class="coll__set">The set <span>collar + scrunchie</span> <strong>' + esc(c.setPrice) + "</strong></p>" : "") +
+        (c.setPrice ? '<p class="coll__set">' + t("label.set", "The set") + ' <span>' + esc(pairOf(c)) + '</span> <strong>' + esc(money(c.setPrice)) + "</strong></p>" : "") +
         "</div>" +
         '<div class="coll__products">' + productsOf(c).map(cardHTML).join("") + "</div></div>" +
         "</article>"
@@ -176,9 +191,9 @@
       var st = STATUS_LABEL[c.status] || "";
       return (
         '<li class="cat-card"><a href="' + collectionUrl(c) + '">' +
-        '<div class="media"><img src="' + esc(c.image) + '" alt="' + esc(c.alt) + '" loading="lazy">' +
+        '<div class="media"><img src="' + esc(c.image) + '" alt="' + esc(tr(c, "alt")) + '" loading="lazy">' +
         (c.status === "released-soon" ? '<span class="product-card__tag">' + st + "</span>" : "") + "</div>" +
-        '<span class="cat-card__label"><span>' + esc(c.name) + "<small>" + esc(t("collection." + c.id + ".tagline", c.tagline)) + "</small>" + (c.setPrice ? '<em class="cat-card__price">' + t("home.set", "Set") + " " + esc(c.setPrice) + "</em>" : (STATUS_LABEL[c.status] ? '<em class="cat-card__price">' + STATUS_LABEL[c.status] + "</em>" : "")) + '</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span></a></li>'
+        '<span class="cat-card__label"><span>' + esc(c.name) + "<small>" + esc(t("collection." + c.id + ".tagline", c.tagline)) + "</small>" + (c.setPrice ? '<em class="cat-card__price">' + t("home.set", "Set") + " " + esc(money(c.setPrice)) + "</em>" : (STATUS_LABEL[c.status] ? '<em class="cat-card__price">' + STATUS_LABEL[c.status] + "</em>" : "")) + '</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span></a></li>'
       );
     }).join("");
   }
@@ -201,10 +216,10 @@
       '<a class="spc__img" href="' + url + '" tabindex="-1" aria-hidden="true"><img src="' + esc(img.src) + '" alt="" loading="lazy"></a>' +
       '<div class="spc__body">' +
       '<p class="spc__type">' + esc(TYPE_LABEL[p.type] || "") + "</p>" +
-      '<h3 class="spc__name"><a href="' + url + '">' + esc(p.name) + "</a></h3>" +
-      '<p class="spc__short">' + esc(p.short || "") + "</p>" +
-      '<p class="spc__price">' + (p.price ? '<span class="spc__amount">' + esc(p.price) + "</span>" : "") + (st ? '<span class="badge-soon">' + st + "</span>" : "") + "</p>" +
-      '<a class="btn btn--small" href="' + url + (st ? '#notify">' + t("nav.waitlist", "Join the waitlist") : '">Discover') + "</a>" +
+      '<h3 class="spc__name"><a href="' + url + '">' + esc(tr(p, "name")) + "</a></h3>" +
+      '<p class="spc__short">' + esc(tr(p, "short") || "") + "</p>" +
+      '<p class="spc__price">' + (p.price ? '<span class="spc__amount">' + esc(money(p.price)) + "</span>" : "") + (st ? '<span class="badge-soon">' + st + "</span>" : "") + "</p>" +
+      '<a class="btn btn--small" href="' + url + (st ? '#notify">' + t("nav.waitlist", "Join the waitlist") : '">' + t("label.discover", "Discover")) + "</a>" +
       "</div></article>"
     );
   }
@@ -214,16 +229,16 @@
     return (
       '<section class="shop-coll" id="c-' + esc(c.id) + '" aria-label="' + esc(c.name) + '">' +
       "<" + tag + ' class="shop-coll__banner' + (asLink ? " is-link" : "") + '"' + href + ">" +
-      '<img src="' + esc(c.banner || c.image) + '" alt="' + esc(c.bannerAlt || c.alt) + '" style="object-position:' + esc(c.bannerFocus || "center") + '" loading="lazy">' +
+      '<img src="' + esc(c.banner || c.image) + '" alt="' + esc(tr(c, "bannerAlt") || tr(c, "alt")) + '" style="object-position:' + esc(c.bannerFocus || "center") + '" loading="lazy">' +
       '<span class="shop-coll__text">' +
-      '<span class="shop-coll__eyebrow">' + esc(c.fabric) + " collection</span>" +
+      '<span class="shop-coll__eyebrow">' + esc(collLabel(c)) + "</span>" +
       '<span class="shop-coll__name">' + esc(c.name) + "</span>" +
       '<span class="shop-coll__tagline">' + esc(t("collection." + c.id + ".tagline", c.tagline)) + "</span>" +
       (asLink ? '<span class="shop-coll__cta btn btn--olive btn--small">' + t("shop.discover", "Discover the collection") + ' <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span>' : "") +
       "</span>" +
       (st ? '<span class="shop-coll__status">' + st + "</span>" : "") +
       "</" + tag + ">" +
-      (c.setPrice ? '<p class="shop-coll__set">' + t("home.set", "Set") + " — " + productsOf(c).map(function (p) { return esc((TYPE_LABEL[p.type] || "").toLowerCase()); }).join(" + ") + " <strong>" + esc(c.setPrice) + "</strong></p>" : "") +
+      (c.setPrice ? '<p class="shop-coll__set">' + esc(fmt("label.setdash", "Set — {pieces}", { pieces: pairOf(c) })) + " <strong>" + esc(money(c.setPrice)) + "</strong></p>" : "") +
       '<div class="shop-coll__products">' + productsOf(c).map(shopProductHTML).join("") + "</div>" +
       "</section>"
     );
@@ -233,14 +248,14 @@
   var shopPage = $("[data-shop]");
   if (shopPage) {
     var FILTERS = {
-      all: { eyebrow: "Shop", title: "The collections", intro: window.WOOF_TAGLINE || "Little details. Big personality." },
-      collar: { eyebrow: "By category", title: "Dog collars", intro: "Every collar has its match." },
-      scrunchie: { eyebrow: "By category", title: "Scrunchies", intro: "Cut from the same fabrics as our dog collars." },
-      "for-you": { eyebrow: "For who?", title: "For you", intro: "Scrunchies and bracelets, made to match your dog." },
-      "for-dog": { eyebrow: "For who?", title: "For your dog", intro: "Collars for good dogs — tweed, denim, velvet, bandana and gold chain." }
+      all: { eyebrow: t("shop.eyebrow", "Shop"), title: t("shop.title", "The collections"), intro: t("home.col.tagline", window.WOOF_TAGLINE || "Little details. Big personality.") }
     };
+    ["collar", "scrunchie", "for-you", "for-dog"].forEach(function (f) {
+      FILTERS[f] = { eyebrow: t("shop.f." + f + ".eyebrow", ""), title: t("shop.f." + f + ".title", f), intro: t("shop.f." + f + ".intro", "") };
+    });
     COLLECTIONS.forEach(function (c) {
-      FILTERS[c.id] = { eyebrow: c.fabric + " collection", title: c.name, intro: c.tagline + (c.setPrice ? " — The set (collar + scrunchie): " + c.setPrice : "") };
+      FILTERS[c.id] = { eyebrow: collLabel(c), title: c.name, intro: t("collection." + c.id + ".tagline", c.tagline) +
+        (c.setPrice ? fmt("shop.setline", " — The set ({pieces}): {price}", { pieces: pairOf(c), price: money(c.setPrice) }) : "") };
     });
     var matches = function (p, f) {
       if (f === "all") return true;
@@ -280,13 +295,13 @@
         grid.className = "product-grid";
         grid.innerHTML = list.map(cardHTML).join("");
         countEl.hidden = false;
-        countEl.textContent = list.length + (list.length > 1 ? " pieces" : " piece");
+        countEl.textContent = fmt(list.length > 1 ? "label.pieces" : "label.piece", "{n} pieces", { n: list.length });
       }
       $$("[data-shop-filter]", shopPage).forEach(function (a) {
         if (a.getAttribute("data-shop-filter") === f) a.setAttribute("aria-current", "true");
         else a.removeAttribute("aria-current");
       });
-      document.title = (f === "all" ? "Shop" : info.title) + " — WOOF";
+      document.title = (f === "all" ? t("shop.eyebrow", "Shop") : info.title) + " — WOOF";
     };
     showShop(readFilter());
     shopPage.addEventListener("click", function (e) {
@@ -306,7 +321,7 @@
       var pair = productsOf(c).slice(0, 2);
       return (
         '<figure class="edit__slide" style="margin:0"><div class="edit__pair">' +
-        pair.map(function (p) { return '<a href="' + productUrl(p) + '"><img src="' + esc(p.images[0].src) + '" alt="' + esc(p.images[0].alt) + '" loading="lazy"></a>'; }).join("") +
+        pair.map(function (p) { return '<a href="' + productUrl(p) + '"><img src="' + esc(p.images[0].src) + '" alt="' + esc(imgAlt(p, 0)) + '" loading="lazy"></a>'; }).join("") +
         '</div><figcaption class="edit__caption"><h3>' + esc(c.name) + "</h3><p>" +
         pair.map(function (p) { return esc(TYPE_LABEL[p.type]); }).join(" + ") + "</p></figcaption></figure>"
       );
@@ -321,29 +336,29 @@
     var p = PRODUCTS.filter(function (x) { return x.id === pid; })[0] || PRODUCTS[0];
     var c = collectionOf(p), st = statusOf(p);
     var set = function (sel, html) { var el = $(sel, page); if (el) el.innerHTML = html; };
-    document.title = p.name + " — WOOF";
-    var md = $('meta[name="description"]'); if (md) md.setAttribute("content", p.short);
-    set("[data-p-crumb]", esc(p.name));
+    document.title = tr(p, "name") + " — WOOF";
+    var md = $('meta[name="description"]'); if (md) md.setAttribute("content", tr(p, "short"));
+    set("[data-p-crumb]", esc(tr(p, "name")));
     set("[data-p-crumb-type]", '<a href="shop.html?filter=' + encodeURIComponent(c.id) + '">' + esc(c.name) + "</a>");
-    set("[data-p-collection]", esc(c.name) + " collection · " + esc(c.fabric));
-    set("[data-p-name]", esc(p.name));
-    set("[data-p-price]", (p.price ? '<span class="pdp__amount">' + esc(p.price) + "</span>" : "") + (st ? '<span class="badge-soon">' + st + "</span>" : ""));
-    set("[data-p-set]", c.setPrice ? "Complete the set — collar + scrunchie for <strong>" + esc(c.setPrice) + "</strong>" : "");
-    set("[data-p-short]", esc(p.short));
-    set("[data-p-description]", "<p>" + rich(p.description) + "</p>");
-    set("[data-p-details]", '<ul class="dash-list">' + (p.details || []).map(function (d) { return "<li>" + esc(d) + "</li>"; }).join("") + "</ul>");
-    set("[data-p-wl-text]", esc(t("product.wl.text", "Join the waitlist to be the first to know when {name} is available.")).replace("{name}", "<strong>" + esc(p.name) + "</strong>"));
-    set("[data-p-status]", st || "Coming soon");
+    set("[data-p-collection]", esc(c.name) + " · " + esc(collLabel(c)));
+    set("[data-p-name]", esc(tr(p, "name")));
+    set("[data-p-price]", (p.price ? '<span class="pdp__amount">' + esc(money(p.price)) + "</span>" : "") + (st ? '<span class="badge-soon">' + st + "</span>" : ""));
+    set("[data-p-set]", c.setPrice ? fmt("product.completeset", "Complete the set — {pieces} for <strong>{price}</strong>", { pieces: esc(pairOf(c)), price: esc(money(c.setPrice)) }) : "");
+    set("[data-p-short]", esc(tr(p, "short")));
+    set("[data-p-description]", "<p>" + rich(tr(p, "description")) + "</p>");
+    set("[data-p-details]", '<ul class="dash-list">' + (tr(p, "details") || []).map(function (d) { return "<li>" + esc(d) + "</li>"; }).join("") + "</ul>");
+    set("[data-p-wl-text]", esc(t("product.wl.text", "Join the waitlist to be the first to know when {name} is available.")).replace("{name}", "<strong>" + esc(tr(p, "name")) + "</strong>"));
+    set("[data-p-status]", st || STATUS_LABEL["coming-soon"]);
     var hidden = $("[data-p-notify-field]", page);
     if (hidden) hidden.value = p.name;
     var sizeBox = $("[data-p-sizes]", page);
     if (sizeBox) {
       if (p.sizes && p.sizes.length) {
         var SZ = window.WOOF_SIZES || {};
-        sizeBox.innerHTML = '<legend>Size <span data-size-chosen></span></legend><div class="sizes sizes--big">' + p.sizes.map(function (s) {
+        sizeBox.innerHTML = '<legend>' + t("product.size", "Size") + ' <span data-size-chosen></span></legend><div class="sizes sizes--big">' + p.sizes.map(function (s) {
           var d = SZ[s] ? SZ[s].width + " × " + SZ[s].length : "";
           return '<label class="size"><input type="radio" name="size" value="Size ' + esc(s) + '" required><span><strong>' + esc(s) + "</strong>" + (d ? "<small>" + esc(d) + "</small>" : "") + "</span></label>";
-        }).join("") + '</div><a class="size-guide-link" href="#size-guide" data-open-size>Size guide</a>';
+        }).join("") + '</div><a class="size-guide-link" href="#size-guide" data-open-size>' + t("product.sizeguide", "Size guide") + "</a>";
         sizeBox.addEventListener("change", function () {
           var ch = $("input[name=size]:checked", sizeBox), lab = $("[data-size-chosen]", sizeBox);
           if (ch && lab) lab.textContent = "— " + ch.value.replace("Size ", "");
@@ -351,12 +366,12 @@
         });
         var guide = $("[data-size-table]", page);
         if (guide) {
-          guide.innerHTML = "<tr><th>Size</th><th>Width</th><th>Length (adjustable)</th></tr>" + p.sizes.map(function (s) {
+          guide.innerHTML = "<tr><th>" + t("product.size", "Size") + "</th><th>" + t("faq.sizes.width", "Width") + "</th><th>" + t("faq.sizes.length", "Length (adjustable)") + "</th></tr>" + p.sizes.map(function (s) {
             return SZ[s] ? "<tr><td>" + esc(s) + "</td><td>" + esc(SZ[s].width) + "</td><td>" + esc(SZ[s].length) + "</td></tr>" : "";
           }).join("");
         }
       } else {
-        sizeBox.innerHTML = '<legend>Size</legend><p class="option__note">One size — fits all.</p>';
+        sizeBox.innerHTML = "<legend>" + t("product.size", "Size") + '</legend><p class="option__note">' + t("product.onesize", "One size — fits all.") + "</p>";
       }
     }
     var sg = $("#size-guide", page);
@@ -366,11 +381,11 @@
     });
     var imgs = p.images || [];
     var mainImg = $("[data-gallery-main]", page);
-    if (mainImg && imgs[0]) { mainImg.src = imgs[0].src; mainImg.alt = imgs[0].alt; }
+    if (mainImg && imgs[0]) { mainImg.src = imgs[0].src; mainImg.alt = imgAlt(p, 0); }
     var thumbs = $("[data-gallery-thumbs]", page);
     if (thumbs) {
       thumbs.innerHTML = imgs.length > 1 ? imgs.map(function (im, i) {
-        return '<button type="button" data-gallery-thumb aria-current="' + (i === 0) + '" aria-label="View photo ' + (i + 1) + '"><img src="' + esc(im.src) + '" alt="' + esc(im.alt) + '" loading="lazy"></button>';
+        return '<button type="button" data-gallery-thumb aria-current="' + (i === 0) + '" aria-label="' + esc(fmt("label.viewphoto", "View photo {n}", { n: i + 1 })) + '"><img src="' + esc(im.src) + '" alt="' + esc(imgAlt(p, i)) + '" loading="lazy"></button>';
       }).join("") : "";
       if (imgs.length < 2) page.querySelector(".gallery").classList.add("gallery--single");
     }
@@ -492,9 +507,9 @@
       if (!text || text === "review." + (i + 1)) return "";
       return (
         '<li class="talk-card"><figure>' +
-        (r.stars ? starsHTML(r.stars) + '<span class="visually-hidden">' + r.stars + " out of 5</span>" : "") +
+        (r.stars ? starsHTML(r.stars) + '<span class="visually-hidden">' + esc(fmt("a11y.stars", "{n} out of 5", { n: r.stars })) + "</span>" : "") +
         "<blockquote><p>" + esc(text) + "</p></blockquote>" +
-        "<figcaption>— " + esc(r.name) + "</figcaption></figure></li>"
+        "<figcaption>" + esc(r.name) + "</figcaption></figure></li>"
       );
     }).join("");
     var revList = $("[data-reviews-list]", revBox);
@@ -607,12 +622,13 @@
   /* ---------- 8. Page « Coming soon » : titre selon le lien cliqué ---------- */
   var soonTitle = $("[data-soon-title]");
   if (soonTitle) {
-    var names = { journal: "The Journal", account: "Your account", collections: "Collections", search: "Search", contact: "Contact", legal: "Legal notice", privacy: "Privacy", terms: "Terms of sale", delivery: "Delivery & returns", care: "Care guide", sizes: "Size guide" };
+    var names = {};
+    ["journal", "account", "collections", "search", "contact", "legal", "privacy", "terms", "delivery", "care", "sizes"].forEach(function (k) { names[k] = t("soon.p." + k, k); });
     var key = "";
     try { key = new URLSearchParams(window.location.search).get("p") || ""; } catch (e) { key = ""; }
     if (names[key]) {
       soonTitle.textContent = names[key];
-      document.title = names[key] + " — Coming soon | WOOF";
+      document.title = names[key] + " — " + t("soon.eyebrow", "Coming soon") + " | WOOF";
     }
   }
 
