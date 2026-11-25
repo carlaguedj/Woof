@@ -219,7 +219,7 @@
       '<span class="shop-coll__eyebrow">' + esc(c.fabric) + " collection</span>" +
       '<span class="shop-coll__name">' + esc(c.name) + "</span>" +
       '<span class="shop-coll__tagline">' + esc(t("collection." + c.id + ".tagline", c.tagline)) + "</span>" +
-      (asLink ? '<span class="shop-coll__cta">' + t("shop.discover", "Discover the collection") + ' <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span>' : "") +
+      (asLink ? '<span class="shop-coll__cta btn btn--olive btn--small">' + t("shop.discover", "Discover the collection") + ' <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span>' : "") +
       "</span>" +
       (st ? '<span class="shop-coll__status">' + st + "</span>" : "") +
       "</" + tag + ">" +
