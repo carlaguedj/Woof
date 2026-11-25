@@ -584,93 +584,24 @@
     }
   }
 
-  /* ---------- 7d. Accueil : vidéo du hero + effet d'ouverture sur téléphone ----------
-     Réglages (zoom, point focal, longueur, courbe) : variables --intro-* en haut de css/style.css. */
+  /* ---------- 7d. Accueil : vidéo plein écran (lecture en continu) ---------- */
   var heroVideo = $("[data-hero-video]");
-  var reduceMQ = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)") : { matches: false };
-  if (heroVideo) {
-    if (reduceMQ.matches) {
-      heroVideo.parentNode.removeChild(heroVideo);   // « réduire les animations » : image fixe uniquement
-      heroVideo = null;
-    } else {
-      var tryPlay = function () { var pr = heroVideo.play(); if (pr && pr.catch) pr.catch(function () { /* lecture bloquée : l'image fixe reste affichée */ }); };
-      if ("IntersectionObserver" in window) {
-        new IntersectionObserver(function (entries) {
-          entries.forEach(function (en) { if (en.isIntersecting) tryPlay(); else heroVideo.pause(); });
-        }, { threshold: 0.05 }).observe(heroVideo);
-      } else tryPlay();
-    }
+  var announce = $(".announce");
+  if ($(".hero-full") && announce) {
+    var setAnnounce = function () { document.documentElement.style.setProperty("--announce-h", announce.offsetHeight + "px"); };
+    setAnnounce();
+    window.addEventListener("resize", setAnnounce, { passive: true });
   }
-
-  var intro = $("[data-intro]");
-  if (intro && window.matchMedia) {
-    var stage = $(".hero__stage", intro), media = $("[data-intro-media]", intro), card = $("[data-intro-card]", intro);
-    var root = document.documentElement;
-    var mobileMQ = window.matchMedia("(max-width: 767px)");
-    var on = false, ticking = false, dist = 1, headerH = 64, ease = function (x) { return x; };
-    var EASES = {
-      linear: function (x) { return x; },
-      out: function (x) { return 1 - Math.pow(1 - x, 3); },
-      "in-out": function (x) { return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; }
-    };
-    var clamp = function (v) { return v < 0 ? 0 : v > 1 ? 1 : v; };
-    var css = function (name) { return getComputedStyle(root).getPropertyValue(name).trim(); };
-
-    var layout = function () {   // calculs une seule fois (au chargement et au redimensionnement)
-      var W = stage.clientWidth, H = stage.clientHeight, h = W * 9 / 16;
-      var cardH = card.offsetHeight;
-      var zmax = parseFloat(css("--intro-zoom")) || 2.4;
-      var fy = (parseFloat(css("--intro-focus-y")) || 40) / 100;
-      var s0 = Math.max(1, Math.min(zmax, H / h));          // couvre l'écran, sans dépasser le zoom maximum
-      var top = Math.max(0, (H - h - cardH) / 2);            // position finale : vidéo + titre centrés
-      var ty = fy * h * (s0 - 1) - top;                      // au départ, la vidéo zoomée touche le haut
-      intro.style.setProperty("--intro-h", h + "px");
-      intro.style.setProperty("--intro-top", top + "px");
-      intro.style.setProperty("--intro-ty", ty + "px");
-      intro.style.setProperty("--intro-s0", s0);
-      headerH = parseFloat(getComputedStyle(stage).top) || 64;          // hauteur de l'en-tête collant
-      dist = Math.max(1, intro.offsetHeight - stage.offsetHeight);
-      ease = EASES[css("--intro-ease")] || EASES["in-out"];
-    };
-    var last = -1;
-    var update = function () {
-      ticking = false;
-      if (!on) return;
-      var raw = clamp((headerH - intro.getBoundingClientRect().top) / dist);
-      if (raw === last) return;
-      last = raw;
-      var p = ease(raw);
-      intro.style.setProperty("--p", p.toFixed(4));
-      var cardP = clamp((raw - 0.6) / 0.4), navP = clamp((raw - 0.08) / 0.5);
-      intro.style.setProperty("--intro-card", cardP.toFixed(3));
-      root.style.setProperty("--intro-nav", navP.toFixed(3));
-      intro.classList.toggle("is-revealed", cardP > 0.5);
-    };
-    var onScroll = function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
-    var onResize = function () { if (on) { layout(); last = -1; onScroll(); } };
-
-    var setup = function () {
-      var want = mobileMQ.matches && !reduceMQ.matches;
-      if (want === on) return;
-      on = want;
-      intro.classList.toggle("is-intro", on);
-      root.classList.toggle("intro-nav", on);
-      if (on) {
-        layout(); last = -1; update();
-        window.addEventListener("scroll", onScroll, { passive: true });
-        window.addEventListener("resize", onResize, { passive: true });
-      } else {
-        window.removeEventListener("scroll", onScroll);
-        window.removeEventListener("resize", onResize);
-        ["--p", "--intro-card", "--intro-h", "--intro-top", "--intro-ty", "--intro-s0"].forEach(function (v) { intro.style.removeProperty(v); });
-        root.style.removeProperty("--intro-nav");
-        intro.classList.remove("is-revealed");
-      }
-    };
-    var listen = function (mq) { if (mq.addEventListener) mq.addEventListener("change", setup); else if (mq.addListener) mq.addListener(setup); };
-    listen(mobileMQ); listen(reduceMQ);
-    setup();
-    window.addEventListener("load", onResize);   // polices chargées : la hauteur du titre peut changer
+  if (heroVideo) {
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      heroVideo.parentNode.removeChild(heroVideo);   // « réduire les animations » : image fixe uniquement
+    } else {
+      var playHero = function () { var pr = heroVideo.play(); if (pr && pr.catch) pr.catch(function () { /* lecture bloquée : l'image fixe reste affichée */ }); };
+      playHero();
+      // Si le navigateur la met en pause (onglet caché…), on la relance dès que la page redevient visible
+      document.addEventListener("visibilitychange", function () { if (!document.hidden) playHero(); });
+      heroVideo.addEventListener("pause", function () { if (!document.hidden) setTimeout(playHero, 300); });
+    }
   }
 
   /* ---------- 8. Page « Coming soon » : titre selon le lien cliqué ---------- */

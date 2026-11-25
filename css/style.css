@@ -37,13 +37,13 @@
   --header-h: 64px;
   --ease: cubic-bezier(.22, .61, .36, 1);
 
-  /* ---- Effet d'ouverture de l'accueil (téléphone uniquement) ----
-     La vidéo commence zoomée sur la femme et ses chiens, puis se dézoome au défilement. */
-  --intro-zoom: 2.4;          /* zoom de départ MAXIMUM (1 = pas de zoom). Au-delà de ~2,5 la vidéo (1280 px de large) devient floue sur téléphone. */
-  --intro-focus-x: 40%;       /* point focal du zoom, de gauche (0%) à droite (100%) : ici la femme */
-  --intro-focus-y: 40%;       /* point focal du zoom, de haut (0%) à bas (100%) : ici la femme et les chiens */
-  --intro-length: 1.6;        /* longueur de l'effet, en hauteurs d'écran de défilement (conseillé : 1,5 à 2) */
-  --intro-ease: in-out;       /* courbe : in-out (douce au début et à la fin), out (rapide puis douce) ou linear */
+  /* ---- Vidéo plein écran de l'accueil ----
+     À l'arrivée, la vidéo remplit l'écran sous le logo, part d'un léger zoom et se dézoome toute seule. */
+  --hero-zoom-start: 1.3;     /* zoom de départ (1 = pas de zoom). Au-delà de ~1,4 l'image devient floue sur téléphone. */
+  --hero-dezoom-duration: 3.2s; /* durée du dézoom automatique */
+  --hero-dezoom-ease: cubic-bezier(.22, .61, .36, 1); /* courbe douce : rapide au début, très lente à la fin */
+  --hero-focus-x: 40%;        /* partie de la vidéo gardée visible (et centre du zoom), de gauche (0%) à droite (100%) : la femme */
+  --hero-focus-y: 50%;        /* de haut (0%) à bas (100%) */
 }
 
 @media (min-width: 768px) {
@@ -1371,47 +1371,45 @@ html.i18n-pending body { visibility: hidden; }
 
 
 /* ==========================================================================
-   Effet d'ouverture de l'accueil (téléphone) — activé par js/main.js (classe .is-intro)
-   Sans JavaScript, sur ordinateur ou avec « réduire les animations » : hero normal.
-   Réglages : variables --intro-* en haut de ce fichier.
+   Accueil : vidéo plein écran (téléphone, tablette, ordinateur)
+   Réglages : variables --hero-* en haut de ce fichier.
    ========================================================================== */
-.hero.is-intro {
-  --p: 0; --intro-top: 0px; --intro-h: 56.25vw; --intro-ty: 0px; --intro-s0: 1; --intro-card: 0;
-  display: block; margin: 0; max-width: none; border-radius: 0; overflow: visible; background: transparent;
-  height: calc(100vh - var(--header-h) + var(--intro-length) * 100vh);
-  height: calc(100svh - var(--header-h) + var(--intro-length) * 100svh);
+.hero-full {
+  position: relative; overflow: hidden; background: var(--ivory-deep);
+  /* hauteur de l'écran moins l'en-tête et le bandeau du haut (--announce-h, mesuré par js/main.js) */
+  height: calc(100vh - var(--header-h) - var(--announce-h, 0px));
+  height: calc(100svh - var(--header-h) - var(--announce-h, 0px));
+  min-height: 420px;
 }
-.is-intro .hero__stage {
-  display: block; position: -webkit-sticky; position: sticky; top: var(--header-h);
-  height: calc(100vh - var(--header-h)); height: calc(100svh - var(--header-h));
-  overflow: hidden; background: var(--ivory);
-}
-.is-intro .hero__media {
-  position: absolute; left: 0; right: 0; top: var(--intro-top);
-  transform-origin: var(--intro-focus-x) var(--intro-focus-y);
-  transform: translate3d(0, calc(var(--intro-ty) * (1 - var(--p))), 0) scale(calc(var(--intro-s0) + (1 - var(--intro-s0)) * var(--p)));
+.hero-full__link { position: absolute; inset: 0; display: block; cursor: pointer; }
+.hero-full__img, .hero-full__video {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: var(--hero-focus-x) var(--hero-focus-y);
+  transform-origin: var(--hero-focus-x) var(--hero-focus-y);
+  animation: hero-dezoom var(--hero-dezoom-duration) var(--hero-dezoom-ease) both;
   will-change: transform;
 }
-.is-intro .hero__card {
-  position: absolute; left: 0; right: 0; top: calc(var(--intro-top) + var(--intro-h));
-  border-top: 0; background: transparent;
-  opacity: var(--intro-card);
-  transform: translate3d(0, calc((1 - var(--intro-card)) * 18px), 0);
+@keyframes hero-dezoom { from { transform: scale(var(--hero-zoom-start)); } to { transform: scale(1); } }
+.hero-full__cue {
+  position: absolute; left: 50%; bottom: 22px; z-index: 1; margin-left: -23px;
+  width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center;
+  background: rgba(246, 236, 222, .88); color: var(--bordeaux);
+  box-shadow: 0 10px 24px -14px rgba(33, 21, 12, .6);
+  animation: cue-in .8s var(--ease) 2.2s both;
 }
-.is-intro:not(.is-revealed) .hero__card { pointer-events: none; }
-.is-intro .hero__card:focus-within { opacity: 1; transform: none; }
-.is-intro .hero__cue {
-  display: grid; place-items: center; position: absolute; left: 50%; bottom: 18px; margin-left: -20px;
-  width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(125, 16, 28, .35); color: var(--bordeaux);
-  opacity: calc(1 - var(--p) * 5);
-}
-.is-intro .hero__cue .icon { font-size: 18px; animation: cue 2.2s var(--ease) infinite; }
+.hero-full__cue .icon { font-size: 20px; animation: cue 2.2s var(--ease) 3s infinite; }
+@keyframes cue-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 @keyframes cue { 0%, 100% { transform: translateY(-2px); } 50% { transform: translateY(3px); } }
-/* Menu qui apparaît autour du logo pendant le dézoom */
-html.intro-nav .site-header .burger,
-html.intro-nav .site-header .nav--right { opacity: var(--intro-nav, 1); }
-html.intro-nav .site-header .burger:focus-visible,
-html.intro-nav .site-header .nav--right:focus-within { opacity: 1; }
+.hero-full__link:focus-visible { outline-offset: -6px; outline-color: var(--ivory); }
+@media (prefers-reduced-motion: reduce) { .hero-full__video { display: none; } }
+
+/* Infos sous la vidéo (titre, accroche, boutons) */
+.hero-info { text-align: center; padding: 48px 0 40px; scroll-margin-top: -12px; }
+.hero-info .eyebrow { color: var(--chestnut); margin-bottom: 12px; }
+.hero-info__title { font-size: clamp(3.2rem, 13vw, 6rem); line-height: .92; margin-bottom: 14px; }
+.hero-info__text { color: var(--espresso-soft); margin: 0 auto 24px; max-width: 30em; }
+.hero-info .hero__actions { justify-content: center; }
+@media (min-width: 768px) { .hero-info { padding: 72px 0 48px; } }
 
 /* ==========================================================================
    Petit dalmatien posé sur le pied de page (ordinateur et tablette)

@@ -89,6 +89,7 @@ WOOF_I18N.register("en", {
   "home.set": "Set",
   "hero.alt": "Illustration of a Parisian park: a woman in a beige coat walks her Dalmatians wearing red bows, next to a WOOF café kiosk",
   "hero.video": "Animated illustration of a Parisian park: a woman in a beige coat walks her Dalmatians wearing red bows, next to a WOOF café kiosk",
+  "hero.enter": "Discover WOOF — scroll down",
   "hero.eyebrow": "For them. For you. For us.",
   "hero.title": "For good dogs.",
   "hero.text": "French accessories for dogs and their humans. Coming soon.",

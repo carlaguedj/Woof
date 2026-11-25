@@ -142,31 +142,33 @@
   <main id="main">
     <!-- Les TEXTES de cette page sont dans js/i18n/en.js et js/i18n/fr.js (attributs data-i18n = clé). -->
 
-    <!-- ================= 1. HERO : la vidéo du parc WOOF =================
-         Vidéo : media/accueil-parc-woof.webm + media/accueil-parc-woof.mp4 (16:9, sans son)
-         Image fixe (secours, « réduire les animations », avant lecture) : images/accueil-video-poster.jpg
-         Sur téléphone : effet d'ouverture (zoom → dézoom au défilement).
-         RÉGLAGES DE L'EFFET : en haut de css/style.css, bloc « Effet d'ouverture ». -->
-    <section class="hero hero--art" aria-labelledby="hero-title" data-intro>
-      <div class="hero__stage">
-        <div class="hero__media" data-intro-media>
-          <img class="hero__img" src="images/accueil-video-poster.jpg" alt="Illustration of a Parisian park: a woman in a beige coat walks her Dalmatians wearing red bows, next to a WOOF café kiosk" data-i18n-attr="alt:hero.alt" fetchpriority="high" width="1280" height="720">
-          <video class="hero__video" data-hero-video autoplay muted loop playsinline preload="metadata" poster="images/accueil-video-poster.jpg"
-                 aria-label="Animated illustration of a Parisian park: a woman in a beige coat walks her Dalmatians wearing red bows, next to a WOOF café kiosk" data-i18n-attr="aria-label:hero.video" width="1280" height="720">
-            <source src="media/accueil-parc-woof.webm" type="video/webm">
-            <source src="media/accueil-parc-woof.mp4" type="video/mp4">
-          </video>
+    <!-- ================= 1. VIDÉO PLEIN ÉCRAN =================
+         Vidéo : media/accueil-parc-woof.webm + media/accueil-parc-woof.mp4 (16:9, sans son, en boucle)
+         Image fixe (avant lecture, lecture bloquée, « réduire les animations ») : images/accueil-video-poster.jpg
+         Réglages (zoom de départ, durée, point visible) : variables --hero-* en haut de css/style.css.
+         Un clic sur la vidéo descend vers les infos ci-dessous (#hero-info). -->
+    <section class="hero-full" aria-label="WOOF">
+      <a class="hero-full__link" href="#hero-info" aria-label="Discover WOOF — scroll down" data-i18n-attr="aria-label:hero.enter">
+        <img class="hero-full__img" src="images/accueil-video-poster.jpg" alt="" fetchpriority="high" width="1280" height="720">
+        <video class="hero-full__video" data-hero-video autoplay muted loop playsinline preload="auto" poster="images/accueil-video-poster.jpg"
+               aria-hidden="true" tabindex="-1" width="1280" height="720">
+          <source src="media/accueil-parc-woof.webm" type="video/webm">
+          <source src="media/accueil-parc-woof.mp4" type="video/mp4">
+        </video>
+        <span class="hero-full__cue" aria-hidden="true"><svg class="icon"><use href="#i-chevron-down"/></svg></span>
+      </a>
+    </section>
+
+    <!-- ================= 1b. INFOS SOUS LA VIDÉO ================= -->
+    <section class="hero-info" id="hero-info" aria-labelledby="hero-title">
+      <div class="container">
+        <p class="eyebrow" data-i18n="hero.eyebrow">For them. For you. For us.</p>
+        <h1 class="hero-info__title" id="hero-title" data-i18n="hero.title">For good dogs.</h1>
+        <p class="hero-info__text" data-i18n="hero.text">French accessories for dogs and their humans. Coming soon.</p>
+        <div class="hero__actions">
+          <a class="btn" href="#waitlist" data-i18n="hero.cta">Join the waitlist</a>
+          <a class="link-arrow" href="#collections"><span data-i18n="hero.collections">The collections</span> <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
-        <div class="hero__card" data-intro-card>
-          <p class="eyebrow" data-i18n="hero.eyebrow">For them. For you. For us.</p>
-          <h1 class="hero__title" id="hero-title" data-i18n="hero.title">For good dogs.</h1>
-          <p class="hero__text" data-i18n="hero.text">French accessories for dogs and their humans. Coming soon.</p>
-          <div class="hero__actions">
-            <a class="btn" href="#waitlist" data-i18n="hero.cta">Join the waitlist</a>
-            <a class="link-arrow" href="#collections"><span data-i18n="hero.collections">The collections</span> <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          </div>
-        </div>
-        <span class="hero__cue" aria-hidden="true"><svg class="icon"><use href="#i-chevron-down"/></svg></span>
       </div>
     </section>
 
