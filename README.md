@@ -118,3 +118,13 @@ La page `shop.html` présente les collections l'une après l'autre : une grande 
 (champ `banner` de chaque collection dans `js/products.js`, format large 3:1, ex. `images/banniere-the-diva.jpg`)
 puis ses 2 produits. `bannerFocus` règle la partie de la photo gardée visible sur mobile (ex. "55% 40%").
 Un clic sur la bannière ouvre la page de la collection (`shop.html?filter=the-diva`).
+
+## Vidéo et effet d'ouverture de l'accueil
+
+- Vidéo : `media/accueil-parc-woof.webm` et `media/accueil-parc-woof.mp4` (1280 × 720, sans son).
+  Image fixe : `images/accueil-video-poster.jpg` (affichée avant la lecture, si la lecture est bloquée,
+  ou si « réduire les animations » est activé).
+- Pour remplacer la vidéo : déposez la nouvelle sous les mêmes noms (au moins le `.mp4`), au format 16:9,
+  et remplacez l'image fixe par une image de la vidéo.
+- Effet sur téléphone : réglages `--intro-zoom`, `--intro-focus-x`, `--intro-focus-y`, `--intro-length`,
+  `--intro-ease` en haut de `css/style.css`.
