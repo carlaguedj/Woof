@@ -126,5 +126,7 @@ Un clic sur la bannière ouvre la page de la collection (`shop.html?filter=the-d
   ou si « réduire les animations » est activé).
 - Pour remplacer la vidéo : déposez la nouvelle sous les mêmes noms (au moins le `.mp4`), au format 16:9,
   et remplacez l'image fixe par une image de la vidéo.
-- Effet sur téléphone : réglages `--intro-zoom`, `--intro-focus-x`, `--intro-focus-y`, `--intro-length`,
-  `--intro-ease` en haut de `css/style.css`.
+- La vidéo remplit l'écran sous le logo (téléphone et ordinateur), part d'un léger zoom et se dézoome
+  toute seule, puis tourne en boucle. Un clic sur la vidéo descend vers la suite de la page.
+- Réglages : `--hero-zoom-start`, `--hero-dezoom-duration`, `--hero-dezoom-ease`, `--hero-focus-x`,
+  `--hero-focus-y` en haut de `css/style.css`.
