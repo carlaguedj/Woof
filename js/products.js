@@ -26,7 +26,7 @@ window.WOOF_COLLECTIONS = [
     status: "coming-soon",
     setPrice: "€42",
     image: "images/couverture-the-diva.jpg",   // couverture de la collection (format portrait 3:4)
-    alt: "WOOF magazine cover: The Diva, velvet collection — a spaniel wearing a burgundy velvet collar",
+    alt: "Close-up of a Cavalier King Charles spaniel wearing The Diva burgundy velvet bow collar with golden buckle",
     banner: "images/banniere-the-diva.jpg",       // bannière de la page Shop (format large 3:1)
     bannerFocus: "55% 35%",            // point à garder visible sur mobile (horizontal vertical)
     bannerAlt: "A woman kissing her spaniel wearing The Diva velvet collar, with the matching velvet scrunchie in her hair, on a café terrace"
