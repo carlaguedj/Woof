@@ -13,6 +13,9 @@
    LANGUES : chaque produit et chaque collection a un bloc « fr: { … } » avec les textes
    en français. Pour ajouter une langue (ex. italien), ajoutez un bloc « it: { … } » sur le même modèle.
 
+   LANGUES : chaque produit et chaque collection a un bloc « fr: { … } » avec les textes
+   en français. Pour ajouter une langue (ex. italien), ajoutez un bloc « it: { … } » sur le même modèle.
+
    RÈGLES SIMPLES :
    - Le texte se met toujours entre guillemets "comme ceci".
    - Chaque bloc { ... } se termine par une virgule.
@@ -50,7 +53,7 @@ window.WOOF_COLLECTIONS = [
     name: "Denim Club",
     fr: {                            // textes en français (sinon l'anglais ci-dessus s'affiche)
       fabric: "Denim",
-      alt: "Couverture du magazine WOOF : Denim Club, la collection denim — un shiba inu portant un collier en denim bleu marine à boucle dorée",
+      alt: "Gros plan d'un golden retriever portant le collier en denim bleu marine Denim Club, boucle dorée",
       bannerAlt: "Un shiba inu portant le collier Denim Club lors d'un pique-nique, face à une femme portant le chouchou en denim assorti"
     },
     fabric: "Denim",
@@ -58,7 +61,7 @@ window.WOOF_COLLECTIONS = [
     status: "coming-soon",
     setPrice: "€39",
     image: "images/couverture-denim-club.jpg",
-    alt: "WOOF magazine cover: Denim Club, the denim collection — a Shiba Inu wearing a navy denim collar with golden buckle",
+    alt: "Close-up of a golden retriever wearing the navy denim Denim Club collar with golden buckle",
     banner: "images/banniere-denim-club.jpg",       // bannière de la page Shop (format large 3:1)
     bannerFocus: "55% 40%",            // point à garder visible sur mobile (horizontal vertical)
     bannerAlt: "A Shiba Inu wearing the Denim Club collar at a picnic, facing a woman with the matching denim scrunchie"
@@ -68,25 +71,25 @@ window.WOOF_COLLECTIONS = [
     name: "Park Avenue Girl",
     fr: {                            // textes en français (sinon l'anglais ci-dessus s'affiche)
       fabric: "Tweed",
-      alt: "Couverture du magazine WOOF : Park Avenue Girl, la collection tweed — un cocker portant un collier en tweed crème à carreaux noirs et bordeaux, boucle dorée",
-      bannerAlt: "Un whippet portant le collier en tweed Park Avenue Girl sur un lit, à côté d'une femme portant le chouchou en tweed assorti"
+      alt: "Un cavalier king charles portant le collier en tweed rose Park Avenue Girl, boucle dorée",
+      bannerAlt: "Une femme embrasse son cavalier king charles qui porte le collier en tweed rose Park Avenue Girl, avec le chouchou assorti dans les cheveux"
     },
     fabric: "Tweed",
     tagline: "Classic charm, with a playful twist.",
     status: "coming-soon",
     setPrice: "€45",
     image: "images/couverture-park-avenue-girl.jpg",
-    alt: "WOOF magazine cover: Park Avenue Girl, tweed collection — a cocker spaniel wearing a cream tweed collar checked in black and burgundy, with golden buckle",
+    alt: "Cavalier King Charles spaniel wearing the pink tweed Park Avenue Girl collar with golden buckle",
     banner: "images/banniere-park-avenue-girl.jpg",       // bannière de la page Shop (format large 3:1)
-    bannerFocus: "55% 40%",            // point à garder visible sur mobile (horizontal vertical)
-    bannerAlt: "A whippet wearing the Park Avenue Girl tweed collar on a bed, next to a woman with the matching tweed scrunchie"
+    bannerFocus: "50% 40%",            // point à garder visible sur mobile (horizontal vertical)
+    bannerAlt: "A woman kissing her Cavalier King Charles spaniel wearing the pink tweed Park Avenue Girl collar, with the matching scrunchie in her hair"
   },
   {
     id: "rodeo-kid",
     name: "Rodeo Kid",
     fr: {                            // textes en français (sinon l'anglais ci-dessus s'affiche)
       fabric: "Bandana rouge",
-      alt: "Couverture du magazine WOOF : Rodeo Kid, le collier bandana — un berger australien portant un collier bandana paisley rouge",
+      alt: "Un berger australien portant le collier bandana paisley bordeaux Rodeo Kid",
       bannerAlt: "Un berger australien portant le bandana Rodeo Kid, à côté d'une femme portant le chouchou assorti au poignet"
     },
     fabric: "Red bandana",
@@ -94,7 +97,7 @@ window.WOOF_COLLECTIONS = [
     status: "coming-soon",
     setPrice: "€39",
     image: "images/couverture-rodeo-kid.jpg",
-    alt: "WOOF magazine cover: Rodeo Kid, the bandana collar — an Australian shepherd wearing a red paisley bandana collar",
+    alt: "Australian shepherd wearing the burgundy paisley Rodeo Kid bandana collar",
     banner: "images/banniere-rodeo-kid.jpg",       // bannière de la page Shop (format large 3:1)
     bannerFocus: "45% 40%",            // point à garder visible sur mobile (horizontal vertical)
     bannerAlt: "An Australian shepherd wearing the Rodeo Kid bandana, next to a woman wearing the matching scrunchie on her wrist"
@@ -104,7 +107,7 @@ window.WOOF_COLLECTIONS = [
     name: "The Spoiled One",
     fr: {                            // textes en français (sinon l'anglais ci-dessus s'affiche)
       fabric: "Chaîne",
-      alt: "Couverture du magazine WOOF : The Spoiled One, la collection chaîne — un lévrier portant un collier chaîne dorée",
+      alt: "Gros plan d'un whippet portant le collier The Spoiled One en cuir noir tressé de maillons dorés",
       bannerAlt: "Un dalmatien portant le collier chaîne The Spoiled One, à côté d'une femme portant le bracelet chaîne assorti"
     },
     fabric: "Chain",
@@ -112,7 +115,7 @@ window.WOOF_COLLECTIONS = [
     status: "released-soon",          // pas au lancement : prix après devis
     setPrice: "",
     image: "images/couverture-the-spoiled-one.jpg",
-    alt: "WOOF magazine cover: The Spoiled One, the chain collection — a greyhound wearing a gold chain collar",
+    alt: "Close-up of a whippet wearing The Spoiled One collar in black leather woven with golden chain links",
     banner: "images/banniere-the-spoiled-one.jpg",       // bannière de la page Shop (format large 3:1)
     bannerFocus: "60% 40%",            // point à garder visible sur mobile (horizontal vertical)
     bannerAlt: "A Dalmatian wearing The Spoiled One chain collar, next to a woman wearing the matching chain bracelet"
