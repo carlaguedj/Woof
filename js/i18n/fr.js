@@ -86,6 +86,7 @@ WOOF_I18N.register("fr", {
   "type.bracelet": "bracelet",
   "home.set": "Set",
   "hero.alt": "Illustration d'un parc parisien : une femme en manteau beige promène ses dalmatiens aux nœuds rouges, près d'un kiosque WOOF",
+  "hero.video": "Illustration animée d'un parc parisien : une femme en manteau beige promène ses dalmatiens aux nœuds rouges, près d'un kiosque WOOF",
   "hero.eyebrow": "Pour eux. Pour vous. Pour nous.",
   "hero.title": "For good dogs.",
   "hero.text": "Accessoires français pour les chiens et leurs humains. Bientôt disponibles.",

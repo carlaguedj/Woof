@@ -36,6 +36,14 @@
   --max: 1440px;
   --header-h: 64px;
   --ease: cubic-bezier(.22, .61, .36, 1);
+
+  /* ---- Effet d'ouverture de l'accueil (téléphone uniquement) ----
+     La vidéo commence zoomée sur la femme et ses chiens, puis se dézoome au défilement. */
+  --intro-zoom: 2.4;          /* zoom de départ MAXIMUM (1 = pas de zoom). Au-delà de ~2,5 la vidéo (1280 px de large) devient floue sur téléphone. */
+  --intro-focus-x: 40%;       /* point focal du zoom, de gauche (0%) à droite (100%) : ici la femme */
+  --intro-focus-y: 40%;       /* point focal du zoom, de haut (0%) à bas (100%) : ici la femme et les chiens */
+  --intro-length: 1.6;        /* longueur de l'effet, en hauteurs d'écran de défilement (conseillé : 1,5 à 2) */
+  --intro-ease: in-out;       /* courbe : in-out (douce au début et à la fin), out (rapide puis douce) ou linear */
 }
 
 @media (min-width: 768px) {
@@ -835,7 +843,13 @@ a:hover .media img, .media--zoom:hover img { transform: scale(1.04); }
    ========================================================================== */
 .hero--art { display: block; min-height: 0; color: var(--espresso); background: var(--ivory-deep); }
 .hero--art::after { display: none; }
-.hero--art .hero__img { position: relative; inset: auto; height: auto; aspect-ratio: 1272 / 724; animation: none; }
+.hero--art .hero__img { position: relative; inset: auto; height: auto; aspect-ratio: 16 / 9; animation: none; }
+.hero__stage { display: contents; }
+.hero__media { position: relative; overflow: hidden; }
+.hero__media .hero__img { display: block; width: 100%; }
+.hero__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.hero__cue { display: none; }
+@media (prefers-reduced-motion: reduce) { .hero__video { display: none; } }
 .hero__card {
   position: relative; z-index: 1;
   background: var(--ivory-light);
@@ -955,9 +969,9 @@ a:hover .media img, .media--zoom:hover img { transform: scale(1.04); }
 @media (max-width: 767px) { .home-collections .cat-grid { grid-auto-columns: 62%; } }
 @media (min-width: 900px) {
   /* Illustration entière à gauche, titre à droite : tout tient sur un écran */
-  .hero--art { display: grid; grid-template-columns: minmax(0, min(68%, calc((100vh - 190px) * 1.757))) 1fr; align-items: stretch; }
+  .hero--art { display: grid; grid-template-columns: minmax(0, min(68%, calc((100vh - 190px) * 1.778))) 1fr; align-items: stretch; }
   .hero--art .hero__card > * { align-self: flex-start; text-align: left; grid-column: auto; grid-row: auto; }
-  .hero--art .hero__img { width: 100%; height: auto; aspect-ratio: 1272 / 724; }
+  .hero--art .hero__img { width: 100%; height: auto; aspect-ratio: 16 / 9; }
   .hero--art .hero__card {
     display: flex; flex-direction: column; justify-content: center; gap: 0;
     border-top: 0; border-left: 1px solid rgba(198, 164, 106, .6);
@@ -1354,3 +1368,60 @@ html.i18n-pending body { visibility: hidden; }
 .site-footer .wl-success .icon--bow { color: var(--gold); }
 .site-footer :focus-visible { outline-color: var(--ivory); }
 @media (max-width: 600px) { .section-head .bows::after { display: none; } }
+
+
+/* ==========================================================================
+   Effet d'ouverture de l'accueil (téléphone) — activé par js/main.js (classe .is-intro)
+   Sans JavaScript, sur ordinateur ou avec « réduire les animations » : hero normal.
+   Réglages : variables --intro-* en haut de ce fichier.
+   ========================================================================== */
+.hero.is-intro {
+  --p: 0; --intro-top: 0px; --intro-h: 56.25vw; --intro-ty: 0px; --intro-s0: 1; --intro-card: 0;
+  display: block; margin: 0; max-width: none; border-radius: 0; overflow: visible; background: transparent;
+  height: calc(100vh - var(--header-h) + var(--intro-length) * 100vh);
+  height: calc(100svh - var(--header-h) + var(--intro-length) * 100svh);
+}
+.is-intro .hero__stage {
+  display: block; position: -webkit-sticky; position: sticky; top: var(--header-h);
+  height: calc(100vh - var(--header-h)); height: calc(100svh - var(--header-h));
+  overflow: hidden; background: var(--ivory);
+}
+.is-intro .hero__media {
+  position: absolute; left: 0; right: 0; top: var(--intro-top);
+  transform-origin: var(--intro-focus-x) var(--intro-focus-y);
+  transform: translate3d(0, calc(var(--intro-ty) * (1 - var(--p))), 0) scale(calc(var(--intro-s0) + (1 - var(--intro-s0)) * var(--p)));
+  will-change: transform;
+}
+.is-intro .hero__card {
+  position: absolute; left: 0; right: 0; top: calc(var(--intro-top) + var(--intro-h));
+  border-top: 0; background: transparent;
+  opacity: var(--intro-card);
+  transform: translate3d(0, calc((1 - var(--intro-card)) * 18px), 0);
+}
+.is-intro:not(.is-revealed) .hero__card { pointer-events: none; }
+.is-intro .hero__card:focus-within { opacity: 1; transform: none; }
+.is-intro .hero__cue {
+  display: grid; place-items: center; position: absolute; left: 50%; bottom: 18px; margin-left: -20px;
+  width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(125, 16, 28, .35); color: var(--bordeaux);
+  opacity: calc(1 - var(--p) * 5);
+}
+.is-intro .hero__cue .icon { font-size: 18px; animation: cue 2.2s var(--ease) infinite; }
+@keyframes cue { 0%, 100% { transform: translateY(-2px); } 50% { transform: translateY(3px); } }
+/* Menu qui apparaît autour du logo pendant le dézoom */
+html.intro-nav .site-header .burger,
+html.intro-nav .site-header .nav--right { opacity: var(--intro-nav, 1); }
+html.intro-nav .site-header .burger:focus-visible,
+html.intro-nav .site-header .nav--right:focus-within { opacity: 1; }
+
+/* ==========================================================================
+   Petit dalmatien posé sur le pied de page (ordinateur et tablette)
+   ========================================================================== */
+.footer-dog { display: none; }
+@media (min-width: 768px) {
+  .site-footer { position: relative; margin-top: 170px; border-top-left-radius: 96px; }
+  .footer-dog {
+    display: block; position: absolute; bottom: calc(100% - 6px);
+    right: max(var(--gutter), calc((100% - var(--max)) / 2 + var(--gutter)));
+    width: 118px; height: auto; pointer-events: none;
+  }
+}

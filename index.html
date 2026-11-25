@@ -33,6 +33,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Libre+Bodoni:wght@700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Libre+Baskerville:wght@400;700&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="images/accueil-video-poster.jpg" fetchpriority="high">
   <link rel="stylesheet" href="css/style.css">
   <script>document.documentElement.classList.add("js");</script>
   <!-- Réglages (liste d'attente, langues) puis traductions -->
@@ -141,18 +142,31 @@
   <main id="main">
     <!-- Les TEXTES de cette page sont dans js/i18n/en.js et js/i18n/fr.js (attributs data-i18n = clé). -->
 
-    <!-- ================= 1. HERO : l'illustration WOOF à Paris =================
-         Image : images/accueil-illustration-woof.jpg (format paysage, 1272 × 724) -->
-    <section class="hero hero--art" aria-labelledby="hero-title">
-      <img class="hero__img" src="images/accueil-illustration-woof.jpg" alt="Illustration of a Parisian park: a woman in a beige coat walks her Dalmatians wearing red bows, next to a WOOF café kiosk" data-i18n-attr="alt:hero.alt" fetchpriority="high" width="1272" height="724">
-      <div class="hero__card">
-        <p class="eyebrow" data-i18n="hero.eyebrow">For them. For you. For us.</p>
-        <h1 class="hero__title" id="hero-title" data-i18n="hero.title">For good dogs.</h1>
-        <p class="hero__text" data-i18n="hero.text">French accessories for dogs and their humans. Coming soon.</p>
-        <div class="hero__actions">
-          <a class="btn" href="#waitlist" data-i18n="hero.cta">Join the waitlist</a>
-          <a class="link-arrow" href="#collections"><span data-i18n="hero.collections">The collections</span> <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    <!-- ================= 1. HERO : la vidéo du parc WOOF =================
+         Vidéo : media/accueil-parc-woof.webm + media/accueil-parc-woof.mp4 (16:9, sans son)
+         Image fixe (secours, « réduire les animations », avant lecture) : images/accueil-video-poster.jpg
+         Sur téléphone : effet d'ouverture (zoom → dézoom au défilement).
+         RÉGLAGES DE L'EFFET : en haut de css/style.css, bloc « Effet d'ouverture ». -->
+    <section class="hero hero--art" aria-labelledby="hero-title" data-intro>
+      <div class="hero__stage">
+        <div class="hero__media" data-intro-media>
+          <img class="hero__img" src="images/accueil-video-poster.jpg" alt="Illustration of a Parisian park: a woman in a beige coat walks her Dalmatians wearing red bows, next to a WOOF café kiosk" data-i18n-attr="alt:hero.alt" fetchpriority="high" width="1280" height="720">
+          <video class="hero__video" data-hero-video autoplay muted loop playsinline preload="metadata" poster="images/accueil-video-poster.jpg"
+                 aria-label="Animated illustration of a Parisian park: a woman in a beige coat walks her Dalmatians wearing red bows, next to a WOOF café kiosk" data-i18n-attr="aria-label:hero.video" width="1280" height="720">
+            <source src="media/accueil-parc-woof.webm" type="video/webm">
+            <source src="media/accueil-parc-woof.mp4" type="video/mp4">
+          </video>
         </div>
+        <div class="hero__card" data-intro-card>
+          <p class="eyebrow" data-i18n="hero.eyebrow">For them. For you. For us.</p>
+          <h1 class="hero__title" id="hero-title" data-i18n="hero.title">For good dogs.</h1>
+          <p class="hero__text" data-i18n="hero.text">French accessories for dogs and their humans. Coming soon.</p>
+          <div class="hero__actions">
+            <a class="btn" href="#waitlist" data-i18n="hero.cta">Join the waitlist</a>
+            <a class="link-arrow" href="#collections"><span data-i18n="hero.collections">The collections</span> <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
+        </div>
+        <span class="hero__cue" aria-hidden="true"><svg class="icon"><use href="#i-chevron-down"/></svg></span>
       </div>
     </section>
 
@@ -258,6 +272,8 @@
 
   <!-- ================= PIED DE PAGE ================= -->
   <footer class="site-footer">
+    <!-- Petit dalmatien posé sur le pied de page (ordinateur et tablette) : images/menu-dalmatien.png -->
+    <img class="footer-dog" src="images/menu-dalmatien.png" alt="" width="885" height="966" loading="lazy">
     <div class="container">
       <div class="footer-top">
         <div class="footer-brand">
