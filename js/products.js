@@ -4,6 +4,12 @@
    C'est le SEUL fichier à modifier pour ajouter, retirer ou changer un produit.
    La page d'accueil, la boutique et les fiches produits se mettent à jour toutes seules.
 
+   LANGUES : chaque produit et chaque collection a un bloc « fr: { … } » avec les textes
+   en français. Pour ajouter une langue (ex. italien), ajoutez un bloc « it: { … } » sur le même modèle.
+
+   LANGUES : chaque produit et chaque collection a un bloc « fr: { … } » avec les textes
+   en français. Pour ajouter une langue (ex. italien), ajoutez un bloc « it: { … } » sur le même modèle.
+
    RÈGLES SIMPLES :
    - Le texte se met toujours entre guillemets "comme ceci".
    - Chaque bloc { ... } se termine par une virgule.
@@ -21,6 +27,11 @@ window.WOOF_COLLECTIONS = [
   {
     id: "the-diva",                  // identifiant (minuscules, tirets, pas d'espace)
     name: "The Diva",
+    fr: {                            // textes en français (sinon l'anglais ci-dessus s'affiche)
+      fabric: "Velours",
+      alt: "Gros plan d'un cavalier king charles portant le collier à nœud en velours bordeaux The Diva, boucle dorée",
+      bannerAlt: "Une femme embrasse son épagneul qui porte le collier en velours The Diva, avec le chouchou en velours assorti dans les cheveux, en terrasse de café"
+    },
     fabric: "Velvet",
     tagline: "Made for dogs who love a little drama.",
     status: "coming-soon",
@@ -34,6 +45,11 @@ window.WOOF_COLLECTIONS = [
   {
     id: "denim-club",
     name: "Denim Club",
+    fr: {                            // textes en français (sinon l'anglais ci-dessus s'affiche)
+      fabric: "Denim",
+      alt: "Couverture du magazine WOOF : Denim Club, la collection denim — un shiba inu portant un collier en denim bleu marine à boucle dorée",
+      bannerAlt: "Un shiba inu portant le collier Denim Club lors d'un pique-nique, face à une femme portant le chouchou en denim assorti"
+    },
     fabric: "Denim",
     tagline: "Everyday cool, made to match.",
     status: "coming-soon",
@@ -47,6 +63,11 @@ window.WOOF_COLLECTIONS = [
   {
     id: "park-avenue-girl",
     name: "Park Avenue Girl",
+    fr: {                            // textes en français (sinon l'anglais ci-dessus s'affiche)
+      fabric: "Tweed",
+      alt: "Couverture du magazine WOOF : Park Avenue Girl, la collection tweed — un cocker portant un collier en tweed crème à carreaux noirs et bordeaux, boucle dorée",
+      bannerAlt: "Un whippet portant le collier en tweed Park Avenue Girl sur un lit, à côté d'une femme portant le chouchou en tweed assorti"
+    },
     fabric: "Tweed",
     tagline: "Classic charm, with a playful twist.",
     status: "coming-soon",
@@ -60,6 +81,11 @@ window.WOOF_COLLECTIONS = [
   {
     id: "rodeo-kid",
     name: "Rodeo Kid",
+    fr: {                            // textes en français (sinon l'anglais ci-dessus s'affiche)
+      fabric: "Bandana rouge",
+      alt: "Couverture du magazine WOOF : Rodeo Kid, le collier bandana — un berger australien portant un collier bandana paisley rouge",
+      bannerAlt: "Un berger australien portant le bandana Rodeo Kid, à côté d'une femme portant le chouchou assorti au poignet"
+    },
     fabric: "Red bandana",
     tagline: "For little rebels with a Parisian heart.",
     status: "coming-soon",
@@ -73,6 +99,11 @@ window.WOOF_COLLECTIONS = [
   {
     id: "the-spoiled-one",
     name: "The Spoiled One",
+    fr: {                            // textes en français (sinon l'anglais ci-dessus s'affiche)
+      fabric: "Chaîne",
+      alt: "Couverture du magazine WOOF : The Spoiled One, la collection chaîne — un lévrier portant un collier chaîne dorée",
+      bannerAlt: "Un dalmatien portant le collier chaîne The Spoiled One, à côté d'une femme portant le bracelet chaîne assorti"
+    },
     fabric: "Chain",
     tagline: "Because being spoiled looks good on you.",
     status: "released-soon",          // pas au lancement : prix après devis
@@ -105,6 +136,13 @@ window.WOOF_PRODUCTS = [
   {
     id: "the-diva-collar",
     name: "The Diva Velvet Collar",
+    fr: {                            // textes en français (sinon l'anglais ci-dessus s'affiche)
+      name: "Collier en velours The Diva",
+      short: "Pour les chiens nés pour être remarqués.",
+      description: "Pour les chiens nés pour être remarqués. **The Diva** est réalisé dans un velours bordeaux profond, doux au toucher et d'une couleur intense, rehaussé d'élégantes finitions dorées. Luxueux sans se prendre trop au sérieux, c'est le genre de collier qui transforme une simple balade en petit événement.",
+      details: ["Velours bordeaux profond", "Finitions dorées, boucle gravée WOOF", "Médaille Woof gravée", "Ajustement réglable", "Taille S : 2,0 cm de large, longueur réglable de 28 à 43 cm", "Taille M : 2,5 cm de large, longueur réglable de 38 à 56 cm", "Conçu en France"],
+      alts: ["Le collier The Diva en velours bordeaux froncé, finitions dorées", "Gros plan du collier en velours The Diva et de son anneau doré", "Un whippet portant le collier en velours bordeaux The Diva en terrasse de café"]
+    },
     collection: "the-diva",
     type: "collar",
     price: "€32",
@@ -129,6 +167,13 @@ window.WOOF_PRODUCTS = [
   {
     id: "the-diva-scrunchie",
     name: "The Diva Scrunchie",
+    fr: {                            // textes en français (sinon l'anglais ci-dessus s'affiche)
+      name: "Chouchou The Diva",
+      short: "Un peu de velours, rien que pour vous.",
+      description: "Un peu de velours, rien que pour vous. Le chouchou **The Diva** est réalisé dans le même somptueux velours bordeaux que le collier, pour apporter la riche texture de la collection à votre propre look. Doux, élégant et légèrement théâtral — exactement comme il se doit.",
+      details: ["Somptueux velours bordeaux", "Élastique doux, tient sans tirer", "Taille unique"],
+      alts: ["Le chouchou The Diva en velours bordeaux", "Le chouchou en velours The Diva porté au poignet en terrasse de café"]
+    },
     collection: "the-diva",
     type: "scrunchie",
     price: "€15",
@@ -150,6 +195,13 @@ window.WOOF_PRODUCTS = [
   {
     id: "park-avenue-girl-collar",
     name: "Park Avenue Girl Tweed Collar",
+    fr: {                            // textes en français (sinon l'anglais ci-dessus s'affiche)
+      name: "Collier en tweed Park Avenue Girl",
+      short: "Un peu d'élégance parisienne à quatre pattes.",
+      description: "Un peu d'élégance parisienne à quatre pattes. **Park Avenue Girl** est réalisé dans un tweed raffiné bordeaux, noir et crème, rehaussé d'élégantes finitions dorées. Inspiré du tailleur classique et du chic citadin d'antan, il apporte une touche soignée à chaque balade — du parc au café.",
+      details: ["Tweed bordeaux, noir et crème", "Finitions dorées, boucle gravée WOOF", "Médaille Woof gravée", "Ajustement réglable, anneau pour la laisse", "Taille S : 2,0 cm de large, longueur réglable de 28 à 43 cm", "Taille M : 2,5 cm de large, longueur réglable de 38 à 56 cm", "Conçu en France"],
+      alts: ["Le collier Park Avenue Girl en tweed crème à carreaux noirs et bordeaux, boucle et anneau dorés", "Gros plan du collier en tweed Park Avenue Girl et de sa boucle dorée", "Un bouledogue français portant le collier en tweed Park Avenue Girl en terrasse de café"]
+    },
     collection: "park-avenue-girl",
     type: "collar",
     price: "€34",
@@ -174,6 +226,13 @@ window.WOOF_PRODUCTS = [
   {
     id: "park-avenue-girl-scrunchie",
     name: "Park Avenue Girl Scrunchie",
+    fr: {                            // textes en français (sinon l'anglais ci-dessus s'affiche)
+      name: "Chouchou Park Avenue Girl",
+      short: "La touche finale du look.",
+      description: "La touche finale du look. **Park Avenue Girl** apporte le même tweed joliment texturé à votre garde-robe avec un chouchou assorti. Le bordeaux, le crème et le noir se réunissent dans une pièce intemporelle, chic et juste un peu espiègle.",
+      details: ["Tweed bordeaux, noir et crème", "Élastique doux, tient sans tirer", "Taille unique"],
+      alts: ["Le chouchou Park Avenue Girl en tweed crème à carreaux noirs et bordeaux", "Le chouchou en tweed Park Avenue Girl porté au poignet avec un gilet crème"]
+    },
     collection: "park-avenue-girl",
     type: "scrunchie",
     price: "€16",
@@ -195,6 +254,13 @@ window.WOOF_PRODUCTS = [
   {
     id: "denim-club-collar",
     name: "Denim Club Denim Collar",
+    fr: {                            // textes en français (sinon l'anglais ci-dessus s'affiche)
+      name: "Collier en denim Denim Club",
+      short: "Pour les aventures du quotidien, avec un peu d'attitude.",
+      description: "Pour les aventures du quotidien, avec un peu d'attitude. **Denim Club** apporte le denim bleu classique dans la garde-robe de votre chien, avec des surpiqûres soignées et des finitions dorées. Décontracté, intemporel et naturellement cool, il ressemble à votre jean préféré — mais pour quatre pattes.",
+      details: ["Denim bleu classique aux surpiqûres soignées", "Finitions dorées, boucle gravée WOOF", "Médaille Woof gravée", "Ajustement réglable, anneau pour la laisse", "Taille S : 2,0 cm de large, longueur réglable de 28 à 43 cm", "Taille M : 2,5 cm de large, longueur réglable de 38 à 56 cm", "Conçu en France"],
+      alts: ["Le collier Denim Club en denim bleu marine à surpiqûres dorées, boucle et anneau dorés", "Gros plan du collier Denim Club et de sa boucle dorée", "Un shiba inu portant le collier Denim Club en terrasse de café"]
+    },
     collection: "denim-club",
     type: "collar",
     price: "€29",
@@ -219,6 +285,13 @@ window.WOOF_PRODUCTS = [
   {
     id: "denim-club-scrunchie",
     name: "Denim Club Scrunchie",
+    fr: {                            // textes en français (sinon l'anglais ci-dessus s'affiche)
+      name: "Chouchou Denim Club",
+      short: "Votre essentiel denim du quotidien.",
+      description: "Votre essentiel denim du quotidien. **Denim Club** est assorti au collier de votre chien, dans le même denim bleu décontracté, pour créer un lien subtil entre vous sans jamais paraître trop coordonné. Attachez-le dans vos cheveux et partez ensemble.",
+      details: ["Denim bleu décontracté", "Confortable toute la journée", "Taille unique"],
+      alts: ["Le chouchou Denim Club en denim bleu marine à surpiqûres dorées", "Le chouchou Denim Club porté au poignet en terrasse de café"]
+    },
     collection: "denim-club",
     type: "scrunchie",
     price: "€14",
@@ -240,6 +313,13 @@ window.WOOF_PRODUCTS = [
   {
     id: "rodeo-kid-collar",
     name: "Rodeo Kid Bandana Collar",
+    fr: {                            // textes en français (sinon l'anglais ci-dessus s'affiche)
+      name: "Collier bandana Rodeo Kid",
+      short: "Un brin d'esprit western, pour les balades en ville.",
+      description: "Un brin d'esprit western, pour les balades en ville. **Rodeo Kid** associe un riche tissu paisley bordeaux à des détails raffinés et des finitions dorées, pour un look à la fois ludique et chic sans effort. Inspiré des bandanas vintage et de la nonchalance parisienne, il est fait pour les chiens qui ont un peu de caractère — et beaucoup de charme.",
+      details: ["Tissu bandana paisley bordeaux", "Finitions dorées", "Médaille Woof gravée", "Ajustement réglable, anneau pour la laisse", "Taille S : 2,0 cm de large, longueur réglable de 28 à 43 cm", "Taille M : 2,5 cm de large, longueur réglable de 38 à 56 cm", "Conçu en France"],
+      alts: ["Le collier bandana Rodeo Kid en paisley bordeaux avec boucle dorée, sur du lin crème", "Gros plan du collier bandana Rodeo Kid : boucle et anneaux dorés", "Un cavalier king charles portant le collier bandana Rodeo Kid"]
+    },
     collection: "rodeo-kid",
     type: "collar",
     price: "€29",
@@ -264,6 +344,13 @@ window.WOOF_PRODUCTS = [
   {
     id: "rodeo-kid-scrunchie",
     name: "Rodeo Kid Scrunchie",
+    fr: {                            // textes en français (sinon l'anglais ci-dessus s'affiche)
+      name: "Chouchou Rodeo Kid",
+      short: "Le même paisley bordeaux, pensé pour vous.",
+      description: "Le même paisley bordeaux, pensé pour vous. **Rodeo Kid** apporte l'imprimé bandana signature à votre garde-robe du quotidien avec un chouchou doux et facile à porter. Portez-le dans vos cheveux, nouez-le à votre poignet, et laissez votre chien faire de même à sa façon.",
+      details: ["Imprimé bandana paisley bordeaux", "Doux et facile à porter, dans les cheveux ou au poignet", "Taille unique"],
+      alts: ["Le chouchou Rodeo Kid à imprimé bandana paisley bordeaux", "Gros plan du chouchou Rodeo Kid au poignet"]
+    },
     collection: "rodeo-kid",
     type: "scrunchie",
     price: "€14",
@@ -285,6 +372,13 @@ window.WOOF_PRODUCTS = [
   {
     id: "the-spoiled-one-collar",
     name: "The Spoiled One Chain Collar",
+    fr: {                            // textes en français (sinon l'anglais ci-dessus s'affiche)
+      name: "Collier chaîne The Spoiled One",
+      short: "Pour le chien qui sait exactement ce qu'il mérite.",
+      description: "Pour le chien qui sait exactement ce qu'il mérite. **The Spoiled One** associe un riche cuir noir à d'audacieux maillons dorés pour un look assuré, soigné et résolument glamour. Remarquable sans être tapageur, il a été pensé pour le petit compagnon qui est, tout simplement, gâté — et fier de l'être.",
+      details: ["Riche cuir noir tressé de maillons dorés", "Boucle dorée, ajustement réglable", "Taille S : 2,0 cm de large, longueur réglable de 28 à 43 cm", "Taille M : 2,5 cm de large, longueur réglable de 38 à 56 cm", "Conçu en France"],
+      alts: ["Le collier The Spoiled One : cuir noir tressé de maillons dorés, boucle dorée", "Gros plan des maillons dorés et du cuir noir du collier The Spoiled One", "Un cocker portant le collier chaîne The Spoiled One dans une rue parisienne"]
+    },
     collection: "the-spoiled-one",
     type: "collar",
     price: "",
@@ -307,6 +401,13 @@ window.WOOF_PRODUCTS = [
   {
     id: "the-spoiled-one-bracelet",
     name: "The Spoiled One Bracelet",
+    fr: {                            // textes en français (sinon l'anglais ci-dessus s'affiche)
+      name: "Bracelet The Spoiled One",
+      short: "Un peu d'or, un peu d'attitude.",
+      description: "Un peu d'or, un peu d'attitude. Le bracelet **The Spoiled One** apporte l'esprit de la collection à votre propre look, avec une élégante finition noire et une allure audacieuse et mode. L'accessoire parfait pour l'humaine qui sait que son chien est le mieux habillé de la pièce.",
+      details: ["Cuir noir tressé de maillons dorés", "Chaînette d'extension réglable", "Taille unique"],
+      alts: ["Le bracelet The Spoiled One : chaîne dorée tressée de cuir noir, chaînette d'extension réglable", "Le bracelet The Spoiled One porté au poignet avec une veste en tweed noir"]
+    },
     collection: "the-spoiled-one",
     type: "bracelet",
     price: "",

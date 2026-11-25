@@ -95,9 +95,11 @@ Les tailles, les collections et les matières sont reprises automatiquement de `
   Ne changez que le texte, jamais la clé.
 - Le site choisit la langue du navigateur (anglais si elle n'existe pas), et retient le choix fait avec EN | FR.
 - **Ajouter une langue** (ex. italien) : copiez `js/i18n/en.js` en `js/i18n/it.js`, remplacez `register("en"` par
-  `register("it"`, traduisez les textes, puis ajoutez `it: "IT",` dans `WOOF_LANGUAGES` (fichier `js/config.js`).
-- Pas encore traduits : les descriptions de produits (`js/products.js`) et le corps des pages Shop, fiche produit,
-  About us et Contact (le menu et le pied de page sont traduits).
+  `register("it"`, traduisez les textes, ajoutez un bloc `it: { … }` à chaque produit et collection de `js/products.js`,
+  puis ajoutez `it: "IT",` dans `WOOF_LANGUAGES` (fichier `js/config.js`).
+- Tout le site est traduit. Les textes des produits et des collections en français sont dans `js/products.js`,
+  dans le bloc `fr: { … }` de chaque produit (nom, phrase courte, description, détails, descriptions des photos).
+  Pour une nouvelle langue, ajoutez aussi un bloc `it: { … }` (par exemple) sur le même modèle.
 
 ## Liste d'attente
 
