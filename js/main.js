@@ -509,7 +509,7 @@
         '<li class="talk-card"><figure>' +
         (r.stars ? starsHTML(r.stars) + '<span class="visually-hidden">' + esc(fmt("a11y.stars", "{n} out of 5", { n: r.stars })) + "</span>" : "") +
         "<blockquote><p>" + esc(text) + "</p></blockquote>" +
-        "<figcaption>— " + esc(r.name) + "</figcaption></figure></li>"
+        "<figcaption>" + esc(r.name) + "</figcaption></figure></li>"
       );
     }).join("");
     var revList = $("[data-reviews-list]", revBox);

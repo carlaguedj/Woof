@@ -10,6 +10,9 @@
    LANGUES : chaque produit et chaque collection a un bloc « fr: { … } » avec les textes
    en français. Pour ajouter une langue (ex. italien), ajoutez un bloc « it: { … } » sur le même modèle.
 
+   LANGUES : chaque produit et chaque collection a un bloc « fr: { … } » avec les textes
+   en français. Pour ajouter une langue (ex. italien), ajoutez un bloc « it: { … } » sur le même modèle.
+
    RÈGLES SIMPLES :
    - Le texte se met toujours entre guillemets "comme ceci".
    - Chaque bloc { ... } se termine par une virgule.
@@ -200,7 +203,7 @@ window.WOOF_PRODUCTS = [
       short: "Un peu d'élégance parisienne à quatre pattes.",
       description: "Un peu d'élégance parisienne à quatre pattes. **Park Avenue Girl** est réalisé dans un tweed raffiné bordeaux, noir et crème, rehaussé d'élégantes finitions dorées. Inspiré du tailleur classique et du chic citadin d'antan, il apporte une touche soignée à chaque balade — du parc au café.",
       details: ["Tweed bordeaux, noir et crème", "Finitions dorées, boucle gravée WOOF", "Médaille Woof gravée", "Ajustement réglable, anneau pour la laisse", "Taille S : 2,0 cm de large, longueur réglable de 28 à 43 cm", "Taille M : 2,5 cm de large, longueur réglable de 38 à 56 cm", "Conçu en France"],
-      alts: ["Le collier Park Avenue Girl en tweed crème à carreaux noirs et bordeaux, boucle et anneau dorés", "Gros plan du collier en tweed Park Avenue Girl et de sa boucle dorée", "Un bouledogue français portant le collier en tweed Park Avenue Girl en terrasse de café"]
+      alts: ["Le collier Park Avenue Girl en tweed rose à carreaux, boucle et anneau dorés, sur du lin crème", "Gros plan du collier en tweed rose Park Avenue Girl et de sa boucle dorée", "Un cavalier king charles portant le collier en tweed rose Park Avenue Girl près d'hortensias roses"]
     },
     collection: "park-avenue-girl",
     type: "collar",
@@ -218,9 +221,9 @@ window.WOOF_PRODUCTS = [
     ],
     sizes: ["S", "M"],
     images: [
-      { src: "images/park-avenue-girl-collier-1.jpg", alt: "Park Avenue Girl collar in cream tweed checked in black and burgundy, golden buckle and D-ring" },
-      { src: "images/park-avenue-girl-collier-2.jpg", alt: "Close-up of the Park Avenue Girl tweed collar and its golden buckle" },
-      { src: "images/park-avenue-girl-collier-3.jpg", alt: "French bulldog wearing the Park Avenue Girl tweed collar on a café terrace" }
+      { src: "images/park-avenue-girl-collier-1.jpg", alt: "Park Avenue Girl collar in pink checked tweed with golden buckle and D-ring, on cream linen" },
+      { src: "images/park-avenue-girl-collier-2.jpg", alt: "Close-up of the pink tweed Park Avenue Girl collar and its golden buckle" },
+      { src: "images/park-avenue-girl-collier-3.jpg", alt: "Cavalier King Charles spaniel wearing the pink tweed Park Avenue Girl collar next to pink hydrangeas" }
     ]
   },
   {
@@ -231,7 +234,7 @@ window.WOOF_PRODUCTS = [
       short: "La touche finale du look.",
       description: "La touche finale du look. **Park Avenue Girl** apporte le même tweed joliment texturé à votre garde-robe avec un chouchou assorti. Le bordeaux, le crème et le noir se réunissent dans une pièce intemporelle, chic et juste un peu espiègle.",
       details: ["Tweed bordeaux, noir et crème", "Élastique doux, tient sans tirer", "Taille unique"],
-      alts: ["Le chouchou Park Avenue Girl en tweed crème à carreaux noirs et bordeaux", "Le chouchou en tweed Park Avenue Girl porté au poignet avec un gilet crème"]
+      alts: ["Le chouchou Park Avenue Girl en tweed rose à carreaux", "Le chouchou en tweed rose Park Avenue Girl porté au poignet avec un pull crème"]
     },
     collection: "park-avenue-girl",
     type: "scrunchie",
@@ -245,8 +248,8 @@ window.WOOF_PRODUCTS = [
     ],
     sizes: [],                         // [] = one size
     images: [
-      { src: "images/park-avenue-girl-scrunchie-1.jpg", alt: "Park Avenue Girl scrunchie in cream tweed checked in black and burgundy" },
-      { src: "images/park-avenue-girl-scrunchie-2.jpg", alt: "Park Avenue Girl tweed scrunchie worn on the wrist with a cream cardigan" }
+      { src: "images/park-avenue-girl-scrunchie-1.jpg", alt: "Park Avenue Girl scrunchie in pink checked tweed" },
+      { src: "images/park-avenue-girl-scrunchie-2.jpg", alt: "Pink tweed Park Avenue Girl scrunchie worn on the wrist with a cream sweater" }
     ]
   },
 
